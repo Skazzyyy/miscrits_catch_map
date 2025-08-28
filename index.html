@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miscrits Map - Interactive Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Miscrits Map</h1>
+            <p>Interactive guide to all Miscrits by location and rarity</p>
+            <div class="time-display">
+                <div class="current-time">
+                    <span class="time-label">Current Time (GMT+0):</span>
+                    <span id="current-time" class="time-value">--:--:--</span>
+                </div>
+                <div class="countdown-time">
+                    <span class="time-label">Time until midnight:</span>
+                    <span id="countdown-time" class="time-value">--:--:--</span>
+                </div>
+            </div>
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <span>Loading Miscrits data...</span>
+            </div>
+        </header>
+
+        <main id="main-content" style="display: none;">
+            <div class="stats" id="stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="total-miscrits">0</span>
+                    <span class="stat-label">Total Miscrits</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="total-locations">0</span>
+                    <span class="stat-label">Locations</span>
+                </div>
+                <div class="export-section">
+                    <button id="admin-mode-btn" class="export-btn">Enter Admin Mode</button>
+                    <div id="admin-controls" class="admin-controls" style="display: none;">
+                        <div class="admin-row">
+                            <button id="export-data-btn" class="export-btn admin-btn">Export Data</button>
+                            <button id="clear-markers-btn" class="export-btn admin-btn clear-btn">Clear All Markers</button>
+                            <button id="clear-dates-btn" class="export-btn admin-btn clear-btn">Clear All Dates</button>
+                            <button id="exit-admin-btn" class="export-btn admin-btn exit-btn">Exit Admin Mode</button>
+                        </div>
+                        <div class="admin-row">
+                            <label for="data-source-select" class="data-source-label">Data Source:</label>
+                            <select id="data-source-select" class="data-source-select">
+                                <option value="local">Local Storage</option>
+                                <option value="json">miscrits_data.json</option>
+                            </select>
+                            <button id="import-json-btn" class="export-btn admin-btn">Import from JSON</button>
+                            <button id="load-file-btn" class="export-btn admin-btn">Load from File</button>
+                        </div>
+                        <input type="file" id="file-input" accept=".json" style="display: none;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="location-filter">Filter by Location:</label>
+                    <select id="location-filter">
+                        <option value="">All Locations</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="area-filter">Filter by Area:</label>
+                    <select id="area-filter">
+                        <option value="">All Areas</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="rarity-filter">Filter by Rarity:</label>
+                    <select id="rarity-filter">
+                        <option value="">All Rarities</option>
+                        <option value="Common">Common</option>
+                        <option value="Rare">Rare</option>
+                        <option value="Epic">Epic</option>
+                        <option value="Exotic">Exotic</option>
+                        <option value="Legendary">Legendary</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="element-filter">Filter by Element:</label>
+                    <select id="element-filter">
+                        <option value="">All Elements</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="day-filter">Filter by Day:</label>
+                    <select id="day-filter">
+                        <option value="">All Days</option>
+                        <option value="today">Today</option>
+                        <option value="mon">Monday</option>
+                        <option value="tue">Tuesday</option>
+                        <option value="wed">Wednesday</option>
+                        <option value="thu">Thursday</option>
+                        <option value="fri">Friday</option>
+                        <option value="sat">Saturday</option>
+                        <option value="sun">Sunday</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <input type="text" id="search-filter" placeholder="Search miscrits...">
+                </div>
+            </div>
+
+            <div class="miscrits-container" id="miscrits-container">
+                <!-- Miscrits will be dynamically loaded here -->
+            </div>
+        </main>
+
+        <div class="error" id="error" style="display: none;">
+            <h2>❌ Error Loading Data</h2>
+            <p id="error-message">Failed to load Miscrits data. Please try again later.</p>
+            <div class="error-buttons">
+                <button onclick="location.reload()">Retry</button>
+                <button id="clear-storage-btn" class="clear-btn">Clear Local Storage</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+{
+  "markers": {
+    "Forest": [
+      {
+        "location": "Forest",
+        "x": 27.11,
+        "y": 49.44,
+        "miscrits": [
+          {
+            "miscritId": 20,
+            "miscritName": "Waddles",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/waddles_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "thu",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_waddles_multi_27_49.png",
+          "assets/miscrits/exactLocations/forest_dark_waddles_multi_33_54.png"
+        ],
+        "additionalInformation": "Any of the Orange Looking Cattails",
+        "timestamp": 1756421313228,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 12.38,
+        "y": 48.07,
+        "miscrits": [
+          {
+            "miscritId": 21,
+            "miscritName": "Treemur",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/treemur_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "thu",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_treemur_multi_12_48.png"
+        ],
+        "additionalInformation": "Any of the Dead Trees",
+        "timestamp": 1756421385985,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 33.72,
+        "y": 54.01,
+        "miscrits": [
+          {
+            "miscritId": 512,
+            "miscritName": "Dark Waddles",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_waddles_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_dark_waddles_multi_33_54.png"
+        ],
+        "additionalInformation": "",
+        "timestamp": 1756421411339,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 46.92,
+        "y": 63.66,
+        "miscrits": [
+          {
+            "miscritId": 23,
+            "miscritName": "Dark Flue",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_flue_avatar.png",
+            "daysOfWeek": [
+              "tue",
+              "fri",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_dark_flue_multi_46_63.png"
+        ],
+        "additionalInformation": "Any of the Palm Trees",
+        "timestamp": 1756421509429,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 50.17663043478261,
+        "y": 64.52898550724638,
+        "miscrits": [
+          {
+            "miscritId": 507,
+            "miscritName": "Dark Treemur",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_treemur_avatar.png",
+            "daysOfWeek": [
+              "thu",
+              "fri",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_dark_treemur_multi_50_64.png"
+        ],
+        "additionalInformation": "Big Dead Tree",
+        "timestamp": 1756421533440,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 46.7,
+        "y": 57.36,
+        "miscrits": [
+          {
+            "miscritId": 430,
+            "miscritName": "Blighted Cubsprout",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blighted_cubsprout_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_blighted_cubsprout_multi_46_57.png"
+        ],
+        "additionalInformation": "Darker Blighted Bush",
+        "timestamp": 1756421575057,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 83.71,
+        "y": 53.19,
+        "miscrits": [
+          {
+            "miscritId": 22,
+            "miscritName": "Tulipinny",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/tulipinny_avatar.png",
+            "daysOfWeek": [
+              "wed",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_tulipinny_multi_83_53.png"
+        ],
+        "additionalInformation": "Big Magical Flower",
+        "timestamp": 1756421649913,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 83.82,
+        "y": 58.12,
+        "miscrits": [
+          {
+            "miscritId": 338,
+            "miscritName": "Flaring",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/flaring_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_flaring_multi_83_58.png"
+        ],
+        "additionalInformation": "Only this Grass Pile",
+        "timestamp": 1756421688049,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 65.67,
+        "y": 51.67,
+        "miscrits": [
+          {
+            "miscritId": 425,
+            "miscritName": "Defilio",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/defilio_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_defilio_multi_65_51.png"
+        ],
+        "additionalInformation": "Blighted Bush",
+        "timestamp": 1756421716481,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 60.8,
+        "y": 51.37,
+        "miscrits": [
+          {
+            "miscritId": 93,
+            "miscritName": "Mama",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/mama_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_mama_multi_60_51.png"
+        ],
+        "additionalInformation": "Log with the bug inside (Top Left Corner)",
+        "timestamp": 1756421749771,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 54.31,
+        "y": 32.83,
+        "miscrits": [
+          {
+            "miscritId": 26,
+            "miscritName": "Blazebit",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blazebit_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "thu",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_dark_twiggum_multi_52_33.png"
+        ],
+        "additionalInformation": "Huge Tree",
+        "timestamp": 1756421804376,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 52.46,
+        "y": 33.29,
+        "miscrits": [
+          {
+            "miscritId": 513,
+            "miscritName": "Dark Twiggum",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_twiggum_avatar.png",
+            "daysOfWeek": [
+              "thu",
+              "fri",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_dark_twiggum_multi_52_33.png"
+        ],
+        "additionalInformation": "Huge Tree",
+        "timestamp": 1756421856628,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 42.9,
+        "y": 52.9,
+        "miscrits": [
+          {
+            "miscritId": 94,
+            "miscritName": "Dark Nessy",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_nessy_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_dark_nessy_multi_42_52.png"
+        ],
+        "additionalInformation": "Darker Cattail (Right after the entrance, go bottom left)",
+        "timestamp": 1756421882827,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 19.03,
+        "y": 42.24,
+        "miscrits": [
+          {
+            "miscritId": 546,
+            "miscritName": "Blighted Flowerpiller",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blighted_flowerpiller_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_blighted_flowerpiller_multi_19_42.png"
+        ],
+        "additionalInformation": "Blighted Flower",
+        "timestamp": 1756421908634,
+        "isMultiple": true
+      },
+      {
+        "location": "Forest",
+        "x": 75.06,
+        "y": 25.32,
+        "miscrits": [
+          {
+            "miscritId": 433,
+            "miscritName": "Blighted Flue",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blighted_flue_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/forest_blighted_flue_multi_75_25.png"
+        ],
+        "additionalInformation": "Blighted Stone",
+        "timestamp": 1756421930987,
+        "isMultiple": true
+      }
+    ]
+  },
+  "miscritAvailability": {
+    "20": {
+      "Forest|1": [
+        "mon",
+        "thu",
+        "sat"
+      ]
+    },
+    "21": {
+      "Forest|1": [
+        "mon",
+        "thu",
+        "sun"
+      ]
+    },
+    "22": {
+      "Forest|3": [
+        "wed",
+        "sat",
+        "sun"
+      ]
+    },
+    "23": {
+      "Forest|2": [
+        "tue",
+        "fri",
+        "sun"
+      ]
+    },
+    "24": {
+      "Forest|4": [
+        "tue",
+        "fri"
+      ]
+    },
+    "25": {
+      "Forest|4": [
+        "wed",
+        "sat"
+      ]
+    },
+    "26": {
+      "Forest|4": [
+        "mon",
+        "thu",
+        "sun"
+      ]
+    },
+    "77": {
+      "Forest|1": [
+        "wed",
+        "sat"
+      ]
+    },
+    "95": {
+      "Forest|3": [
+        "tue",
+        "fri"
+      ]
+    },
+    "338": {
+      "Forest|3": [
+        "mon",
+        "tue",
+        "wed"
+      ]
+    },
+    "502": {
+      "Forest|3": [
+        "mon",
+        "thu"
+      ]
+    },
+    "507": {
+      "Forest|2": [
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    "510": {
+      "Forest|1": [
+        "tue",
+        "fri"
+      ]
+    },
+    "512": {
+      "Forest|1": [
+        "mon",
+        "tue",
+        "wed"
+      ]
+    },
+    "513": {
+      "Forest|4": [
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    "544": {
+      "Forest|2": [
+        "mon",
+        "thu"
+      ]
+    },
+    "545": {
+      "Forest|2": [
+        "wed",
+        "sat"
+      ]
+    }
+  },
+  "exportDate": "2025-08-28T23:01:08.814Z",
+  "version": "1.0"
+}
