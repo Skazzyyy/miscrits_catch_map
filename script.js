@@ -1164,7 +1164,7 @@ class MiscritsApp {
     }
 
     getMiscritAvailabilityData() {
-        const dataSource = this.currentDataSource || localStorage.getItem('dataSource') || 'local';
+        const dataSource = this.currentDataSource || localStorage.getItem('dataSource') || 'json';
         
         if (dataSource === 'json') {
             // Return from cached JSON data if available
@@ -2249,7 +2249,7 @@ class MiscritsApp {
     }
 
     getMiscritMarkers() {
-        const dataSource = this.currentDataSource || localStorage.getItem('dataSource') || 'local';
+        const dataSource = this.currentDataSource || localStorage.getItem('dataSource') || 'json';
         
         if (dataSource === 'json') {
             // Return from cached JSON data if available
@@ -2262,7 +2262,7 @@ class MiscritsApp {
     }
 
     saveMiscritMarkers(markers) {
-        const dataSource = this.currentDataSource || localStorage.getItem('dataSource') || 'local';
+        const dataSource = this.currentDataSource || localStorage.getItem('dataSource') || 'json';
         
         if (dataSource === 'local') {
             localStorage.setItem('miscritMarkers', JSON.stringify(markers));
@@ -2273,7 +2273,7 @@ class MiscritsApp {
     }
 
     saveMiscritAvailabilityData(availabilityData) {
-        const dataSource = this.currentDataSource || localStorage.getItem('dataSource') || 'local';
+        const dataSource = this.currentDataSource || localStorage.getItem('dataSource') || 'json';
         
         if (dataSource === 'local') {
             localStorage.setItem('miscritAvailability', JSON.stringify(availabilityData));
@@ -2284,7 +2284,7 @@ class MiscritsApp {
     }
 
     isEditingAllowed() {
-        const dataSource = this.currentDataSource || localStorage.getItem('dataSource') || 'local';
+        const dataSource = this.currentDataSource || localStorage.getItem('dataSource') || 'json';
         return dataSource === 'local';
     }
 
@@ -2493,7 +2493,7 @@ class MiscritsApp {
         localStorage.setItem('isAdminMode', 'true');
         
         // Check data source and show warning if using JSON mode
-        const dataSource = this.currentDataSource || localStorage.getItem('dataSource') || 'local';
+        const dataSource = this.currentDataSource || localStorage.getItem('dataSource') || 'json';
         if (dataSource === 'json') {
             alert('⚠️ Warning: You are in JSON data mode. Editing features will be disabled. Switch to Local Storage mode to make changes.');
         }
@@ -3105,7 +3105,7 @@ class MiscritsApp {
     }
 
     initializeDataSource() {
-        const savedDataSource = localStorage.getItem('dataSource') || 'local';
+        const savedDataSource = localStorage.getItem('dataSource') || 'json';
         const dataSourceSelect = document.getElementById('data-source-select');
         dataSourceSelect.value = savedDataSource;
         this.currentDataSource = savedDataSource;
