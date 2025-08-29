@@ -36,6 +36,15 @@ class MiscritsApp {
         }
     }
 
+    generateUUID() {
+        // Generate a UUID v4
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            const r = Math.random() * 16 | 0;
+            const v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
     async loadMiscrits() {
         const response = await fetch('https://cdn.worldofmiscrits.com/miscrits.json');
         if (!response.ok) {
@@ -1561,7 +1570,7 @@ class MiscritsApp {
             exactLocationImages: customUrl ? [customUrl] : [], // Array of exact location images
             additionalInformation: '', // Additional information about this marker
             daysOfWeek: [], // Default to no days selected
-            timestamp: Date.now()
+            id: this.generateUUID()  // Use unique ID instead of timestamp
         };
 
         // Add to markers
@@ -1597,7 +1606,7 @@ class MiscritsApp {
             })),
             exactLocationImages: customUrl ? [customUrl] : [], // Array of exact location images
             additionalInformation: '', // Additional information about this marker
-            timestamp: Date.now(),
+            id: this.generateUUID(),  // Use unique ID instead of timestamp
             isMultiple: true // Flag to identify multi-miscrit markers
         };
 
@@ -2017,7 +2026,7 @@ class MiscritsApp {
         const markers = this.getMiscritMarkers();
         if (markers[marker.location]) {
             const markerIndex = markers[marker.location].findIndex(m => 
-                m.timestamp === marker.timestamp
+                m.id === marker.id  // Use unique ID instead of timestamp
             );
             if (markerIndex !== -1) {
                 markers[marker.location][markerIndex] = marker;
@@ -2184,7 +2193,7 @@ class MiscritsApp {
         // Save handler
         saveBtn.addEventListener('click', () => {
             // Save days data
-            this.saveDaysFromEditor(marker, daysContainer);
+            this.saveDaysChanges(marker, markerElement, daysContainer);
             
             // Save marker info data
             this.saveMarkerInfoFromEditor(marker, exactImagesContainer);
@@ -2388,7 +2397,7 @@ class MiscritsApp {
         const markers = this.getMiscritMarkers();
         if (markers[marker.location]) {
             const markerIndex = markers[marker.location].findIndex(m => 
-                m.timestamp === marker.timestamp
+                m.id === marker.id  // Use unique ID instead of timestamp
             );
             if (markerIndex !== -1) {
                 markers[marker.location][markerIndex] = marker;
@@ -2547,7 +2556,7 @@ class MiscritsApp {
         const markers = this.getMiscritMarkers();
         if (markers[marker.location]) {
             const markerIndex = markers[marker.location].findIndex(m => 
-                m.timestamp === marker.timestamp
+                m.id === marker.id  // Use unique ID instead of timestamp
             );
             if (markerIndex !== -1) {
                 markers[marker.location][markerIndex] = marker;
@@ -2561,6 +2570,112 @@ class MiscritsApp {
         console.log(`Updated days for ${markerName}`);
     }
 
+    generateDaysEditor(marker, container) {
+        const days = [
+            { key: 'mon', label: 'Monday' },
+            { key: 'tue', label: 'Tuesday' },
+            { key: 'wed', label: 'Wednesday' },
+            { key: 'thu', label: 'Thursday' },
+            { key: 'fri', label: 'Friday' },
+            { key: 'sat', label: 'Saturday' },
+            { key: 'sun', label: 'Sunday' }
+        ];
+
+        if (marker.isMultiple) {
+            // For multiple miscrits, show each miscrit with its own day selector
+            container.innerHTML = `
+                <p>Select which days each miscrit can be caught:</p>
+                <div class="miscrits-days-list">
+                    ${marker.miscrits.map((miscrit, index) => `
+                        <div class="miscrit-days-section" data-miscrit-index="${index}">
+                            <div class="miscrit-days-header">
+                                <img src="${miscrit.imageUrl}" alt="${miscrit.miscritName}" class="miscrit-days-avatar">
+                                <span class="miscrit-days-name">${miscrit.miscritName}</span>
+                            </div>
+                            <div class="days-checkboxes">
+                                ${days.map(day => `
+                                    <label class="day-checkbox">
+                                        <input type="checkbox" 
+                                               value="${day.key}" 
+                                               ${miscrit.daysOfWeek.includes(day.key) ? 'checked' : ''}>
+                                        <span class="day-label">${day.label}</span>
+                                    </label>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        } else {
+            // For single miscrit
+            const miscritDays = marker.daysOfWeek;
+            container.innerHTML = `
+                <p>Select which days <strong>${marker.miscritName}</strong> can be caught:</p>
+                <div class="days-checkboxes single-miscrit-days">
+                    ${days.map(day => `
+                        <label class="day-checkbox">
+                            <input type="checkbox" 
+                                   value="${day.key}" 
+                                   ${miscritDays.includes(day.key) ? 'checked' : ''}>
+                            <span class="day-label">${day.label}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            `;
+        }
+    }
+
+    populateExistingImages(marker, container) {
+        if (!marker.exactLocationImages) {
+            marker.exactLocationImages = [];
+        }
+        
+        container.innerHTML = '';
+        
+        marker.exactLocationImages.forEach((imageUrl, index) => {
+            this.addImageToContainer(imageUrl, container, true);
+        });
+    }
+    
+    addImageToContainer(url, container, isExisting = false) {
+        const imageItem = document.createElement('div');
+        imageItem.className = 'image-item';
+        
+        imageItem.innerHTML = `
+            <img src="${url}" alt="Location image" class="image-preview">
+            <div class="image-url">${url}</div>
+            <button class="btn-remove-image">&times;</button>
+        `;
+        
+        container.appendChild(imageItem);
+        
+        // Add remove functionality
+        imageItem.querySelector('.btn-remove-image').addEventListener('click', () => {
+            imageItem.remove();
+        });
+    }
+
+    saveMarkerInfoFromEditor(marker, exactImagesContainer) {
+        // Get exact location images
+        const imageItems = exactImagesContainer.querySelectorAll('.image-item');
+        marker.exactLocationImages = Array.from(imageItems).map(item => {
+            return item.querySelector('.image-url').textContent;
+        });
+        
+        // Save to storage
+        const allMarkers = this.getMiscritMarkers();
+        this.saveMiscritMarkers(allMarkers);
+    }
+
+    updateMarkerElementFromData(marker, markerElement) {
+        // Update the visual representation of the marker if needed
+        // For now, just log the update
+        const markerName = marker.isMultiple 
+            ? marker.miscrits.map(m => m.miscritName).join(', ')
+            : marker.miscritName;
+        console.log(`Updated marker element for ${markerName}`);
+    }
+
     removeMiscritMarker(marker, markerElement) {
         const markerName = marker.isMultiple 
             ? marker.miscrits.map(m => m.miscritName).join(', ')
@@ -2571,7 +2686,7 @@ class MiscritsApp {
             const markers = this.getMiscritMarkers();
             if (markers[marker.location]) {
                 markers[marker.location] = markers[marker.location].filter(m => 
-                    m.timestamp !== marker.timestamp
+                    m.id !== marker.id  // Use unique ID instead of timestamp
                 );
                 if (markers[marker.location].length === 0) {
                     delete markers[marker.location];
@@ -3084,7 +3199,7 @@ class MiscritsApp {
             const markers = this.getMiscritMarkers();
             if (markers[marker.location]) {
                 const markerIndex = markers[marker.location].findIndex(m => 
-                    m.timestamp === marker.timestamp
+                    m.id === marker.id  // Use unique ID instead of timestamp
                 );
                 if (markerIndex !== -1) {
                     markers[marker.location][markerIndex] = marker;
@@ -3252,7 +3367,7 @@ class MiscritsApp {
             const markers = this.getMiscritMarkers();
             if (markers[marker.location]) {
                 const markerIndex = markers[marker.location].findIndex(m => 
-                    m.timestamp === marker.timestamp
+                    m.id === marker.id  // Use unique ID instead of timestamp
                 );
                 if (markerIndex !== -1) {
                     markers[marker.location][markerIndex] = marker;

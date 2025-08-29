@@ -2,9 +2,10 @@
   "markers": {
     "Forest": [
       {
+        "id": "0779dfa8-1ae8-478f-92c6-c50bdc1a1569",
         "location": "Forest",
-        "x": 27.11,
-        "y": 49.44,
+        "x": 26.78125,
+        "y": 49.63333384195964,
         "miscrits": [
           {
             "miscritId": 20,
@@ -19,17 +20,17 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_waddles_multi_27_49.png",
-          "assets/miscrits/exactLocations/forest_dark_waddles_multi_33_54.png"
+          "https://i.imgur.com/NOCmlje.png",
+          "https://i.imgur.com/JRt0Hc2.png"
         ],
         "additionalInformation": "Any of the Orange Looking Cattails",
-        "timestamp": 1756421313228,
         "isMultiple": true
       },
       {
+        "id": "feb429d1-fd3d-4631-863f-befa52a35846",
         "location": "Forest",
-        "x": 12.38,
-        "y": 48.07,
+        "x": 12.40625,
+        "y": 48.3000005086263,
         "miscrits": [
           {
             "miscritId": 21,
@@ -44,21 +45,21 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_treemur_multi_12_48.png"
+          "https://i.imgur.com/o1lOeQJ.png"
         ],
         "additionalInformation": "Any of the Dead Trees",
-        "timestamp": 1756421385985,
         "isMultiple": true
       },
       {
+        "id": "142d38ae-0749-41b6-a66e-7a2f582c959a",
         "location": "Forest",
-        "x": 33.72,
-        "y": 54.01,
+        "x": 33.84375,
+        "y": 54.21666717529297,
         "miscrits": [
           {
             "miscritId": 512,
             "miscritName": "Dark Waddles",
-            "miscritRarity": "Epic",
+            "miscritRarity": "Rare",
             "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_waddles_avatar.png",
             "daysOfWeek": [
               "mon",
@@ -68,16 +69,16 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_dark_waddles_multi_33_54.png"
+          "https://i.imgur.com/JRt0Hc2.png"
         ],
-        "additionalInformation": "",
-        "timestamp": 1756421411339,
+        "additionalInformation": "Only this cattail (specific location)",
         "isMultiple": true
       },
       {
+        "id": "d177caa4-9b38-46a8-a608-7860267a0898",
         "location": "Forest",
-        "x": 46.92,
-        "y": 63.66,
+        "x": 46.90625,
+        "y": 64.13333384195964,
         "miscrits": [
           {
             "miscritId": 23,
@@ -92,16 +93,16 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_dark_flue_multi_46_63.png"
+          "https://i.imgur.com/XIG9ONA.png"
         ],
         "additionalInformation": "Any of the Palm Trees",
-        "timestamp": 1756421509429,
         "isMultiple": true
       },
       {
+        "id": "ca775bbd-9df3-4795-8586-e35ef2e04945",
         "location": "Forest",
-        "x": 50.17663043478261,
-        "y": 64.52898550724638,
+        "x": 50.21875,
+        "y": 63.46666717529297,
         "miscrits": [
           {
             "miscritId": 507,
@@ -116,16 +117,16 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_dark_treemur_multi_50_64.png"
+          "https://i.imgur.com/vexxxLb.png"
         ],
         "additionalInformation": "Big Dead Tree",
-        "timestamp": 1756421533440,
         "isMultiple": true
       },
       {
+        "id": "94da6303-8537-4186-944f-46f4db4a6330",
         "location": "Forest",
-        "x": 46.7,
-        "y": 57.36,
+        "x": 46.65625,
+        "y": 58.0500005086263,
         "miscrits": [
           {
             "miscritId": 430,
@@ -144,16 +145,16 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_blighted_cubsprout_multi_46_57.png"
+          "https://i.imgur.com/l4fXS4X.png"
         ],
         "additionalInformation": "Darker Blighted Bush",
-        "timestamp": 1756421575057,
         "isMultiple": true
       },
       {
+        "id": "b8eef296-b4b3-4a51-9588-733a68381bfd",
         "location": "Forest",
-        "x": 83.71,
-        "y": 53.19,
+        "x": 83.84375,
+        "y": 51.88333384195963,
         "miscrits": [
           {
             "miscritId": 22,
@@ -168,16 +169,16 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_tulipinny_multi_83_53.png"
+          "https://i.imgur.com/mjuDKW9.png"
         ],
         "additionalInformation": "Big Magical Flower",
-        "timestamp": 1756421649913,
         "isMultiple": true
       },
       {
+        "id": "0ec3e9c2-3add-4023-9a7e-b8223ff50109",
         "location": "Forest",
-        "x": 83.82,
-        "y": 58.12,
+        "x": 83.84375,
+        "y": 58.5500005086263,
         "miscrits": [
           {
             "miscritId": 338,
@@ -192,16 +193,16 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_flaring_multi_83_58.png"
+          "https://i.imgur.com/hrwSazc.png"
         ],
         "additionalInformation": "Only this Grass Pile",
-        "timestamp": 1756421688049,
         "isMultiple": true
       },
       {
+        "id": "50064564-6110-428c-8b76-3ae43c2903d9",
         "location": "Forest",
-        "x": 65.67,
-        "y": 51.67,
+        "x": 65.71875,
+        "y": 52.46666717529297,
         "miscrits": [
           {
             "miscritId": 425,
@@ -220,16 +221,16 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_defilio_multi_65_51.png"
+          "https://i.imgur.com/JPmUl4Q.png"
         ],
         "additionalInformation": "Blighted Bush",
-        "timestamp": 1756421716481,
         "isMultiple": true
       },
       {
+        "id": "9176a353-e71a-42e4-ab92-0f9983e185d1",
         "location": "Forest",
-        "x": 60.8,
-        "y": 51.37,
+        "x": 60.53125,
+        "y": 51.716667175292976,
         "miscrits": [
           {
             "miscritId": 93,
@@ -248,16 +249,16 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_mama_multi_60_51.png"
+          "https://i.imgur.com/vnh2Qty.png"
         ],
         "additionalInformation": "Log with the bug inside (Top Left Corner)",
-        "timestamp": 1756421749771,
         "isMultiple": true
       },
       {
+        "id": "a18cc214-11eb-46e1-be5c-893c6e57b894",
         "location": "Forest",
-        "x": 54.31,
-        "y": 32.83,
+        "x": 53.15625000000001,
+        "y": 33.13333384195963,
         "miscrits": [
           {
             "miscritId": 26,
@@ -272,16 +273,16 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_dark_twiggum_multi_52_33.png"
+          "https://i.imgur.com/4RqWYc4.png"
         ],
         "additionalInformation": "Huge Tree",
-        "timestamp": 1756421804376,
         "isMultiple": true
       },
       {
+        "id": "8815a9fc-f224-4c01-9eec-8cd0d8047cb7",
         "location": "Forest",
-        "x": 52.46,
-        "y": 33.29,
+        "x": 54.90625,
+        "y": 33.46666717529297,
         "miscrits": [
           {
             "miscritId": 513,
@@ -296,16 +297,16 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_dark_twiggum_multi_52_33.png"
+          "https://i.imgur.com/4RqWYc4.png"
         ],
         "additionalInformation": "Huge Tree",
-        "timestamp": 1756421856628,
         "isMultiple": true
       },
       {
+        "id": "0a6235f2-6128-4e19-9a32-e7b51d09a17b",
         "location": "Forest",
-        "x": 42.9,
-        "y": 52.9,
+        "x": 42.96875,
+        "y": 53.46666717529297,
         "miscrits": [
           {
             "miscritId": 94,
@@ -324,16 +325,16 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_dark_nessy_multi_42_52.png"
+          "https://i.imgur.com/CAuZRpL.png"
         ],
         "additionalInformation": "Darker Cattail (Right after the entrance, go bottom left)",
-        "timestamp": 1756421882827,
         "isMultiple": true
       },
       {
+        "id": "e304d33c-bab3-4fdd-bbbc-d61bcf3d55ab",
         "location": "Forest",
-        "x": 19.03,
-        "y": 42.24,
+        "x": 18.96875,
+        "y": 42.46666717529297,
         "miscrits": [
           {
             "miscritId": 546,
@@ -352,16 +353,16 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_blighted_flowerpiller_multi_19_42.png"
+          "https://i.imgur.com/Qw3xXHO.png"
         ],
         "additionalInformation": "Blighted Flower",
-        "timestamp": 1756421908634,
         "isMultiple": true
       },
       {
+        "id": "49e65d7c-debb-4390-8762-32c10eb216ec",
         "location": "Forest",
-        "x": 75.06,
-        "y": 25.32,
+        "x": 75.09375,
+        "y": 25.46666717529297,
         "miscrits": [
           {
             "miscritId": 433,
@@ -380,10 +381,2379 @@
           }
         ],
         "exactLocationImages": [
-          "assets/miscrits/exactLocations/forest_blighted_flue_multi_75_25.png"
+          "https://i.imgur.com/CH7E6ik.png"
         ],
         "additionalInformation": "Blighted Stone",
-        "timestamp": 1756421930987,
+        "isMultiple": true
+      }
+    ],
+    "Hidden Forest": [
+      {
+        "id": "906e4162-c2c3-4aa1-ad46-259ac5ec60f9",
+        "location": "Hidden Forest",
+        "x": 52.109375,
+        "y": 30.317129558987087,
+        "miscrits": [
+          {
+            "miscritId": 121,
+            "miscritName": "Bloomple",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/bloomple_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "wed",
+              "fri",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/dnpPQQQ.png"
+        ],
+        "additionalInformation": "Giant Tree",
+        "isMultiple": true
+      },
+      {
+        "id": "feeb46ce-46dd-480c-a12b-ef0584b12cb6",
+        "location": "Hidden Forest",
+        "x": 50.130208333333336,
+        "y": 29.62268511454264,
+        "miscrits": [
+          {
+            "miscritId": 28,
+            "miscritName": "Blazertooth",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blazertooth_avatar.png",
+            "daysOfWeek": [
+              "tue",
+              "thu",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/dnpPQQQ.png"
+        ],
+        "additionalInformation": "Giant Tree",
+        "isMultiple": true
+      },
+      {
+        "id": "d533f9e5-43ac-4fb3-bb3e-99b71b2b0690",
+        "location": "Hidden Forest",
+        "x": 57.994791666666664,
+        "y": 53.025461832682296,
+        "miscrits": [
+          {
+            "miscritId": 569,
+            "miscritName": "Alpha",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/alpha_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/FtSNi6k.png"
+        ],
+        "additionalInformation": "Vibrant Colored Bush",
+        "isMultiple": true
+      },
+      {
+        "id": "1040293d-78d3-4d0e-a0de-cebf3b9ea398",
+        "location": "Hidden Forest",
+        "x": 51.536458333333336,
+        "y": 73.99768405490451,
+        "miscrits": [
+          {
+            "miscritId": 205,
+            "miscritName": "Freedom",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/freedom_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/WheayWZ.png"
+        ],
+        "additionalInformation": "Unique Firework",
+        "isMultiple": true
+      },
+      {
+        "id": "c9ae2ca9-7725-45c4-804b-b781d8c534c4",
+        "location": "Hidden Forest",
+        "x": 35.02604166666667,
+        "y": 33.37268511454264,
+        "miscrits": [
+          {
+            "miscritId": 570,
+            "miscritName": "Charpy",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/charpy_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/tBAMU5c.png"
+        ],
+        "additionalInformation": "Coal Pit",
+        "isMultiple": true
+      }
+    ],
+    "Mansion": [
+      {
+        "id": "cfafd75f-4f18-46cf-b7f2-ff1a0c463060",
+        "location": "Mansion",
+        "x": 69.23295454545455,
+        "y": 80.74747490160394,
+        "miscrits": [
+          {
+            "miscritId": 535,
+            "miscritName": "Dark Tulipinny",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_tulipinny_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/c8TkFR4.png"
+        ],
+        "additionalInformation": "Darker Big Magical Flower",
+        "isMultiple": true
+      },
+      {
+        "id": "a8f5c123-521e-42c8-a2a9-67a38a71ae50",
+        "location": "Mansion",
+        "x": 44.80113636363636,
+        "y": 70.5202021743312,
+        "miscrits": [
+          {
+            "miscritId": 242,
+            "miscritName": "Hoopty",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/hoopty_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/gKJg5L1.png"
+        ],
+        "additionalInformation": "Log on the waters",
+        "isMultiple": true
+      },
+      {
+        "id": "f2234086-e3c6-40c0-b97b-4afbf8d41140",
+        "location": "Mansion",
+        "x": 23.948863636363637,
+        "y": 78.09595975008878,
+        "miscrits": [
+          {
+            "miscritId": 417,
+            "miscritName": "Fubby",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/fubby_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/myQr0fK.png"
+        ],
+        "additionalInformation": "Odd Ball (Top left corner at the edge)",
+        "isMultiple": true
+      },
+      {
+        "id": "d850c4e4-08a6-4d29-bc8e-c8e4ef71836e",
+        "location": "Mansion",
+        "x": 35.99431818181818,
+        "y": 79.6111112652403,
+        "miscrits": [
+          {
+            "miscritId": 538,
+            "miscritName": "Keeper",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/keeper_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/vZdWlFt.png"
+        ],
+        "additionalInformation": "Soccer Ball",
+        "isMultiple": true
+      },
+      {
+        "id": "cd912a76-3010-486e-8593-34dfa6200c1c",
+        "location": "Mansion",
+        "x": 56.67613636363637,
+        "y": 36.732323386452414,
+        "miscrits": [
+          {
+            "miscritId": 405,
+            "miscritName": "Dorux",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dorux_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/5RjnCGu.png"
+        ],
+        "additionalInformation": "Table with items at the left room",
+        "isMultiple": true
+      },
+      {
+        "id": "5c1171f8-ffbd-4f2e-a211-7bdb0b81a3c4",
+        "location": "Mansion",
+        "x": 57.30113636363636,
+        "y": 52.71717187130089,
+        "miscrits": [
+          {
+            "miscritId": 197,
+            "miscritName": "Hotdog",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/hotdog_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/GQwJBhO.png"
+        ],
+        "additionalInformation": "Left Candle Stand",
+        "isMultiple": true
+      },
+      {
+        "id": "f871c62b-7f19-4544-8937-d0019488d0f1",
+        "location": "Mansion",
+        "x": 50.36931818181818,
+        "y": 49.45959611372514,
+        "miscrits": [
+          {
+            "miscritId": 537,
+            "miscritName": "Dark Slithero",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_slithero_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/QY3olm1.png"
+        ],
+        "additionalInformation": "Pyrotep Statue",
+        "isMultiple": true
+      },
+      {
+        "id": "39e133e3-5f97-4389-b823-eefa1beb957f",
+        "location": "Mansion",
+        "x": 54.460227272727266,
+        "y": 58.70202035614939,
+        "miscrits": [
+          {
+            "miscritId": 480,
+            "miscritName": "Dark Spinnerette",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_spinnerette_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/p8ty7EJ.png"
+        ],
+        "additionalInformation": "Odd Cage outside of Left Room",
+        "isMultiple": true
+      },
+      {
+        "id": "8044e1c6-eb9d-46ed-81ad-8f1b237f2111",
+        "location": "Mansion",
+        "x": 65.25568181818183,
+        "y": 24.15656581069484,
+        "miscrits": [
+          {
+            "miscritId": 62,
+            "miscritName": "Flutterpat",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/flutterpat_avatar.png",
+            "daysOfWeek": [
+              "tue",
+              "fri",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/K4m0sdE.png"
+        ],
+        "additionalInformation": "Cabinet with Relics at the right room",
+        "isMultiple": true
+      },
+      {
+        "id": "d43ea3d2-9974-4df0-ad18-f58c2c5874aa",
+        "location": "Mansion",
+        "x": 60.65340909090909,
+        "y": 33.626262780391805,
+        "miscrits": [
+          {
+            "miscritId": 536,
+            "miscritName": "Dark Flutterpat",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_flutterpat_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/B976Spp.png"
+        ],
+        "additionalInformation": "Aethero Statue",
+        "isMultiple": true
+      },
+      {
+        "id": "aca8c4d9-3892-46a5-902d-d1600a7ea7cd",
+        "location": "Mansion",
+        "x": 52.41477272727273,
+        "y": 39.30808096220999,
+        "miscrits": [
+          {
+            "miscritId": 201,
+            "miscritName": "Nanaslug",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/nanaslug_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/lPnOl7X.png"
+        ],
+        "additionalInformation": "Rumblerunt Statue",
+        "isMultiple": true
+      },
+      {
+        "id": "ebd8d97f-990a-4afc-8070-ac96e1d6aecd",
+        "location": "Mansion",
+        "x": 51.22159090909091,
+        "y": 23.853535507664535,
+        "miscrits": [
+          {
+            "miscritId": 98,
+            "miscritName": "Papa",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/papa_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/7aEoqxI.png"
+        ],
+        "additionalInformation": "Big Papa Frame attached in the wall",
+        "isMultiple": true
+      },
+      {
+        "id": "6a12c917-b0c8-4e2e-9062-13968a81301c",
+        "location": "Mansion",
+        "x": 53.721590909090914,
+        "y": 24.005050659179688,
+        "miscrits": [
+          {
+            "miscritId": 550,
+            "miscritName": "Da Windy",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/da_windy_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/WAnCNMh.png"
+        ],
+        "additionalInformation": "Small Art Frame attached near the right room",
+        "isMultiple": true
+      },
+      {
+        "id": "cdd4277f-64d8-428c-8e2d-4b08df23fccb",
+        "location": "Mansion",
+        "x": 49.28977272727273,
+        "y": 21.580808234937262,
+        "miscrits": [
+          {
+            "miscritId": 420,
+            "miscritName": "Ekkult",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/ekkult_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/Rtw3Kyk.png"
+        ],
+        "additionalInformation": "The Treasure Chest",
+        "isMultiple": true
+      },
+      {
+        "id": "484a704f-6bc2-46a3-b05b-820d1dd30845",
+        "location": "Mansion",
+        "x": 48.38068181818182,
+        "y": 7.7171718713009,
+        "miscrits": [
+          {
+            "miscritId": 214,
+            "miscritName": "Shurikoon",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/shurikoon_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/On7XUSS.png"
+        ],
+        "additionalInformation": "Small Table covered with white cloth",
+        "isMultiple": true
+      },
+      {
+        "id": "480583bd-2d92-4e2b-91d7-dc9219fba01b",
+        "location": "Mansion",
+        "x": 30.880681818181817,
+        "y": 18.323232477361508,
+        "miscrits": [
+          {
+            "miscritId": 196,
+            "miscritName": "Inferno",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/inferno_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/DjE8UB5.png"
+        ],
+        "additionalInformation": "Unique Marble Chest",
+        "isMultiple": true
+      }
+    ],
+    "Mount Gemma": [
+      {
+        "id": "adb721ba-7372-40b3-87f3-98f586959bea",
+        "location": "Mount Gemma",
+        "x": 37.6953125,
+        "y": 50.685763359069824,
+        "miscrits": [
+          {
+            "miscritId": 41,
+            "miscritName": "Luna",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/luna_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "thu",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/7DH7Yak.png"
+        ],
+        "additionalInformation": "Small Rock Formation at the end of the pathway",
+        "isMultiple": true
+      },
+      {
+        "id": "1480f540-c4c1-45c6-80f0-56960335ec6f",
+        "location": "Mount Gemma",
+        "x": 35.7421875,
+        "y": 54.85243002573649,
+        "miscrits": [
+          {
+            "miscritId": 184,
+            "miscritName": "Octavio",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/octavio_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/NuYX0hh.png"
+        ],
+        "additionalInformation": "Small rock at the end of the pathway",
+        "isMultiple": true
+      },
+      {
+        "id": "c4ff83a4-2dcb-4e7a-a1df-02466a19ebd2",
+        "location": "Mount Gemma",
+        "x": 36.2890625,
+        "y": 47.66493002573649,
+        "miscrits": [
+          {
+            "miscritId": 539,
+            "miscritName": "Dark Luna",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_luna_avatar.png",
+            "daysOfWeek": [
+              "thu",
+              "fri",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/aL3gqpr.png"
+        ],
+        "additionalInformation": "Green puddle near the river",
+        "isMultiple": true
+      },
+      {
+        "id": "e65bd9ba-3b3c-4747-a3cc-b14733216f1d",
+        "location": "Mount Gemma",
+        "x": 85.5859375,
+        "y": 63.70659669240316,
+        "miscrits": [
+          {
+            "miscritId": 247,
+            "miscritName": "Foil Kiloray",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_kiloray_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/OeHHvYu.png"
+        ],
+        "additionalInformation": "Gem on the right side cliff",
+        "isMultiple": true
+      },
+      {
+        "id": "003c879d-9eb1-40d4-bb42-5aab5f468681",
+        "location": "Mount Gemma",
+        "x": 17.0703125,
+        "y": 40.16493002573649,
+        "miscrits": [
+          {
+            "miscritId": 45,
+            "miscritName": "Thundercracker",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/thundercracker_avatar.png",
+            "daysOfWeek": [
+              "wed",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/zjRWbzg.png"
+        ],
+        "additionalInformation": "These 4 objects near the left side cliff",
+        "isMultiple": true
+      },
+      {
+        "id": "ae1ed386-154f-4ae9-afa9-945fe5f870e8",
+        "location": "Mount Gemma",
+        "x": 12.617187499999998,
+        "y": 55.78993002573649,
+        "miscrits": [
+          {
+            "miscritId": 180,
+            "miscritName": "Gog",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/gog_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/rIx3mZA.png"
+        ],
+        "additionalInformation": "Medium rock formation near the left side of the bridge",
+        "isMultiple": true
+      },
+      {
+        "id": "dbcf178a-a703-4001-b8b0-f888f5167223",
+        "location": "Mount Gemma",
+        "x": 30.6640625,
+        "y": 33.810763359069824,
+        "miscrits": [
+          {
+            "miscritId": 514,
+            "miscritName": "Dark Auger",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_auger_avatar.png",
+            "daysOfWeek": [
+              "thu",
+              "fri",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/SKCbQ9w.png"
+        ],
+        "additionalInformation": "Small glowing cactus",
+        "isMultiple": true
+      },
+      {
+        "id": "27482537-7693-49bb-9346-b660d7c5c06b",
+        "location": "Mount Gemma",
+        "x": 6.8359375,
+        "y": 49.01909669240316,
+        "miscrits": [
+          {
+            "miscritId": 508,
+            "miscritName": "Foil Vexie",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_vexie_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/YCDj8Ld.png"
+        ],
+        "additionalInformation": "Green gem near the pathway",
+        "isMultiple": true
+      },
+      {
+        "id": "e869842f-af1b-436d-b0da-994ff5d0ede6",
+        "location": "Mount Gemma",
+        "x": 27.4609375,
+        "y": 45.060763359069824,
+        "miscrits": [
+          {
+            "miscritId": 540,
+            "miscritName": "Foil Luna",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_luna_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/G9BYjoP.png"
+        ],
+        "additionalInformation": "Gem formation",
+        "isMultiple": true
+      },
+      {
+        "id": "dd296244-676b-41d8-823b-35f18fb05bb9",
+        "location": "Mount Gemma",
+        "x": 81.8359375,
+        "y": 41.623263359069824,
+        "miscrits": [
+          {
+            "miscritId": 44,
+            "miscritName": "Eggy",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/eggy_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "thu",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/IS0NZNt.png"
+        ],
+        "additionalInformation": "Small tree near the mud slide",
+        "isMultiple": true
+      },
+      {
+        "id": "7c02b037-7385-4a0b-b4e0-1360327f8052",
+        "location": "Mount Gemma",
+        "x": 73.5546875,
+        "y": 28.914930025736492,
+        "miscrits": [
+          {
+            "miscritId": 80,
+            "miscritName": "Boltzee",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/boltzee_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/7yrfbca.png"
+        ],
+        "additionalInformation": "Large tall rock at the end of the pathway, left side of the shack",
+        "isMultiple": true
+      },
+      {
+        "id": "a7bdcc8e-a7e1-496b-8580-5a9017cdd760",
+        "location": "Mount Gemma",
+        "x": 83.5546875,
+        "y": 47.35243002573649,
+        "miscrits": [
+          {
+            "miscritId": 547,
+            "miscritName": "Dark Jellyshock",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_jellyshock_avatar.png",
+            "daysOfWeek": [
+              "thu",
+              "fri",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/92gzS2o.png"
+        ],
+        "additionalInformation": "Green glowing plant below the shack",
+        "isMultiple": true
+      },
+      {
+        "id": "411f3fe5-7ea2-4979-a4ec-0de101d1c627",
+        "location": "Mount Gemma",
+        "x": 94.7265625,
+        "y": 44.22743002573649,
+        "miscrits": [
+          {
+            "miscritId": 509,
+            "miscritName": "Foil Vhisp",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_vhisp_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/NBqg2Gf.png"
+        ],
+        "additionalInformation": "Small gem just right of the shack",
+        "isMultiple": true
+      },
+      {
+        "id": "67d584b8-a9ca-4810-996d-4e0f16385c72",
+        "location": "Mount Gemma",
+        "x": 86.5234375,
+        "y": 34.539930025736496,
+        "miscrits": [
+          {
+            "miscritId": 230,
+            "miscritName": "Foil Thundercracker",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_thundercracker_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/Ov54XJw.png"
+        ],
+        "additionalInformation": "Small gem formation behind the explorer",
+        "isMultiple": true
+      },
+      {
+        "id": "a234690c-c01c-40d1-836d-39ebce8fa524",
+        "location": "Mount Gemma",
+        "x": 91.2890625,
+        "y": 48.810763359069824,
+        "miscrits": [
+          {
+            "miscritId": 552,
+            "miscritName": "Foil Croaky",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_croaky_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/cXiBQoH.png"
+        ],
+        "additionalInformation": "Large gem formation",
+        "isMultiple": true
+      },
+      {
+        "id": "ee667a2d-4bfd-4ee5-a792-e4caa2a6cbff",
+        "location": "Mount Gemma",
+        "x": 53.7109375,
+        "y": 18.602428436279297,
+        "miscrits": [
+          {
+            "miscritId": 43,
+            "miscritName": "Fossillia",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/fossillia_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/0m85N5B.png"
+        ],
+        "additionalInformation": "Large gem formation",
+        "isMultiple": true
+      },
+      {
+        "id": "7610bd11-1e48-4a73-b98e-39c6d6da5805",
+        "location": "Mount Gemma",
+        "x": 45.9765625,
+        "y": 12.664928436279297,
+        "miscrits": [
+          {
+            "miscritId": 46,
+            "miscritName": "Mun Kee",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/mun_kee_avatar.png",
+            "daysOfWeek": [
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/eLEGUJR.png"
+        ],
+        "additionalInformation": "Golden gem",
+        "isMultiple": true
+      },
+      {
+        "id": "edc86b17-870d-48f9-9321-3dde66ef5bba",
+        "location": "Mount Gemma",
+        "x": 64.5703125,
+        "y": 24.019096692403156,
+        "miscrits": [
+          {
+            "miscritId": 206,
+            "miscritName": "Gemix",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/gemix_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/4ePoyEO.png"
+        ],
+        "additionalInformation": "Blue gem right side just before reaching the summit peak",
+        "isMultiple": true
+      },
+      {
+        "id": "4e444bae-3e99-4704-8ea0-f50a60d5b7e1",
+        "location": "Mount Gemma",
+        "x": 48.0859375,
+        "y": 17.664930025736492,
+        "miscrits": [
+          {
+            "miscritId": 73,
+            "miscritName": "Fangly",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/fangly_avatar.png",
+            "daysOfWeek": [
+              "thu",
+              "fri",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/kL7UVHX.png"
+        ],
+        "additionalInformation": "Blue gem left side (summit peak)",
+        "isMultiple": true
+      },
+      {
+        "id": "26d9be63-9f97-4f1a-89bd-59f821c144a7",
+        "location": "Mount Gemma",
+        "x": 55.35156249999999,
+        "y": 18.289930025736492,
+        "miscrits": [
+          {
+            "miscritId": 227,
+            "miscritName": "Foil Fossillia",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_fossillia_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/0m85N5B.png"
+        ],
+        "additionalInformation": "Same gem formation as Fossillia",
+        "isMultiple": true
+      },
+      {
+        "id": "00cd338d-2609-4eb0-a7cc-1b5c572c628b",
+        "location": "Mount Gemma",
+        "x": 40.5859375,
+        "y": 24.956596692403156,
+        "miscrits": [
+          {
+            "miscritId": 506,
+            "miscritName": "Dark Poltergust",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_poltergust_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/936CNWb.png"
+        ],
+        "additionalInformation": "Red gem just across the waterfall",
+        "isMultiple": true
+      }
+    ],
+    "Cave": [
+      {
+        "id": "4efe4446-f6d0-42a9-94a2-1169d5b80555",
+        "location": "Cave",
+        "x": 56.74479166666667,
+        "y": 19.76041581895616,
+        "miscrits": [
+          {
+            "miscritId": 47,
+            "miscritName": "Microblast",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/microblast_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/79l02Co.png"
+        ],
+        "additionalInformation": "Only This Treasure Chest",
+        "isMultiple": true
+      },
+      {
+        "id": "d887c9ff-d34e-46b4-9ce7-d70bdcca69a9",
+        "location": "Cave",
+        "x": 55.494791666666664,
+        "y": 25.385415818956165,
+        "miscrits": [
+          {
+            "miscritId": 48,
+            "miscritName": "Sledgehog",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/sledgehog_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/PYXRbOe.png"
+        ],
+        "additionalInformation": "Mine Cart in the rail tracks",
+        "isMultiple": true
+      },
+      {
+        "id": "ef618209-233b-49d3-a84f-fc041ac70d50",
+        "location": "Cave",
+        "x": 47.369791666666664,
+        "y": 28.579860263400608,
+        "miscrits": [
+          {
+            "miscritId": 341,
+            "miscritName": "Cadbunny",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/cadbunny_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/ZeZwxko.png"
+        ],
+        "additionalInformation": "Cracked Empty Egg",
+        "isMultiple": true
+      },
+      {
+        "id": "b5643ac5-bc65-469d-9c93-f38ae7b4ccea",
+        "location": "Cave",
+        "x": 39.036458333333336,
+        "y": 33.44097137451172,
+        "miscrits": [
+          {
+            "miscritId": 556,
+            "miscritName": "Manio",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/manio_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/Hl6NLYf.png"
+        ],
+        "additionalInformation": "Odd Stuffs scattered",
+        "isMultiple": true
+      },
+      {
+        "id": "8b31ec9a-60e3-4b0e-9841-42cdea0383bc",
+        "location": "Cave",
+        "x": 65.703125,
+        "y": 12.67708248562283,
+        "miscrits": [
+          {
+            "miscritId": 88,
+            "miscritName": "Dark Eggy",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_eggy_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/6uRHlBK.png"
+        ],
+        "additionalInformation": "Hourglass looking pillar at the far left",
+        "isMultiple": true
+      },
+      {
+        "id": "c93b5360-967b-47a7-931e-e4851c36bb7e",
+        "location": "Cave",
+        "x": 87.31770833333333,
+        "y": 17.53819359673394,
+        "miscrits": [
+          {
+            "miscritId": 210,
+            "miscritName": "Podo",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/podo_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/kDVj6dP.png"
+        ],
+        "additionalInformation": "Box filled with gold at the top right corner",
+        "isMultiple": true
+      },
+      {
+        "id": "ac9ca070-b89e-4c89-8f3f-5a7194d7748e",
+        "location": "Cave",
+        "x": 76.640625,
+        "y": 10.107638041178385,
+        "miscrits": [
+          {
+            "miscritId": 322,
+            "miscritName": "Foil Flintly",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_flintly_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/wYdwGJn.png"
+        ],
+        "additionalInformation": "Treasure Chest near the hole",
+        "isMultiple": true
+      },
+      {
+        "id": "10c56445-fafb-49ba-90c7-e5f810493846",
+        "location": "Cave",
+        "x": 16.588541666666668,
+        "y": 27.26041581895616,
+        "miscrits": [
+          {
+            "miscritId": 91,
+            "miscritName": "Dark Elefauna",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_elefauna_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "wed",
+              "fri"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/VDfLA6S.png"
+        ],
+        "additionalInformation": "Open Chest",
+        "isMultiple": true
+      },
+      {
+        "id": "3d08e47b-0c99-4123-a503-fa489166e147",
+        "location": "Cave",
+        "x": 18.307291666666668,
+        "y": 27.53819359673394,
+        "miscrits": [
+          {
+            "miscritId": 79,
+            "miscritName": "Dark Snortus",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_snortus_avatar.png",
+            "daysOfWeek": [
+              "tue",
+              "thu",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/VDfLA6S.png"
+        ],
+        "additionalInformation": "Open Chest",
+        "isMultiple": true
+      },
+      {
+        "id": "e740cd63-4556-41e8-a9fa-6328793a675b",
+        "location": "Cave",
+        "x": 24.140625,
+        "y": 8.718749152289497,
+        "miscrits": [
+          {
+            "miscritId": 226,
+            "miscritName": "Foil Waddles",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_waddles_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/Bdr21t1.png"
+        ],
+        "additionalInformation": "Closed Treasure Chest",
+        "isMultiple": true
+      },
+      {
+        "id": "3b1861d5-9abc-4fad-bf64-7d9838a355db",
+        "location": "Cave",
+        "x": 23.993055555555557,
+        "y": 74.49537065294054,
+        "miscrits": [
+          {
+            "miscritId": 49,
+            "miscritName": "Sapphron",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/sapphron_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/0EIr62u.png"
+        ],
+        "additionalInformation": "Left Trolley",
+        "isMultiple": true
+      },
+      {
+        "id": "a71c3033-72ac-4974-8342-83ae40c43b36",
+        "location": "Cave",
+        "x": 54.826388888888886,
+        "y": 78.8472225047924,
+        "miscrits": [
+          {
+            "miscritId": 554,
+            "miscritName": "Dark Pillblaze",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_pillblaze_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/BnvZgC9.png"
+        ],
+        "additionalInformation": "Right Open Chest",
+        "isMultiple": true
+      },
+      {
+        "id": "ff40b2dd-5ee7-4d60-b404-de0b016a6410",
+        "location": "Cave",
+        "x": 39.9375,
+        "y": 82.0861104329427,
+        "miscrits": [
+          {
+            "miscritId": 561,
+            "miscritName": "Woolly",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/woolly_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/VdfcNwN.png"
+        ],
+        "additionalInformation": "Ice Chest",
+        "isMultiple": true
+      }
+    ],
+    "Sunfall Shores": [
+      {
+        "id": "4de90cf5-6d35-458c-800d-aa6b472c82cb",
+        "location": "Sunfall Shores",
+        "x": 75.14204545454545,
+        "y": 45.143938931551844,
+        "miscrits": [
+          {
+            "miscritId": 64,
+            "miscritName": "Kelpa",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/kelpa_avatar.png",
+            "daysOfWeek": [
+              "tue",
+              "fri",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/H4zYfGy.png"
+        ],
+        "additionalInformation": "Sand Castle",
+        "isMultiple": true
+      },
+      {
+        "id": "4d982345-d19b-4463-a373-5cb582f425dc",
+        "location": "Sunfall Shores",
+        "x": 87.69886363636363,
+        "y": 36.810605598218515,
+        "miscrits": [
+          {
+            "miscritId": 134,
+            "miscritName": "Ursiwave",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/ursiwave_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/Q3QHmYI.png"
+        ],
+        "additionalInformation": "Conch near the palm trees",
+        "isMultiple": true
+      },
+      {
+        "id": "336d9d8f-0aa8-4997-9514-3dd22a2533d3",
+        "location": "Sunfall Shores",
+        "x": 83.49431818181819,
+        "y": 28.70454499215791,
+        "miscrits": [
+          {
+            "miscritId": 68,
+            "miscritName": "Winnebeargo",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/winnebeargo_avatar.png",
+            "daysOfWeek": [
+              "thu",
+              "fri",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/V5DwiD2.png"
+        ],
+        "additionalInformation": "Pile of Leaves",
+        "isMultiple": true
+      },
+      {
+        "id": "b542e7ec-3a9a-474b-8663-b9b4fa1dc2db",
+        "location": "Sunfall Shores",
+        "x": 96.78977272727273,
+        "y": 29.234848022460934,
+        "miscrits": [
+          {
+            "miscritId": 456,
+            "miscritName": "Light Frostmite",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_frostmite_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/gYApSUO.png"
+        ],
+        "additionalInformation": "Icy Conch",
+        "isMultiple": true
+      },
+      {
+        "id": "3a10d7dc-4eb1-4f77-a69b-982f1136bbf1",
+        "location": "Sunfall Shores",
+        "x": 81.16477272727273,
+        "y": 44.23484802246094,
+        "miscrits": [
+          {
+            "miscritId": 476,
+            "miscritName": "Light Statikat",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_statikat_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/ZuZBDnG.png"
+        ],
+        "additionalInformation": "Light Purple Coral",
+        "isMultiple": true
+      },
+      {
+        "id": "01c41ae8-8522-4e95-af90-848d2c524b3c",
+        "location": "Sunfall Shores",
+        "x": 5.142045454545455,
+        "y": 57.643938931551844,
+        "miscrits": [
+          {
+            "miscritId": 65,
+            "miscritName": "Ignios",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/ignios_avatar.png",
+            "daysOfWeek": [
+              "wed",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/tW1WT8t.png"
+        ],
+        "additionalInformation": "Eggs inside of the sand nest",
+        "isMultiple": true
+      },
+      {
+        "id": "bd85b613-0a52-4fb6-b52f-d90caa625ea6",
+        "location": "Sunfall Shores",
+        "x": 42.58522727272727,
+        "y": 40.5984843860973,
+        "miscrits": [
+          {
+            "miscritId": 459,
+            "miscritName": "Light Quirk",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_quirk_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/tJYlFLe.png"
+        ],
+        "additionalInformation": "Big Sea Grass right after entering area 2",
+        "isMultiple": true
+      },
+      {
+        "id": "4831b552-6d2b-492e-b17b-037aa304c425",
+        "location": "Sunfall Shores",
+        "x": 13.096590909090908,
+        "y": 50.5984843860973,
+        "miscrits": [
+          {
+            "miscritId": 69,
+            "miscritName": "Fennie",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/fennie_avatar.png",
+            "daysOfWeek": [
+              "thu",
+              "fri",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/78to5Pn.png"
+        ],
+        "additionalInformation": "Smaller Cave near the waters",
+        "isMultiple": true
+      },
+      {
+        "id": "c2642214-e93c-4799-b420-2d2b597cf8d5",
+        "location": "Sunfall Shores",
+        "x": 42.1875,
+        "y": 34.08333287094579,
+        "miscrits": [
+          {
+            "miscritId": 488,
+            "miscritName": "Light Twiggum",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_twiggum_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/vrJYp3l.png"
+        ],
+        "additionalInformation": "Odd Palm Tree",
+        "isMultiple": true
+      },
+      {
+        "id": "cab5ba18-c05f-47a7-940c-35937f5404a8",
+        "location": "Sunfall Shores",
+        "x": 10.482954545454545,
+        "y": 54.76515105276397,
+        "miscrits": [
+          {
+            "miscritId": 519,
+            "miscritName": "Light Crickin",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_crickin_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/nhVih44.png"
+        ],
+        "additionalInformation": "Light Blue Mini Sea Grass",
+        "isMultiple": true
+      },
+      {
+        "id": "8f7ca9e7-0a17-41da-9c11-80207aab051b",
+        "location": "Sunfall Shores",
+        "x": 35.99431818181818,
+        "y": 46.810605598218515,
+        "miscrits": [
+          {
+            "miscritId": 493,
+            "miscritName": "Aquarion",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/aquarion_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/QiLlXpn.png"
+        ],
+        "additionalInformation": "Mysterious Aqua Eggs hanging at the broken ship object",
+        "isMultiple": true
+      },
+      {
+        "id": "f3250cba-8e3b-4333-b496-8fa6f4612ee2",
+        "location": "Sunfall Shores",
+        "x": 26.50568181818182,
+        "y": 55.674241961854875,
+        "miscrits": [
+          {
+            "miscritId": 63,
+            "miscritName": "Snorkels",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/snorkels_avatar.png",
+            "daysOfWeek": [
+              "wed",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/ht3PlAy.png"
+        ],
+        "additionalInformation": "Treasure Chest",
+        "isMultiple": true
+      },
+      {
+        "id": "74a981d5-2afa-4565-af0c-49c808db3d88",
+        "location": "Sunfall Shores",
+        "x": 55.71022727272727,
+        "y": 69.23484802246094,
+        "miscrits": [
+          {
+            "miscritId": 419,
+            "miscritName": "Pennon",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/pennon_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/qHJgfa9.png"
+        ],
+        "additionalInformation": "Sea Grass near the bridge and waters",
+        "isMultiple": true
+      },
+      {
+        "id": "e933a02c-750c-4be6-b5d8-681e1ce579e1",
+        "location": "Sunfall Shores",
+        "x": 38.096590909090914,
+        "y": 59.310605598218515,
+        "miscrits": [
+          {
+            "miscritId": 451,
+            "miscritName": "Light Nibbles",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_nibbles_avatar.png",
+            "daysOfWeek": [
+              "thu",
+              "fri",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/jFm2c9B.png"
+        ],
+        "additionalInformation": "Big Pond",
+        "isMultiple": true
+      },
+      {
+        "id": "f83f756e-eac1-4b0e-be20-4c5fcd1bbd6a",
+        "location": "Sunfall Shores",
+        "x": 46.84659090909091,
+        "y": 66.81060559821852,
+        "miscrits": [
+          {
+            "miscritId": 326,
+            "miscritName": "Light Tectonyx",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_tectonyx_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/2W94Jt7.png"
+        ],
+        "additionalInformation": "Light Spiky Stone",
+        "isMultiple": true
+      },
+      {
+        "id": "e2ec47da-e7f4-4537-a82c-a74e46533fc7",
+        "location": "Sunfall Shores",
+        "x": 17.073863636363637,
+        "y": 60.74999953761245,
+        "miscrits": [
+          {
+            "miscritId": 518,
+            "miscritName": "Light Nanaslug",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_nanaslug_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/HTtbFmM.png"
+        ],
+        "additionalInformation": "Light Pond",
+        "isMultiple": true
+      },
+      {
+        "id": "24162dc0-fb1c-467e-89de-12bdcb7858d9",
+        "location": "Sunfall Shores",
+        "x": 89.17613636363636,
+        "y": 70.82575711337003,
+        "miscrits": [
+          {
+            "miscritId": 125,
+            "miscritName": "Rockodile",
+            "miscritRarity": "Rare",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/rockodile_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "thu",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/O6q6UYl.png"
+        ],
+        "additionalInformation": "Grey Bones near the box",
+        "isMultiple": true
+      },
+      {
+        "id": "ab4cf9af-12d7-48fb-a833-53153fd9e5a6",
+        "location": "Sunfall Shores",
+        "x": 79.91477272727273,
+        "y": 73.24999953761245,
+        "miscrits": [
+          {
+            "miscritId": 133,
+            "miscritName": "Boneshee",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/boneshee_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/kqdqgN3.png"
+        ],
+        "additionalInformation": "Sand Under the Bonecage",
+        "isMultiple": true
+      },
+      {
+        "id": "688939a5-a899-4d97-8256-f7e70be90f45",
+        "location": "Sunfall Shores",
+        "x": 86.2784090909091,
+        "y": 67.26515105276397,
+        "miscrits": [
+          {
+            "miscritId": 212,
+            "miscritName": "Lavazard",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/lavazard_avatar.png",
+            "daysOfWeek": [
+              "thu",
+              "fri",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/6wG3qP3.png"
+        ],
+        "additionalInformation": "Broken box at the top right",
+        "isMultiple": true
+      },
+      {
+        "id": "136ff64a-2d39-441a-a5a7-97000862ab62",
+        "location": "Sunfall Shores",
+        "x": 67.35795454545455,
+        "y": 76.50757529518822,
+        "miscrits": [
+          {
+            "miscritId": 457,
+            "miscritName": "Light Bludger",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_bludger_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/jnKWF1T.png"
+        ],
+        "additionalInformation": "Light Blue Crate",
+        "isMultiple": true
+      },
+      {
+        "id": "8631da27-49f1-442e-a023-6765d026230e",
+        "location": "Sunfall Shores",
+        "x": 88.38068181818181,
+        "y": 77.41666620427911,
+        "miscrits": [
+          {
+            "miscritId": 87,
+            "miscritName": "Peepsie",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/peepsie_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/RiFY5s7.png"
+        ],
+        "additionalInformation": "Colorful Eggs in the sand pit",
+        "isMultiple": true
+      },
+      {
+        "id": "14b6f546-4f63-408b-8b35-002ba03bab7d",
+        "location": "Sunfall Shores",
+        "x": 80.71022727272728,
+        "y": 82.03787832549125,
+        "miscrits": [
+          {
+            "miscritId": 530,
+            "miscritName": "Light Ignios",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_ignios_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/Jyntalk.png"
+        ],
+        "additionalInformation": "Bones with Lightning",
+        "isMultiple": true
+      }
+    ],
+    "Moon": [
+      {
+        "id": "b19b0d7a-2ead-42b1-bcb6-4733085c99b5",
+        "location": "Moon",
+        "x": 41.84375,
+        "y": 46.61944452921549,
+        "miscrits": [
+          {
+            "miscritId": 503,
+            "miscritName": "Liothning",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/liothning_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/putNAEE.png"
+        ],
+        "additionalInformation": "Big statue of Nero",
+        "isMultiple": true
+      },
+      {
+        "id": "b3fae7f1-8bd9-40c2-99a8-9161dcac9c9f",
+        "location": "Moon",
+        "x": 34.59375,
+        "y": 24.286111195882164,
+        "miscrits": [
+          {
+            "miscritId": 67,
+            "miscritName": "Beelzebug",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/beelzebug_avatar.png",
+            "daysOfWeek": [
+              "thu",
+              "fri",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/jNQieSV.png"
+        ],
+        "additionalInformation": "Wrecked starship",
+        "isMultiple": true
+      },
+      {
+        "id": "65d022af-ae40-44f7-b70a-dfa867c28b65",
+        "location": "Moon",
+        "x": 47.96875,
+        "y": 78.78611119588216,
+        "miscrits": [
+          {
+            "miscritId": 574,
+            "miscritName": "Smolderfry",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/smolderfry_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/mmDsMN7.png"
+        ],
+        "additionalInformation": "Glowing crater",
+        "isMultiple": true
+      },
+      {
+        "id": "b05461d8-4feb-490a-a5c3-6b99a940e1b1",
+        "location": "Moon",
+        "x": 77.03125,
+        "y": 60.61944452921549,
+        "miscrits": [
+          {
+            "miscritId": 572,
+            "miscritName": "Gravitron",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/gravitron_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/Zadwtvf.png"
+        ],
+        "additionalInformation": "Blue portal",
+        "isMultiple": true
+      },
+      {
+        "id": "49d76238-273a-46e9-9308-60f234b1d259",
+        "location": "Moon",
+        "x": 63.5625,
+        "y": 29.912963019476997,
+        "miscrits": [
+          {
+            "miscritId": 581,
+            "miscritName": "Lithos",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/lithos_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/73a2HAR.png"
+        ],
+        "additionalInformation": "Floating artifact",
+        "isMultiple": true
+      },
+      {
+        "id": "b7f77dcb-77f4-45a1-8f3e-4934cb47c7a2",
+        "location": "Moon",
+        "x": 48.407738095238095,
+        "y": 58.31084720672123,
+        "miscrits": [
+          {
+            "miscritId": 597,
+            "miscritName": "Beateorite",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/beateorite_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/nJEGwsR.png"
+        ],
+        "additionalInformation": "Glowing, floating moon rock",
+        "isMultiple": true
+      },
+      {
+        "id": "86128612-46ae-421d-85e6-87156ac28fe2",
+        "location": "Moon",
+        "x": 9.3359375,
+        "y": 36.9201389948527,
+        "miscrits": [
+          {
+            "miscritId": 589,
+            "miscritName": "Bunplop",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/bunplop_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/ynLmQ0x.png"
+        ],
+        "additionalInformation": "Any of the 2 Nero statues in the Cave",
+        "isMultiple": true
+      },
+      {
+        "id": "3de5e535-398d-46cd-a0b8-8434ce2d9b18",
+        "location": "Moon",
+        "x": 7.070312500000001,
+        "y": 37.2326389948527,
+        "miscrits": [
+          {
+            "miscritId": 579,
+            "miscritName": "Niboro",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/niboro_avatar.png",
+            "daysOfWeek": [
+              "thu",
+              "fri",
+              "sat"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/ynLmQ0x.png"
+        ],
+        "additionalInformation": "Any of the 2 Nero statues in the Cave",
+        "isMultiple": true
+      },
+      {
+        "id": "80e26733-ed95-49e4-a769-a7001c1acb47",
+        "location": "Moon",
+        "x": 15.351562499999998,
+        "y": 27.33680566151937,
+        "miscrits": [
+          {
+            "miscritId": 594,
+            "miscritName": "Eclipso",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/eclipso_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/Cyk0RHj.png"
+        ],
+        "additionalInformation": "Slime-covered rock",
+        "isMultiple": true
+      },
+      {
+        "id": "067e3083-adfd-4a8c-ae44-b3573fe50473",
+        "location": "Moon",
+        "x": 12.3828125,
+        "y": 27.649305661519367,
+        "miscrits": [
+          {
+            "miscritId": 580,
+            "miscritName": "Pinplar",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/pinplar_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/NeWyjAh.png"
+        ],
+        "additionalInformation": "Glowing skeleton",
+        "isMultiple": true
+      },
+      {
+        "id": "59635481-ae94-4c2b-9019-1edf3ca94790",
+        "location": "Moon",
+        "x": 9.3359375,
+        "y": 28.274305661519367,
+        "miscrits": [
+          {
+            "miscritId": 583,
+            "miscritName": "Pyrex",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/pyrex_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/q15mmEc.png"
+        ],
+        "additionalInformation": "Polychromatic void",
+        "isMultiple": true
+      },
+      {
+        "id": "78ec6188-fa7d-4be8-9350-5a08dfd34b77",
+        "location": "Moon",
+        "x": 6.7578125,
+        "y": 29.211805661519367,
+        "miscrits": [
+          {
+            "miscritId": 578,
+            "miscritName": "Voidotron",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/voidotron_avatar.png",
+            "daysOfWeek": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri",
+              "sat",
+              "sun"
+            ]
+          }
+        ],
+        "exactLocationImages": [
+          "https://i.imgur.com/5XHw0Bz.png"
+        ],
+        "additionalInformation": "Small void",
         "isMultiple": true
       }
     ]
@@ -393,7 +2763,7 @@
       "Forest|1": [
         "mon",
         "thu",
-        "sat"
+        "sun"
       ]
     },
     "21": {
@@ -436,16 +2806,550 @@
         "sun"
       ]
     },
+    "28": {
+      "Hidden Forest|1": [
+        "tue",
+        "thu",
+        "sat"
+      ]
+    },
+    "41": {
+      "Mount Gemma|1": [
+        "mon",
+        "thu",
+        "sun"
+      ]
+    },
+    "42": {
+      "Mount Gemma|1": [
+        "tue",
+        "fri"
+      ]
+    },
+    "43": {
+      "Mount Gemma|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri"
+      ]
+    },
+    "44": {
+      "Mount Gemma|3": [
+        "mon",
+        "thu",
+        "sun"
+      ]
+    },
+    "45": {
+      "Mount Gemma|2": [
+        "wed",
+        "sat",
+        "sun"
+      ]
+    },
+    "46": {
+      "Mount Gemma|4": [
+        "sat",
+        "sun"
+      ]
+    },
+    "47": {
+      "Cave|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "48": {
+      "Cave|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "49": {
+      "Cave|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "62": {
+      "Mansion|3": [
+        "tue",
+        "fri",
+        "sun"
+      ]
+    },
+    "63": {
+      "Sunfall Shores|3": [
+        "wed",
+        "sat",
+        "sun"
+      ]
+    },
+    "64": {
+      "Sunfall Shores|1": [
+        "tue",
+        "fri",
+        "sun"
+      ]
+    },
+    "65": {
+      "Sunfall Shores|2": [
+        "wed",
+        "sat",
+        "sun"
+      ]
+    },
+    "67": {
+      "Moon|1": [
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    "68": {
+      "Sunfall Shores|1": [
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    "69": {
+      "Sunfall Shores|2": [
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    "73": {
+      "Mount Gemma|4": [
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    "74": {
+      "Cave|1": [
+        "mon",
+        "wed",
+        "fri"
+      ]
+    },
+    "75": {
+      "Cave|2": [
+        "tue",
+        "thu",
+        "sat"
+      ]
+    },
     "77": {
       "Forest|1": [
         "wed",
         "sat"
       ]
     },
+    "78": {
+      "Sunfall Shores|2": [
+        "tue",
+        "fri"
+      ]
+    },
+    "79": {
+      "Cave|3": [
+        "tue",
+        "thu",
+        "sat"
+      ]
+    },
+    "80": {
+      "Mount Gemma|3": [
+        "mon",
+        "tue",
+        "wed"
+      ]
+    },
+    "82": {
+      "Cave|3": [
+        "tue",
+        "thu",
+        "sat"
+      ]
+    },
+    "83": {
+      "Cave|3": [
+        "mon",
+        "wed",
+        "fri"
+      ]
+    },
+    "85": {
+      "Cave|1": [
+        "tue",
+        "thu",
+        "sat"
+      ]
+    },
+    "86": {
+      "Mansion|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "87": {
+      "Sunfall Shores|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "88": {
+      "Cave|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "90": {
+      "Mansion|6": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "91": {
+      "Cave|3": [
+        "mon",
+        "wed",
+        "fri"
+      ]
+    },
+    "93": {
+      "Forest|3": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "94": {
+      "Forest|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
     "95": {
       "Forest|3": [
         "tue",
         "fri"
+      ]
+    },
+    "97": {
+      "Cave|4": [
+        "tue",
+        "thu",
+        "sat"
+      ]
+    },
+    "98": {
+      "Mansion|3": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "121": {
+      "Hidden Forest|1": [
+        "mon",
+        "wed",
+        "fri",
+        "sun"
+      ]
+    },
+    "124": {
+      "Sunfall Shores|2": [
+        "mon",
+        "thu"
+      ]
+    },
+    "125": {
+      "Sunfall Shores|4": [
+        "mon",
+        "thu",
+        "sun"
+      ]
+    },
+    "133": {
+      "Sunfall Shores|4": [
+        "mon",
+        "tue",
+        "wed"
+      ]
+    },
+    "134": {
+      "Sunfall Shores|1": [
+        "mon",
+        "tue",
+        "wed"
+      ]
+    },
+    "155": {
+      "Mount Gemma|3": [
+        "wed",
+        "sat"
+      ]
+    },
+    "171": {
+      "Sunfall Shores|1": [
+        "wed",
+        "sat"
+      ]
+    },
+    "176": {
+      "Cave|2": [
+        "mon",
+        "wed",
+        "fri"
+      ]
+    },
+    "180": {
+      "Mount Gemma|2": [
+        "mon",
+        "tue",
+        "wed"
+      ]
+    },
+    "184": {
+      "Mount Gemma|1": [
+        "mon",
+        "tue",
+        "wed"
+      ]
+    },
+    "192": {
+      "Sunfall Shores|4": [
+        "tue",
+        "fri"
+      ]
+    },
+    "196": {
+      "Mansion|6": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "197": {
+      "Mansion|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "200": {
+      "Mansion|3": [
+        "mon",
+        "thu"
+      ]
+    },
+    "201": {
+      "Mansion|3": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "203": {
+      "Mansion|2": [
+        "mon",
+        "wed",
+        "sat"
+      ]
+    },
+    "205": {
+      "Hidden Forest|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "206": {
+      "Mount Gemma|4": [
+        "mon",
+        "tue",
+        "wed"
+      ]
+    },
+    "210": {
+      "Cave|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "212": {
+      "Sunfall Shores|4": [
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    "214": {
+      "Mansion|5": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "226": {
+      "Cave|3": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "227": {
+      "Mount Gemma|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "230": {
+      "Mount Gemma|3": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "242": {
+      "Mansion|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "247": {
+      "Mount Gemma|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "312": {
+      "Mount Gemma|1": [
+        "wed",
+        "sat"
+      ]
+    },
+    "322": {
+      "Cave|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "326": {
+      "Sunfall Shores|3": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
       ]
     },
     "338": {
@@ -455,10 +3359,229 @@
         "wed"
       ]
     },
+    "341": {
+      "Cave|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "352": {
+      "Mount Gemma|2": [
+        "mon",
+        "thu"
+      ]
+    },
+    "356": {
+      "Mansion|2": [
+        "tue",
+        "fri",
+        "sun"
+      ]
+    },
+    "388": {
+      "Mansion|1": [
+        "tue",
+        "fri",
+        "sun"
+      ]
+    },
+    "405": {
+      "Mansion|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "417": {
+      "Mansion|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "419": {
+      "Sunfall Shores|3": [
+        "mon",
+        "tue",
+        "wed"
+      ]
+    },
+    "420": {
+      "Mansion|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "425": {
+      "Forest|3": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "430": {
+      "Forest|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "433": {
+      "Forest|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "451": {
+      "Sunfall Shores|3": [
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    "456": {
+      "Sunfall Shores|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "457": {
+      "Sunfall Shores|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "459": {
+      "Sunfall Shores|2": [
+        "mon",
+        "tue",
+        "wed"
+      ]
+    },
+    "476": {
+      "Sunfall Shores|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "480": {
+      "Mansion|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "488": {
+      "Sunfall Shores|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "493": {
+      "Sunfall Shores|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
     "502": {
       "Forest|3": [
         "mon",
         "thu"
+      ]
+    },
+    "503": {
+      "Moon|1": [
+        "mon",
+        "tue",
+        "wed"
+      ]
+    },
+    "504": {
+      "Mansion|5": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "505": {
+      "Hidden Forest|1": [
+        "wed",
+        "sat"
+      ]
+    },
+    "506": {
+      "Mount Gemma|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
       ]
     },
     "507": {
@@ -468,10 +3591,38 @@
         "sat"
       ]
     },
+    "508": {
+      "Mount Gemma|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "509": {
+      "Mount Gemma|3": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
     "510": {
       "Forest|1": [
         "tue",
         "fri"
+      ]
+    },
+    "511": {
+      "Hidden Forest|1": [
+        "mon",
+        "thu"
       ]
     },
     "512": {
@@ -488,6 +3639,158 @@
         "sat"
       ]
     },
+    "514": {
+      "Mount Gemma|2": [
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    "515": {
+      "Mount Gemma|3": [
+        "tue",
+        "fri"
+      ]
+    },
+    "518": {
+      "Sunfall Shores|3": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "519": {
+      "Sunfall Shores|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "523": {
+      "Sunfall Shores|1": [
+        "mon",
+        "thu"
+      ]
+    },
+    "530": {
+      "Sunfall Shores|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "531": {
+      "Sunfall Shores|4": [
+        "wed",
+        "sat"
+      ]
+    },
+    "532": {
+      "Mansion|3": [
+        "wed",
+        "sat"
+      ]
+    },
+    "533": {
+      "Mansion|1": [
+        "mon",
+        "thu",
+        "sat"
+      ]
+    },
+    "534": {
+      "Cave|4": [
+        "mon",
+        "wed",
+        "fri"
+      ]
+    },
+    "535": {
+      "Mansion|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "536": {
+      "Mansion|3": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "537": {
+      "Mansion|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "538": {
+      "Mansion|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "539": {
+      "Mount Gemma|1": [
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    "540": {
+      "Mount Gemma|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "541": {
+      "Sunfall Shores|3": [
+        "mon",
+        "thu"
+      ]
+    },
+    "542": {
+      "Sunfall Shores|3": [
+        "tue",
+        "fri"
+      ]
+    },
     "544": {
       "Forest|2": [
         "mon",
@@ -499,8 +3802,274 @@
         "wed",
         "sat"
       ]
+    },
+    "546": {
+      "Forest|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "547": {
+      "Mount Gemma|3": [
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    "549": {
+      "Mount Gemma|2": [
+        "tue",
+        "fri"
+      ]
+    },
+    "550": {
+      "Mansion|3": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "552": {
+      "Mount Gemma|3": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "554": {
+      "Cave|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "556": {
+      "Cave|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "561": {
+      "Cave|4": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "568": {
+      "Hidden Forest|1": [
+        "sun",
+        "tue",
+        "fri"
+      ]
+    },
+    "569": {
+      "Hidden Forest|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "570": {
+      "Hidden Forest|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "571": {
+      "Moon|1": [
+        "wed",
+        "thu"
+      ]
+    },
+    "572": {
+      "Moon|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "573": {
+      "Moon|1": [
+        "sun"
+      ]
+    },
+    "574": {
+      "Moon|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "576": {
+      "Moon|2": [
+        "fri",
+        "sat"
+      ]
+    },
+    "578": {
+      "Moon|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "579": {
+      "Moon|2": [
+        "thu",
+        "fri",
+        "sat"
+      ]
+    },
+    "580": {
+      "Moon|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "581": {
+      "Moon|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "583": {
+      "Moon|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "584": {
+      "Moon|2": [
+        "wed",
+        "thu"
+      ]
+    },
+    "585": {
+      "Moon|1": [
+        "fri",
+        "sat"
+      ]
+    },
+    "586": {
+      "Moon|1": [
+        "mon",
+        "tue"
+      ]
+    },
+    "588": {
+      "Moon|2": [
+        "mon",
+        "tue"
+      ]
+    },
+    "589": {
+      "Moon|2": [
+        "mon",
+        "tue",
+        "wed"
+      ]
+    },
+    "594": {
+      "Moon|2": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "595": {
+      "Moon|2": [
+        "sun"
+      ]
+    },
+    "596": {
+      "Moon|1": [
+        "sun"
+      ]
+    },
+    "597": {
+      "Moon|1": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    },
+    "601": {
+      "Moon|2": [
+        "sun"
+      ]
     }
   },
-  "exportDate": "2025-08-28T23:01:08.814Z",
+  "exportDate": "2025-08-29T02:29:36.512Z",
   "version": "1.0"
 }
