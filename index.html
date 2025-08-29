@@ -21,6 +21,103 @@
                     <span id="countdown-time" class="time-value">--:--:--</span>
                 </div>
             </div>
+            
+            <!-- Admin Help Section -->
+            <div id="admin-help-section" class="admin-help-section" style="display: none;">
+                <div class="admin-help-toggle">
+                    <h3>📚 Admin Mode Guide</h3>
+                    <button id="admin-help-toggle-btn" class="help-toggle-btn">Show Help</button>
+                </div>
+                <div id="admin-help-content" class="admin-help-content" style="display: none;">
+                    <div class="help-section">
+                        <h4>🎯 Getting Started</h4>
+                        <p>Welcome to Admin Mode! Here you can create, edit, and manage Miscrit markers on the interactive maps. This mode allows you to add precise location information and images to help other players find specific Miscrits.</p>
+                    </div>
+                    
+                    <div class="help-section">
+                        <h4>📍 Adding Markers</h4>
+                        <ul>
+                            <li><strong>Right-click on any map image</strong> to create a new marker at that location</li>
+                            <li>Fill in the marker details: Miscrit name</li>
+                            <li>Click <strong>Save</strong> to create the marker</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="help-section">
+                        <h4>✏️ Editing Markers</h4>
+                        <ul>
+                            <li><strong>Right-click on existing markers</strong> to open the context menu</li>
+                            <li><strong>Edit Marker:</strong> Modify days of week availability, additional information, and exact location images</li>
+                            <li><strong>Move:</strong> Drag the marker to a new position on the map</li>
+                            <li><strong>Remove:</strong> Delete the marker completely</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="help-section">
+                        <h4>📅 Days of Week System</h4>
+                        <ul>
+                            <li>Set which days each Miscrit can be caught (Monday through Sunday)</li>
+                            <li>Visual indicators show availability on Miscrit tiles</li>
+                            <li>Use the day filter to show only Miscrits available on specific days</li>
+                            <li>If no custom days are set, Miscrits are available all days by default</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="help-section">
+                        <h4>🖼️ Exact Location Images</h4>
+                        <ul>
+                            <li>Add multiple images showing the exact location where Miscrits can be found</li>
+                            <li>Images help other players identify the precise spots on maps</li>
+                            <li>Use image URLs from hosting services or local assets</li>
+                            <li>Images are displayed in the marker information modal</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="help-section">
+                        <h4>💾 Data Management</h4>
+                        <ul>
+                            <li><strong>Data Sources:</strong> Switch between Local Storage (your custom data) and JSON file (default data)</li>
+                            <li><strong>Export Data:</strong> Download all your markers and availability data as a JSON file</li>
+                            <li><strong>Import from JSON:</strong> Load the default marker data into your local storage</li>
+                            <li><strong>Load from File:</strong> Upload a previously exported JSON file</li>
+                            <li><strong>Clear All Markers:</strong> Remove all marker data (with confirmation)</li>
+                            <li><strong>Clear All Dates:</strong> Remove all day-of-week availability data</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="help-section">
+                        <h4>🔍 Viewing Marker Information</h4>
+                        <ul>
+                            <li><strong>Left-click on markers</strong> to view detailed information modal</li>
+                            <li><strong>Click Miscrit tiles</strong> with "Click to see exact location" to view marker info</li>
+                            <li>Modal shows all Miscrits at the location, additional information, and exact location images</li>
+                            <li>Click images to view them in full size in a new tab</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="help-section">
+                        <h4>⚠️ Important Notes</h4>
+                        <ul>
+                            <li><strong>Local Storage:</strong> Your data is saved in your browser - export regularly for backup</li>
+                            <li><strong>JSON Mode:</strong> Read-only mode - switch to Local Storage to make changes</li>
+                            <li><strong>Browser Data:</strong> Clearing browser data will remove your markers unless exported</li>
+                            <li><strong>Sharing:</strong> Export your data and share the JSON file with other players</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="help-section">
+                        <h4>🎮 Tips & Best Practices</h4>
+                        <ul>
+                            <li>Use descriptive additional information to help other players</li>
+                            <li>Take clear screenshots for exact location images</li>
+                            <li>Test your markers by switching to regular mode and viewing them</li>
+                            <li>Export your data regularly to avoid losing your work</li>
+                            <li>Use the day filter to verify your availability settings work correctly</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
             <div class="loading" id="loading">
                 <div class="spinner"></div>
                 <span>Loading Miscrits data...</span>
@@ -120,6 +217,21 @@
             <div class="error-buttons">
                 <button onclick="location.reload()">Retry</button>
                 <button id="clear-storage-btn" class="clear-btn">Clear Local Storage</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Marker Info Modal -->
+    <div id="marker-info-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Marker Information</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="modal-miscrits-list"></div>
+                <div id="modal-additional-info"></div>
+                <div id="modal-exact-images"></div>
             </div>
         </div>
     </div>

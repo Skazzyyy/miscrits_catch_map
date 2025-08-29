@@ -24,6 +24,10 @@ class MiscritsApp {
             await this.loadJsonData(); // Load JSON data for potential use
             this.setupEventListeners();
             this.processMiscrits();
+            // Initialize data source and filters before first render
+            this.initializeDataSource();
+            // Apply initial filtering after data source is set up
+            this.filterMiscrits();
             this.renderMiscrits();
             this.initializeTimeDisplay();
             this.hideLoading();
@@ -120,9 +124,9 @@ class MiscritsApp {
         // File input
         const fileInput = document.getElementById('file-input');
         fileInput.addEventListener('change', (e) => this.handleFileLoad(e));
-
-        // Initialize data source
-        this.initializeDataSource();
+        
+        // Admin help toggle
+        this.setupAdminHelpToggle();
     }
 
     processMiscrits() {
@@ -511,15 +515,55 @@ class MiscritsApp {
         const availabilityData = this.getMiscritAvailabilityData();
         const miscritData = availabilityData[miscrit.id];
         
-        // If no custom availability data exists, assume available all days
-        if (!miscritData) {
-            return true;
+        // If custom availability data exists, use it
+        if (miscritData) {
+            return Object.values(miscritData).some(days => {
+                return days && days.includes(targetDay);
+            });
         }
+        
+        // If no custom availability data, check marker data as fallback
+        const markerDays = this.getMarkerDaysForMiscrit(miscrit);
+        if (markerDays.length > 0) {
+            return markerDays.includes(targetDay);
+        }
+        
+        // Default: available all days if no data exists
+        return true;
+    }
 
-        // Check if miscrit is available on the target day in any location/area
-        return Object.values(miscritData).some(days => {
-            return days && days.includes(targetDay);
-        });
+    getMarkerDaysForMiscrit(miscrit) {
+        // Get all markers and find ones that contain this miscrit
+        const allMarkers = this.getMiscritMarkers();
+        const availableDays = new Set();
+        
+        for (const location in allMarkers) {
+            for (const marker of allMarkers[location]) {
+                let miscritFound = false;
+                let markerDays = [];
+                
+                if (marker.isMultiple) {
+                    // Check if any miscrit in the multiple marker matches
+                    const matchingMiscrit = marker.miscrits.find(m => m.miscritName === miscrit.firstName);
+                    if (matchingMiscrit) {
+                        miscritFound = true;
+                        markerDays = matchingMiscrit.daysOfWeek || ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+                    }
+                } else {
+                    // Single marker
+                    if (marker.miscritName === miscrit.firstName) {
+                        miscritFound = true;
+                        markerDays = marker.daysOfWeek || ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+                    }
+                }
+                
+                if (miscritFound) {
+                    markerDays.forEach(day => availableDays.add(day));
+                }
+            }
+        }
+        
+        return Array.from(availableDays);
     }
 
     updateStats() {
@@ -899,10 +943,18 @@ class MiscritsApp {
         // Add availability information if custom data exists
         this.addAvailabilityInfoToCard(card, miscrit);
 
-        // Add click event for future expansion (modal, details, etc.)
-        card.addEventListener('click', () => {
-            console.log('Clicked miscrit:', miscrit);
-            // Future: Show detailed modal with all evolutions, stats, etc.
+        // Add location footer
+        this.addLocationFooterToCard(card, miscrit);
+
+        // Add click event for modal or future expansion
+        card.addEventListener('click', (e) => {
+            const markerInfo = this.getMiscritMarkerInfo(miscrit);
+            if (markerInfo) {
+                this.showMarkerModal(markerInfo);
+            } else {
+                console.log('Clicked miscrit:', miscrit);
+                // Future: Show detailed modal with all evolutions, stats, etc.
+            }
         });
 
         // Add right-click event for admin mode
@@ -1191,11 +1243,18 @@ class MiscritsApp {
         let availableDays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
         
         if (miscritData) {
-            // Find the first area with custom availability, or use default
+            // Use custom availability data if it exists
             const firstAreaKey = Object.keys(miscritData)[0];
             if (firstAreaKey && miscritData[firstAreaKey]) {
                 availableDays = miscritData[firstAreaKey];
             }
+        } else {
+            // If no custom availability data, check marker data as fallback
+            const markerDays = this.getMarkerDaysForMiscrit(miscrit);
+            if (markerDays.length > 0) {
+                availableDays = markerDays;
+            }
+            // Otherwise keep the default (all days)
         }
         
         dayNames.forEach((dayName, index) => {
@@ -1227,6 +1286,26 @@ class MiscritsApp {
         });
         
         card.appendChild(daysIndicator);
+    }
+
+    addLocationFooterToCard(card, miscrit) {
+        const footer = document.createElement('div');
+        footer.className = 'miscrit-location-footer';
+        
+        // Check if this miscrit has specific marker information
+        const markerInfo = this.getMiscritMarkerInfo(miscrit);
+        
+        if (markerInfo) {
+            footer.classList.add('has-location-info');
+            footer.textContent = 'Click to see exact location';
+            footer.title = 'This Miscrit has specific location information and images';
+        } else {
+            footer.classList.add('generic');
+            footer.textContent = 'Can be found anywhere in area';
+            footer.title = 'This Miscrit can be found anywhere within its listed areas';
+        }
+        
+        card.appendChild(footer);
     }
 
     handleMapRightClick(event, location, imageContainer) {
@@ -1579,10 +1658,16 @@ class MiscritsApp {
             }
         });
 
-        // Add left-click to bring to top
+        // Add left-click to show modal or bring to top
         markerEl.addEventListener('click', (e) => {
             e.stopPropagation();
-            this.bringMarkerToTop(markerEl, imageContainer);
+            
+            // Check if marker has additional info or exact location images
+            if (this.hasMarkerInfo(marker)) {
+                this.showMarkerModal(marker);
+            } else {
+                this.bringMarkerToTop(markerEl, imageContainer);
+            }
         });
 
         imageContainer.appendChild(markerEl);
@@ -1599,6 +1684,161 @@ class MiscritsApp {
 
         // Add 'on-top' class to the clicked marker
         markerElement.classList.add('on-top');
+    }
+
+    hasMarkerInfo(marker) {
+        // Check if marker has additional information or exact location images
+        return (marker.additionalInformation && marker.additionalInformation.trim() !== '') ||
+               (marker.exactLocationImages && marker.exactLocationImages.length > 0);
+    }
+
+    showMarkerModal(marker) {
+        const modal = document.getElementById('marker-info-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMiscritsList = document.getElementById('modal-miscrits-list');
+        const modalAdditionalInfo = document.getElementById('modal-additional-info');
+        const modalExactImages = document.getElementById('modal-exact-images');
+
+        // Set modal title
+        if (marker.isMultiple) {
+            modalTitle.textContent = `Multiple Miscrits Location`;
+        } else {
+            modalTitle.textContent = `${marker.miscritName} Location`;
+        }
+
+        // Clear previous content
+        modalMiscritsList.innerHTML = '';
+        modalAdditionalInfo.innerHTML = '';
+        modalExactImages.innerHTML = '';
+
+        // Add miscrits information
+        if (marker.isMultiple) {
+            modalMiscritsList.innerHTML = '<div class="modal-section"><h4>Miscrits at this Location</h4><div class="modal-miscrits-grid"></div></div>';
+            const grid = modalMiscritsList.querySelector('.modal-miscrits-grid');
+            
+            marker.miscrits.forEach(miscrit => {
+                const miscritCard = document.createElement('div');
+                miscritCard.className = 'modal-miscrit-card';
+                
+                const days = miscrit.daysOfWeek || ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+                const dayNames = {
+                    'mon': 'Mon', 'tue': 'Tue', 'wed': 'Wed', 'thu': 'Thu',
+                    'fri': 'Fri', 'sat': 'Sat', 'sun': 'Sun'
+                };
+                const daysText = days.length === 7 ? 'All days' : days.map(d => dayNames[d]).join(', ');
+                
+                miscritCard.innerHTML = `
+                    <img src="${miscrit.imageUrl}" alt="${miscrit.miscritName}" class="modal-miscrit-image">
+                    <div class="modal-miscrit-name">${miscrit.miscritName}</div>
+                    <div class="modal-miscrit-rarity rarity-${miscrit.miscritRarity.toLowerCase()}">${miscrit.miscritRarity}</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">${daysText}</div>
+                `;
+                grid.appendChild(miscritCard);
+            });
+        } else {
+            // Single miscrit
+            modalMiscritsList.innerHTML = '<div class="modal-section"><h4>Miscrit Information</h4><div class="modal-miscrits-grid"></div></div>';
+            const grid = modalMiscritsList.querySelector('.modal-miscrits-grid');
+            
+            const days = marker.daysOfWeek || ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            const dayNames = {
+                'mon': 'Mon', 'tue': 'Tue', 'wed': 'Wed', 'thu': 'Thu',
+                'fri': 'Fri', 'sat': 'Sat', 'sun': 'Sun'
+            };
+            const daysText = days.length === 7 ? 'All days' : days.map(d => dayNames[d]).join(', ');
+            
+            const miscritCard = document.createElement('div');
+            miscritCard.className = 'modal-miscrit-card';
+            miscritCard.innerHTML = `
+                <img src="${marker.imageUrl}" alt="${marker.miscritName}" class="modal-miscrit-image">
+                <div class="modal-miscrit-name">${marker.miscritName}</div>
+                <div class="modal-miscrit-rarity rarity-${marker.miscritRarity.toLowerCase()}">${marker.miscritRarity}</div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">${daysText}</div>
+            `;
+            grid.appendChild(miscritCard);
+        }
+
+        // Add additional information
+        if (marker.additionalInformation && marker.additionalInformation.trim() !== '') {
+            modalAdditionalInfo.innerHTML = `
+                <div class="modal-section">
+                    <h4>Additional Information</h4>
+                    <div class="modal-additional-info">${marker.additionalInformation}</div>
+                </div>
+            `;
+        }
+
+        // Add exact location images
+        if (marker.exactLocationImages && marker.exactLocationImages.length > 0) {
+            modalExactImages.innerHTML = '<div class="modal-section"><h4>Exact Location Images</h4><div class="modal-images-grid"></div></div>';
+            const imagesGrid = modalExactImages.querySelector('.modal-images-grid');
+            
+            marker.exactLocationImages.forEach((imagePath, index) => {
+                const imageCard = document.createElement('div');
+                imageCard.className = 'modal-image-card';
+                imageCard.innerHTML = `
+                    <img src="${imagePath}" alt="Exact location ${index + 1}" class="modal-image" onclick="window.open('${imagePath}', '_blank')">
+                    <div class="modal-image-caption">Location Image ${index + 1}</div>
+                `;
+                imagesGrid.appendChild(imageCard);
+            });
+        }
+
+        // Show modal
+        modal.style.display = 'block';
+        
+        // Setup modal close handlers
+        this.setupModalCloseHandlers(modal);
+    }
+
+    setupModalCloseHandlers(modal) {
+        const closeBtn = modal.querySelector('.modal-close');
+        
+        // Close button click
+        closeBtn.onclick = () => {
+            modal.style.display = 'none';
+        };
+        
+        // Click outside modal
+        modal.onclick = (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+        
+        // Escape key
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape') {
+                modal.style.display = 'none';
+                document.removeEventListener('keydown', escapeHandler);
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
+    }
+
+    getMiscritMarkerInfo(miscrit) {
+        // Get all markers and search for this miscrit
+        const allMarkers = this.getMiscritMarkers();
+        
+        for (const location in allMarkers) {
+            for (const marker of allMarkers[location]) {
+                // Check if this marker contains the miscrit and has additional info
+                if (marker.isMultiple) {
+                    // Check if any miscrit in the multiple marker matches
+                    const matchingMiscrit = marker.miscrits.find(m => m.miscritName === miscrit.firstName);
+                    if (matchingMiscrit && this.hasMarkerInfo(marker)) {
+                        return marker;
+                    }
+                } else {
+                    // Single marker
+                    if (marker.miscritName === miscrit.firstName && this.hasMarkerInfo(marker)) {
+                        return marker;
+                    }
+                }
+            }
+        }
+        
+        return null;
     }
 
     createMultipleMarkerElement(marker, imageContainer) {
@@ -1648,10 +1888,16 @@ class MiscritsApp {
             }
         });
 
-        // Add left-click to bring to top
+        // Add left-click to show modal or bring to top
         markerEl.addEventListener('click', (e) => {
             e.stopPropagation();
-            this.bringMarkerToTop(markerEl, imageContainer);
+            
+            // Check if marker has additional info or exact location images
+            if (this.hasMarkerInfo(marker)) {
+                this.showMarkerModal(marker);
+            } else {
+                this.bringMarkerToTop(markerEl, imageContainer);
+            }
         });
 
         imageContainer.appendChild(markerEl);
@@ -1671,14 +1917,11 @@ class MiscritsApp {
         contextMenu.style.left = `${event.clientX}px`;
         contextMenu.style.top = `${event.clientY}px`;
         contextMenu.innerHTML = `
-            <div class="context-menu-item" data-action="edit-days">
-                <span class="context-icon">📅</span> Edit Days
+            <div class="context-menu-item" data-action="edit-marker">
+                <span class="context-icon">✏️</span> Edit Marker
             </div>
             <div class="context-menu-item" data-action="move">
                 <span class="context-icon">🔄</span> Move
-            </div>
-            <div class="context-menu-item" data-action="edit-info">
-                <span class="context-icon">ℹ️</span> Edit Info
             </div>
             <div class="context-menu-item" data-action="remove">
                 <span class="context-icon">🗑️</span> Remove
@@ -1691,12 +1934,10 @@ class MiscritsApp {
         contextMenu.addEventListener('click', (e) => {
             const action = e.target.closest('.context-menu-item')?.dataset.action;
             
-            if (action === 'edit-days') {
-                this.showEditDaysModal(marker, markerElement);
+            if (action === 'edit-marker') {
+                this.showEditMarkerModal(marker, markerElement);
             } else if (action === 'move') {
                 this.startMoveMode(marker, markerElement, imageContainer);
-            } else if (action === 'edit-info') {
-                this.showEditMarkerInfoModal(marker, markerElement);
             } else if (action === 'remove') {
                 this.removeMiscritMarker(marker, markerElement);
             }
@@ -1804,14 +2045,11 @@ class MiscritsApp {
             <div class="context-menu-item" data-action="manage-miscrits">
                 <span class="context-icon">📝</span> Add/Remove Miscrits
             </div>
-            <div class="context-menu-item" data-action="edit-days">
-                <span class="context-icon">📅</span> Edit Days
+            <div class="context-menu-item" data-action="edit-marker">
+                <span class="context-icon">✏️</span> Edit Marker
             </div>
             <div class="context-menu-item" data-action="move">
                 <span class="context-icon">🔄</span> Move
-            </div>
-            <div class="context-menu-item" data-action="edit-info">
-                <span class="context-icon">ℹ️</span> Edit Info
             </div>
             <div class="context-menu-item" data-action="remove">
                 <span class="context-icon">🗑️</span> Remove All
@@ -1826,12 +2064,10 @@ class MiscritsApp {
             
             if (action === 'manage-miscrits') {
                 this.showManageMiscritsModal(marker, markerElement, imageContainer);
-            } else if (action === 'edit-days') {
-                this.showEditDaysModal(marker, markerElement);
+            } else if (action === 'edit-marker') {
+                this.showEditMarkerModal(marker, markerElement);
             } else if (action === 'move') {
                 this.startMultipleMoveMode(marker, markerElement, imageContainer);
-            } else if (action === 'edit-info') {
-                this.showEditMarkerInfoModal(marker, markerElement);
             } else if (action === 'remove') {
                 this.removeMiscritMarker(marker, markerElement);
             }
@@ -1850,6 +2086,167 @@ class MiscritsApp {
         setTimeout(() => {
             document.addEventListener('click', closeMenu);
         }, 10);
+    }
+
+    showEditMarkerModal(marker, markerElement) {
+        // Create modal
+        const modal = document.createElement('div');
+        modal.className = 'miscrit-selection-modal';
+        
+        // Handle title for single or multiple markers
+        const title = marker.isMultiple 
+            ? `Edit Marker - Multiple Miscrits`
+            : `Edit Marker - ${marker.miscritName}`;
+            
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>${title}</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="marker-editor">
+                        <!-- Days of Week Section -->
+                        <div class="editor-section">
+                            <h4>Days of Week</h4>
+                            <div id="days-editor-container">
+                                <!-- Will be populated based on marker type -->
+                            </div>
+                        </div>
+                        
+                        <!-- Marker Information Section -->
+                        <div class="editor-section">
+                            <h4>Marker Information</h4>
+                            <div class="marker-info-editor">
+                                <div class="info-section">
+                                    <label for="additional-info">Additional Information:</label>
+                                    <textarea id="additional-info" class="additional-info-input" 
+                                              placeholder="Enter additional information about this marker..."
+                                              rows="4">${marker.additionalInformation || ''}</textarea>
+                                </div>
+                                
+                                <div class="info-section">
+                                    <label>Exact Location Images:</label>
+                                    <div id="exact-location-images">
+                                        <!-- Will be populated with existing images -->
+                                    </div>
+                                    <div class="add-image-section">
+                                        <input type="url" id="new-image-url" class="image-url-input" 
+                                               placeholder="Enter image URL">
+                                        <button type="button" class="btn-add-image">Add Image</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-cancel">Cancel</button>
+                    <button class="btn-save">Save Changes</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Get elements
+        const closeBtn = modal.querySelector('.modal-close');
+        const cancelBtn = modal.querySelector('.btn-cancel');
+        const saveBtn = modal.querySelector('.btn-save');
+        const daysContainer = modal.querySelector('#days-editor-container');
+        const exactImagesContainer = modal.querySelector('#exact-location-images');
+        const addImageBtn = modal.querySelector('.btn-add-image');
+        const newImageUrlInput = modal.querySelector('#new-image-url');
+
+        // Generate the days editor content
+        this.generateDaysEditor(marker, daysContainer);
+        
+        // Populate existing exact location images
+        this.populateExistingImages(marker, exactImagesContainer);
+
+        // Add image functionality
+        addImageBtn.addEventListener('click', () => {
+            const url = newImageUrlInput.value.trim();
+            if (url) {
+                this.addImageToContainer(url, exactImagesContainer);
+                newImageUrlInput.value = '';
+            }
+        });
+
+        // Close handlers
+        const closeModal = () => {
+            document.body.removeChild(modal);
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+        cancelBtn.addEventListener('click', closeModal);
+
+        // Save handler
+        saveBtn.addEventListener('click', () => {
+            // Save days data
+            this.saveDaysFromEditor(marker, daysContainer);
+            
+            // Save marker info data
+            this.saveMarkerInfoFromEditor(marker, exactImagesContainer);
+            
+            // Update marker element display
+            this.updateMarkerElementFromData(marker, markerElement);
+            
+            closeModal();
+        });
+
+        // Click outside to close
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    }
+
+    populateExistingImages(marker, container) {
+        if (!marker.exactLocationImages) {
+            marker.exactLocationImages = [];
+        }
+        
+        container.innerHTML = '';
+        
+        marker.exactLocationImages.forEach((imageUrl, index) => {
+            this.addImageToContainer(imageUrl, container, true);
+        });
+    }
+    
+    addImageToContainer(url, container, isExisting = false) {
+        const imageItem = document.createElement('div');
+        imageItem.className = 'image-item';
+        imageItem.innerHTML = `
+            <img src="${url}" alt="Location image" style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px;">
+            <div class="image-url">${url}</div>
+            <button type="button" class="btn-remove-image">Remove</button>
+        `;
+        
+        // Add remove functionality
+        const removeBtn = imageItem.querySelector('.btn-remove-image');
+        removeBtn.addEventListener('click', () => {
+            container.removeChild(imageItem);
+        });
+        
+        container.appendChild(imageItem);
+    }
+    
+    saveMarkerInfoFromEditor(marker, imagesContainer) {
+        // Get additional information
+        const additionalInfoTextarea = document.getElementById('additional-info');
+        marker.additionalInformation = additionalInfoTextarea.value.trim();
+        
+        // Get exact location images
+        const imageItems = imagesContainer.querySelectorAll('.image-item');
+        marker.exactLocationImages = Array.from(imageItems).map(item => {
+            return item.querySelector('.image-url').textContent;
+        });
+        
+        // Save to storage
+        const allMarkers = this.getMiscritMarkers();
+        this.saveMiscritMarkers(allMarkers);
     }
 
     showEditMarkerInfoModal(marker, markerElement) {
@@ -2509,6 +2906,10 @@ class MiscritsApp {
         const adminControls = document.getElementById('admin-controls');
         adminControls.style.display = 'flex';
         
+        // Show the admin help section
+        const adminHelpSection = document.getElementById('admin-help-section');
+        adminHelpSection.style.display = 'block';
+        
         console.log('Admin mode activated');
     }
 
@@ -2528,6 +2929,10 @@ class MiscritsApp {
         // Hide the admin controls
         const adminControls = document.getElementById('admin-controls');
         adminControls.style.display = 'none';
+        
+        // Hide the admin help section
+        const adminHelpSection = document.getElementById('admin-help-section');
+        adminHelpSection.style.display = 'none';
         
         console.log('Admin mode deactivated');
     }
@@ -3130,6 +3535,41 @@ class MiscritsApp {
         }, 60000);
     }
 
+    setupAdminHelpToggle() {
+        const helpToggleBtn = document.getElementById('admin-help-toggle-btn');
+        const helpContent = document.getElementById('admin-help-content');
+        const helpSection = document.getElementById('admin-help-section');
+        
+        // Make the entire toggle area clickable
+        const helpToggleArea = helpSection.querySelector('.admin-help-toggle');
+        
+        const toggleHelp = () => {
+            const isVisible = helpContent.style.display !== 'none';
+            
+            if (isVisible) {
+                helpContent.style.display = 'none';
+                helpToggleBtn.textContent = 'Show Help';
+                helpToggleBtn.style.background = 'rgba(255, 255, 255, 0.2)';
+            } else {
+                helpContent.style.display = 'block';
+                helpToggleBtn.textContent = 'Hide Help';
+                helpToggleBtn.style.background = 'rgba(255, 255, 255, 0.3)';
+            }
+        };
+        
+        // Add click handlers
+        helpToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleHelp();
+        });
+        
+        helpToggleArea.addEventListener('click', (e) => {
+            if (e.target === helpToggleArea || e.target.tagName === 'H3') {
+                toggleHelp();
+            }
+        });
+    }
+
     updateTodayOption() {
         const dayFilter = document.getElementById('day-filter');
         const currentDay = this.getCurrentGMTDay();
@@ -3166,6 +3606,10 @@ class MiscritsApp {
             // Show the admin controls
             const adminControls = document.getElementById('admin-controls');
             adminControls.style.display = 'flex';
+            
+            // Show the admin help section
+            const adminHelpSection = document.getElementById('admin-help-section');
+            adminHelpSection.style.display = 'block';
             
             console.log('Admin mode restored from previous session');
         }

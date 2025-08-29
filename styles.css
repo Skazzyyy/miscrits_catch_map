@@ -19,7 +19,7 @@
     --rarity-common: #ffffff;
     --rarity-rare: #4a9eff;
     --rarity-epic: #00ff00;
-    --rarity-exotic: #ff1493;
+    --rarity-exotic: #ff00ff;
     --rarity-legendary: #ffd700;
 }
 
@@ -1703,17 +1703,385 @@ body.admin-mode .miscrit-card:hover::after {
     background: var(--error);
     color: white;
     border: none;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    padding: 4px 8px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s ease;
+    font-size: 0.8rem;
 }
 
 .btn-remove-image:hover {
-    background: #c0392b;
+    opacity: 0.8;
+}
+
+/* Marker Info Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--bg-secondary);
+    margin: 5% auto;
+    padding: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.3rem;
+}
+
+.modal-close {
+    color: var(--text-secondary);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 24px;
+    max-height: calc(85vh - 80px);
+    overflow-y: auto;
+}
+
+.modal-section {
+    margin-bottom: 24px;
+}
+
+.modal-section:last-child {
+    margin-bottom: 0;
+}
+
+.modal-section h4 {
+    margin: 0 0 12px 0;
+    color: var(--accent-primary);
+    font-size: 1.1rem;
+    border-bottom: 2px solid var(--accent-primary);
+    padding-bottom: 6px;
+}
+
+.modal-miscrits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.modal-miscrit-card {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.modal-miscrit-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+}
+
+.modal-miscrit-image {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.modal-miscrit-name {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.modal-miscrit-rarity {
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.modal-additional-info {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    color: var(--text-primary);
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.modal-images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.modal-image-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.modal-image-card:hover {
+    transform: scale(1.02);
+}
+
+.modal-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+}
+
+.modal-image-caption {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+}
+
+/* Enhanced Miscrit Tiles - removed special styling */
+
+/* Location Footer for Miscrit Cards */
+.miscrit-location-footer {
+    margin-top: 8px;
+    padding: 6px 8px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    text-align: center;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.miscrit-location-footer.has-location-info {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    cursor: pointer;
+    border-color: var(--accent-primary);
+}
+
+.miscrit-location-footer.has-location-info:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(74, 158, 255, 0.4);
+}
+
+.miscrit-location-footer.generic {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        max-height: 80vh;
+    }
+    
+    .modal-header {
+        padding: 16px 20px;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    .modal-miscrits-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 12px;
+    }
+    
+    .modal-images-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Combined Editor Sections */
+.marker-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.editor-section {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.editor-section h4 {
+    margin: 0 0 16px 0;
+    color: var(--accent-primary);
+    font-size: 1.1rem;
+    border-bottom: 2px solid var(--accent-primary);
+    padding-bottom: 6px;
+}
+
+/* Admin Help Section */
+.admin-help-section {
+    margin: 20px auto;
+    max-width: 800px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.admin-help-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.admin-help-toggle:hover {
+    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+}
+
+.admin-help-toggle h3 {
+    margin: 0;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.help-toggle-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.help-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.admin-help-content {
+    padding: 24px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.help-section {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.help-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.help-section h4 {
+    margin: 0 0 12px 0;
+    color: var(--accent-primary);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.help-section p {
+    margin: 0 0 12px 0;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.help-section ul {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--text-primary);
+}
+
+.help-section li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.help-section li strong {
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+/* Scrollbar styling for help content */
+.admin-help-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.admin-help-content::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+}
+
+.admin-help-content::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 4px;
+}
+
+.admin-help-content::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-secondary);
+}
+
+@media (max-width: 768px) {
+    .admin-help-toggle {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+    
+    .admin-help-content {
+        padding: 16px;
+        max-height: 60vh;
+    }
+    
+    .help-section h4 {
+        font-size: 1rem;
+    }
 }
