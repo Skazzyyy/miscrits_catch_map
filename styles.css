@@ -1439,6 +1439,96 @@ body.admin-mode .miscrit-card:hover::after {
     color: var(--accent-secondary);
 }
 
+/* Collection Statistics Display */
+.miscrit-collection-stats {
+    font-size: 0.65rem;
+    margin-top: 6px;
+    padding: 6px;
+    background: var(--bg-primary);
+    border-radius: 4px;
+    line-height: 1.2;
+}
+
+.miscrit-collection-stats .stats-title {
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    font-size: 0.7rem;
+}
+
+.miscrit-collection-stats .stats-title.not-owned {
+    color: #e74c3c;
+    background: rgba(231, 76, 60, 0.1);
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+
+.miscrit-collection-stats .stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: stretch;
+}
+
+.miscrit-collection-stats .stats-grid.not-owned {
+    opacity: 0.6;
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    border-radius: 3px;
+    padding: 2px;
+}
+
+.miscrit-collection-stats .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.6rem;
+}
+
+.miscrit-collection-stats .stat-label {
+    color: var(--text-muted);
+    font-size: 0.55rem;
+    margin-right: 4px;
+}
+
+.miscrit-collection-stats .stat-count {
+    display: inline-block;
+    min-width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 0.6rem;
+    color: var(--text-primary);
+}
+
+/* Stat count color variations */
+.stat-count-green {
+    background-color: #27ae60;
+    color: white;
+}
+
+.stat-count-white {
+    background-color: #ffffff;
+    color: #2c3e50;
+}
+
+.stat-count-orange {
+    background-color: #f39c12;
+    color: white;
+}
+
+.stat-count-red {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.stat-count-gray {
+    background-color: #7f8c8d;
+    color: white;
+}
+
 /* Days of Week Indicator */
 .miscrit-days-indicator {
     position: absolute;
@@ -2067,6 +2157,160 @@ body.admin-mode .miscrit-card:hover::after {
 
 .admin-help-content::-webkit-scrollbar-thumb:hover {
     background: var(--accent-secondary);
+}
+
+/* Login Modal Styles */
+#login-modal .modal-content {
+    max-width: 400px;
+    width: 90%;
+}
+
+.login-field {
+    margin-bottom: 20px;
+}
+
+.login-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.login-field input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.login-field input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
+}
+
+.login-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.login-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.login-buttons button[type="submit"] {
+    background: var(--accent-primary);
+    color: white;
+}
+
+.login-buttons button[type="submit"]:hover {
+    background: #357abd;
+    transform: translateY(-1px);
+}
+
+.login-buttons .cancel-btn {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.login-buttons .cancel-btn:hover {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+#login-status {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+#login-status.success {
+    background: rgba(0, 184, 148, 0.1);
+    border: 1px solid var(--success);
+    color: var(--success);
+}
+
+#login-status.error {
+    background: rgba(225, 112, 85, 0.1);
+    border: 1px solid var(--error);
+    color: var(--error);
+}
+
+/* Rating Badge Styles */
+.rating-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Rating Colors as specified */
+.rating-splus { background: linear-gradient(135deg, #8b0000, #5a0000); color: white; } /* Dark Red */
+.rating-s { background: linear-gradient(135deg, #8b0000, #5a0000); color: white; } /* Dark Red */
+.rating-aplus { background: linear-gradient(135deg, #dc143c, #b22222); color: white; } /* Red */
+.rating-a { background: linear-gradient(135deg, #dc143c, #b22222); color: white; } /* Red */
+.rating-bplus { background: linear-gradient(135deg, #228b22, #006400); color: white; } /* Green */
+.rating-b { background: linear-gradient(135deg, #228b22, #006400); color: white; } /* Green */
+.rating-cplus { background: linear-gradient(135deg, #9370db, #7b68ee); color: white; } /* Bright Purple */
+.rating-c { background: linear-gradient(135deg, #9370db, #7b68ee); color: white; } /* Bright Purple */
+.rating-dplus { background: linear-gradient(135deg, #708090, #556b8d); color: white; } /* Greyish-blue */
+.rating-d { background: linear-gradient(135deg, #708090, #556b8d); color: white; } /* Greyish-blue */
+.rating-fplus { background: linear-gradient(135deg, #708090, #556b8d); color: white; } /* Greyish-blue */
+.rating-f { background: linear-gradient(135deg, #708090, #556b8d); color: white; } /* Greyish-blue */
+.rating-fminus { background: linear-gradient(135deg, #708090, #556b8d); color: white; } /* Greyish-blue */
+.rating-unknown { background: linear-gradient(135deg, var(--text-muted), #666); color: white; }
+
+/* Rarity Badge Styles - Using existing rarity colors */
+.rarity-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.rarity-common { background: linear-gradient(135deg, var(--rarity-common), #e0e0e0); color: black; }
+.rarity-rare { background: linear-gradient(135deg, var(--rarity-rare), #2980b9); color: white; }
+.rarity-epic { background: linear-gradient(135deg, var(--rarity-epic), #00cc00); color: white; }
+.rarity-exotic { background: linear-gradient(135deg, var(--rarity-exotic), #cc00cc); color: white; }
+.rarity-legendary { background: linear-gradient(135deg, var(--rarity-legendary), #f39c12); color: black; }
+
+/* Miscrit Card Hover Effects */
+.miscrit-card:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Summary Badge Styling */
+.rating-summary .rating-badge {
+    margin: 2px;
+    font-size: 11px;
+    padding: 3px 6px;
+}
+
+/* Miscrit Row Hover Effect */
+.miscrit-row:hover {
+    background: var(--bg-primary) !important;
+    transition: background-color 0.2s ease;
 }
 
 @media (max-width: 768px) {

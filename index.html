@@ -136,6 +136,8 @@
                 </div>
                 <div class="export-section">
                     <button id="admin-mode-btn" class="export-btn">Enter Admin Mode</button>
+                    <button id="login-btn" class="export-btn">Login</button>
+                    <button id="raw-response-btn" class="export-btn" style="display: none;">See My Miscrits</button>
                     <div id="admin-controls" class="admin-controls" style="display: none;">
                         <div class="admin-row">
                             <button id="export-data-btn" class="export-btn admin-btn">Export Data</button>
@@ -204,6 +206,14 @@
                 <div class="filter-group">
                     <input type="text" id="search-filter" placeholder="Search miscrits...">
                 </div>
+                <div class="filter-group" id="ownership-filter-group" style="display: none;">
+                    <label for="ownership-filter">Filter by Ownership:</label>
+                    <select id="ownership-filter">
+                        <option value="">All Miscrits</option>
+                        <option value="owned">Owned Only</option>
+                        <option value="not-owned">Not Owned Only</option>
+                    </select>
+                </div>
             </div>
 
             <div class="miscrits-container" id="miscrits-container">
@@ -217,6 +227,33 @@
             <div class="error-buttons">
                 <button onclick="location.reload()">Retry</button>
                 <button id="clear-storage-btn" class="clear-btn">Clear Local Storage</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login to Miscrits</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="login-form">
+                    <div class="login-field">
+                        <label for="login-email">Email:</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="login-field">
+                        <label for="login-password">Password:</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <div class="login-buttons">
+                        <button type="submit">Login</button>
+                        <button type="button" class="cancel-btn">Cancel</button>
+                    </div>
+                </form>
+                <div id="login-status" style="display: none;"></div>
             </div>
         </div>
     </div>
@@ -236,6 +273,8 @@
         </div>
     </div>
 
+    <script src="nakama-client.js"></script>
+    <script src="miscrits-api.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

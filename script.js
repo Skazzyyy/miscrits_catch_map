@@ -5,6 +5,9 @@ class MiscritsApp {
         this.miscrits = [];
         this.filteredMiscrits = [];
         this.isAdminMode = false;
+        this.isLoggedIn = false;
+        this.miscritsApi = null;
+        this.playerData = null;
         this.locationOrder = [
             'Forest',
             'Hidden Forest',
@@ -23,6 +26,10 @@ class MiscritsApp {
             await this.loadMiscrits();
             await this.loadJsonData(); // Load JSON data for potential use
             this.setupEventListeners();
+            
+            // Try to restore saved session
+            await this.tryRestoreSession();
+            
             this.processMiscrits();
             // Initialize data source and filters before first render
             this.initializeDataSource();
@@ -92,6 +99,12 @@ class MiscritsApp {
         
         searchFilter.addEventListener('input', () => this.filterMiscrits());
 
+        // Ownership filter (will be shown/hidden based on login status)
+        const ownershipFilter = document.getElementById('ownership-filter');
+        if (ownershipFilter) {
+            ownershipFilter.addEventListener('change', () => this.filterMiscrits());
+        }
+
         // Admin mode button
         const adminModeBtn = document.getElementById('admin-mode-btn');
         adminModeBtn.addEventListener('click', () => this.showAdminModeWarning());
@@ -136,6 +149,9 @@ class MiscritsApp {
         
         // Admin help toggle
         this.setupAdminHelpToggle();
+        
+        // Login functionality
+        this.setupLoginEventListeners();
     }
 
     processMiscrits() {
@@ -481,6 +497,8 @@ class MiscritsApp {
         const elementFilter = document.getElementById('element-filter').value;
         const dayFilter = document.getElementById('day-filter').value;
         const searchFilter = document.getElementById('search-filter').value.toLowerCase();
+        const ownershipFilterElement = document.getElementById('ownership-filter');
+        const ownershipFilter = ownershipFilterElement ? ownershipFilterElement.value : '';
 
         // Get current day in GMT+0 for "today" filter
         const currentDay = this.getCurrentGMTDay();
@@ -500,7 +518,18 @@ class MiscritsApp {
             // Day filtering logic
             const matchesDay = this.checkDayAvailability(miscrit, dayFilter, currentDay);
 
-            return matchesLocation && matchesArea && matchesRarity && matchesElement && matchesSearch && matchesDay;
+            // Ownership filtering logic (only if user is logged in)
+            let matchesOwnership = true;
+            if (ownershipFilter && this.playerData && this.playerData.miscrits) {
+                const stats = this.getMiscritCollectionStats(miscrit.id);
+                if (ownershipFilter === 'owned') {
+                    matchesOwnership = stats && stats.total > 0;
+                } else if (ownershipFilter === 'not-owned') {
+                    matchesOwnership = !stats || stats.total === 0;
+                }
+            }
+
+            return matchesLocation && matchesArea && matchesRarity && matchesElement && matchesSearch && matchesDay && matchesOwnership;
         });
 
         this.renderMiscrits();
@@ -947,6 +976,59 @@ class MiscritsApp {
         card.appendChild(img);
         card.appendChild(name);
         card.appendChild(elementDiv);
+
+        // Add collection statistics if user is logged in
+        if (this.playerData && this.playerData.miscrits) {
+            const stats = this.getMiscritCollectionStats(miscrit.id);
+            if (stats) {
+                const collectionDiv = document.createElement('div');
+                collectionDiv.className = 'miscrit-collection-stats';
+                
+                // Create title
+                const titleDiv = document.createElement('div');
+                titleDiv.className = `stats-title ${stats.total === 0 ? 'not-owned' : ''}`;
+                titleDiv.textContent = stats.total === 0 ? 'Not Owned' : 'Owned';
+                
+                // Create stats grid
+                const gridDiv = document.createElement('div');
+                gridDiv.className = `stats-grid ${stats.total === 0 ? 'not-owned' : ''}`;
+                
+                // Add each stat with appropriate coloring
+                const statConfigs = [
+                    { label: 'S+', count: stats.sPlus },
+                    { label: 'A+ RS', count: stats.aPlusRS },
+                    { label: 'A RS', count: stats.aRS },
+                    { label: 'B+ RS', count: stats.bPlusRS },
+                    { label: 'Other', count: stats.total - (stats.sPlus + stats.aPlusRS + stats.aRS + stats.bPlusRS) }
+                ];
+                
+                // Determine overall ownership status
+                const hasAnyInScenarios = stats.sPlus > 0 || stats.aPlusRS > 0 || stats.aRS > 0 || stats.bPlusRS > 0;
+                const overallStatus = stats.total === 0 ? 'none' : (hasAnyInScenarios ? 'scenario' : 'other');
+                
+                statConfigs.forEach(config => {
+                    const statItem = document.createElement('div');
+                    statItem.className = 'stat-item';
+                    
+                    const label = document.createElement('span');
+                    label.className = 'stat-label';
+                    label.textContent = config.label;
+                    
+                    const countBox = document.createElement('span');
+                    countBox.className = `stat-count ${this.getStatCountClass(config.count, overallStatus)}`;
+                    countBox.textContent = config.count;
+                    
+                    statItem.appendChild(label);
+                    statItem.appendChild(countBox);
+                    gridDiv.appendChild(statItem);
+                });
+                
+                collectionDiv.appendChild(titleDiv);
+                collectionDiv.appendChild(gridDiv);
+                card.appendChild(collectionDiv);
+            }
+        }
+
         card.appendChild(locationDiv);
 
         // Add availability information if custom data exists
@@ -3816,6 +3898,877 @@ class MiscritsApp {
         
         // Reset the file input
         event.target.value = '';
+    }
+
+    /**
+     * Calculate miscrit quality rating (F, F+, E, E+, etc.) based on stats
+     * Ported from extract_miscrit_ratings.py
+     */
+    calculateMiscritRating(miscritData) {
+        // Stat keys from the game
+        const statKeys = ["hp", "spd", "ea", "ed", "pa", "pd"];
+        
+        // Rating labels from the game (18 - rating_sum = index)
+        const ratings = ["S+", "S", "A+", "A", "B+", "B", "C+", "C", "D+", "D", "F+", "F", "F-"];
+        
+        // Calculate sum of all stat values
+        let ratingSum = 0;
+        for (const stat of statKeys) {
+            ratingSum += miscritData[stat] || 1; // Default to 1 if stat missing
+        }
+        
+        // Calculate quality grade
+        if (ratingSum === 0) {
+            return "Unknown";
+        }
+        
+        const ratingIndex = 18 - ratingSum;
+        if (ratingIndex >= 0 && ratingIndex < ratings.length) {
+            return ratings[ratingIndex];
+        } else {
+            return "Unknown";
+        }
+    }
+
+    /**
+     * Get color for stat value based on rating calculation
+     * Red for 1, White for 2, Green for 3+
+     */
+    getStatColor(statValue) {
+        if (statValue === 1) {
+            return '#e74c3c'; // Red
+        } else if (statValue === 2) {
+            return '#ffffff'; // White
+        } else {
+            return '#27ae60'; // Green
+        }
+    }
+
+    /**
+     * Calculate collection statistics for a specific miscrit
+     */
+    getMiscritCollectionStats(miscritId) {
+        if (!this.playerData || !this.playerData.miscrits) {
+            return null;
+        }
+
+        // Find all instances of this miscrit in player's collection
+        const ownedMiscrits = this.playerData.miscrits.filter(miscrit => miscrit.mId === miscritId);
+        
+        const stats = {
+            total: ownedMiscrits.length,
+            sPlus: 0,
+            aPlusRS: 0,    // A+ RS (red spd + 1 other red)
+            aRS: 0,        // A RS (red spd + 1 white)
+            bPlusRS: 0     // B+ RS (red spd only)
+        };
+
+        if (ownedMiscrits.length === 0) {
+            return stats;
+        }
+
+        ownedMiscrits.forEach(miscrit => {
+            // Check each filter condition in priority order (highest first)
+            // Each miscrit should only be counted in the first category it matches
+            if (this.matchesFilter(miscrit, 's-plus')) {
+                stats.sPlus++;
+            } else if (this.matchesFilter(miscrit, 'red-spd-only')) {
+                stats.aPlusRS++;  // A+ RS = red speed only (everything else green)
+            } else if (this.matchesFilter(miscrit, 'red-spd-one-white')) {
+                stats.aRS++;      // A RS = red speed + 1 white stat
+            } else if (this.matchesFilter(miscrit, 'red-spd-one-red')) {
+                stats.bPlusRS++;  // B+ = red speed + 1 other red stat
+            }
+            // If none of the above match, it will be counted in "Other"
+        });
+
+        return stats;
+    }
+
+    /**
+     * Check if a miscrit matches the specified filter criteria
+     */
+    matchesFilter(miscrit, filterType) {
+        const stats = {
+            hp: miscrit.hp || 1,
+            spd: miscrit.spd || 1,
+            ea: miscrit.ea || 1,
+            ed: miscrit.ed || 1,
+            pa: miscrit.pa || 1,
+            pd: miscrit.pd || 1
+        };
+
+        switch (filterType) {
+            case 'none':
+                return true;
+                
+            case 's-plus':
+                return this.calculateMiscritRating(miscrit) === 'S+';
+                
+            case 'red-spd-only':
+                // Red SPD (1), everything else green (3+)
+                return stats.spd === 1 && 
+                       stats.hp >= 3 && stats.ea >= 3 && stats.ed >= 3 && 
+                       stats.pa >= 3 && stats.pd >= 3;
+                       
+            case 'red-spd-one-white':
+                // Red SPD (1), exactly one white (2), rest green (3+)
+                if (stats.spd !== 1) return false;
+                const whiteStats = Object.entries(stats).filter(([key, value]) => 
+                    key !== 'spd' && value === 2).length;
+                const greenStats = Object.entries(stats).filter(([key, value]) => 
+                    key !== 'spd' && value >= 3).length;
+                return whiteStats === 1 && greenStats === 4;
+                
+            case 'red-spd-one-red':
+                // Red SPD (1), exactly one other red (1), rest green (3+)
+                if (stats.spd !== 1) return false;
+                const otherRedStats = Object.entries(stats).filter(([key, value]) => 
+                    key !== 'spd' && value === 1).length;
+                const otherGreenStats = Object.entries(stats).filter(([key, value]) => 
+                    key !== 'spd' && value >= 3).length;
+                return otherRedStats === 1 && otherGreenStats === 4;
+                
+            default:
+                return true;
+        }
+    }
+
+    /**
+     * Calculate actual total stats using the game's formula
+     * Based on base ratings (1-3), metadata, level, and bonuses
+     */
+    calculateTotalStats(miscrit, miscritInfo) {
+        const level = miscrit.level || 1;
+        const starMap = {"Weak": 1, "Moderate": 2, "Strong": 3, "Max": 4, "Elite": 5};
+        
+        // Stat mapping: player data uses ea/ed/pa/pd while metadata uses same keys
+        const statMapping = {
+            'hp': 'hp',
+            'spd': 'spd', 
+            'ea': 'ea',
+            'ed': 'ed',
+            'pa': 'pa',
+            'pd': 'pd'
+        };
+        
+        const totalStats = {};
+        
+        for (const [playerKey, metadataKey] of Object.entries(statMapping)) {
+            // Get base stat rating (1-3) from player miscrit data
+            const baseStatRating = miscrit[playerKey] || 1;
+            
+            // Get metadata stat level from miscrits.json
+            const metadataStatLevel = miscritInfo[metadataKey] || "Weak";
+            const metadataStatValue = starMap[metadataStatLevel] || 1;
+            
+            // Get bonus from training
+            const bonus = miscrit[`${playerKey}_bonus`] || 0;
+            
+            // Calculate total stat using the game's formula
+            let value;
+            if (playerKey === "hp") {
+                // HP formula: ((12 + metadata_value * 2 + base_rating * 1.5) / 5) * level + 10 + bonus
+                const globalValue = (12 + metadataStatValue * 2 + baseStatRating * 1.5) / 5;
+                value = Math.floor(level * globalValue + 10);
+            } else {
+                // Other stats formula: ((3 + metadata_value * 2 + base_rating * 1.5) / 6) * level + 5 + bonus
+                const globalValue = (3 + metadataStatValue * 2 + baseStatRating * 1.5) / 6;
+                value = Math.floor(level * globalValue + 5);
+            }
+            
+            // Add training bonus
+            value += bonus;
+            totalStats[playerKey] = value;
+        }
+        
+        return totalStats;
+    }
+
+    /**
+     * Apply filter to the miscrit list and regenerate the display
+     */
+    applyFilter(modal, allMiscrits, filterType) {
+        // Filter the miscrits based on the selected criteria
+        const filteredMiscrits = allMiscrits.filter(miscrit => 
+            this.matchesFilter(miscrit, filterType)
+        );
+
+        // Regenerate the miscrit HTML
+        let miscritsHtml = '';
+        filteredMiscrits.forEach((miscrit, index) => {
+            const isOnTeam = miscrit.teamplayer_id ? ' <span style="color: #ffd700;">🏆</span>' : '';
+            const isFavorited = miscrit.fav ? ' <span style="color: #ff6b6b;">⭐</span>' : '';
+            const rarityClass = this.getRarityColorClass(miscrit.rarity);
+            const borderColor = `var(--rarity-${miscrit.rarity.toLowerCase()})`;
+            
+            miscritsHtml += `
+                <div class="miscrit-card" style="display: flex; align-items: center; padding: 12px; margin-bottom: 8px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid ${borderColor}; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                    
+                    <!-- Level Badge -->
+                    <div class="col-level" style="margin-right: 16px;">
+                        <div style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: white; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                            Lv.${miscrit.level || 1}
+                        </div>
+                    </div>
+                    
+                    <!-- Element Icon -->
+                    <div class="col-element" style="margin-right: 12px; display: flex; align-items: center; justify-content: center; width: 24px;">
+                        <img src="${miscrit.elementImageUrl}" alt="${miscrit.element}" style="width: 24px; height: 24px;" onerror="this.style.display='none';">
+                    </div>
+                    
+                    <!-- Rating Badge -->
+                    <div class="col-rating" style="margin-right: 12px;">
+                        <div class="rating-badge rating-${miscrit.rating.toLowerCase().replace('+', 'plus').replace('-', 'minus')}" style="padding: 6px 12px; border-radius: 6px; font-weight: bold; font-size: 13px; min-width: 45px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                            ${miscrit.rating}
+                        </div>
+                    </div>
+                    
+                    <!-- Rarity Badge -->
+                    <div class="col-rarity" style="margin-right: 12px;">
+                        <div class="rarity-badge rarity-${miscrit.rarity.toLowerCase()}" style="padding: 6px 12px; border-radius: 6px; font-weight: bold; font-size: 12px; text-align: center; min-width: 70px; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">
+                            ${miscrit.rarity}
+                        </div>
+                    </div>
+                    
+                    <!-- Miscrit Image -->
+                    <div class="col-image" style="width: 60px; height: 60px; margin-right: 16px; position: relative;">
+                        <img src="${miscrit.imageUrl}" alt="${miscrit.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; background: var(--bg-primary);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="width: 60px; height: 60px; background: var(--bg-primary); border-radius: 8px; display: none; align-items: center; justify-content: center; color: var(--text-muted); font-size: 10px; text-align: center;">No<br>Image</div>
+                    </div>
+                    
+                    <!-- Name -->
+                    <div class="col-name" style="min-width: 140px; margin-right: 16px;">
+                        <div style="display: flex; align-items: center;">
+                            <span style="font-weight: bold; font-size: 16px; color: var(--text-primary);">${miscrit.displayName}</span>
+                            ${isOnTeam}${isFavorited}
+                        </div>
+                    </div>
+                    
+                    <!-- Base Form -->
+                    <div class="col-base-name" style="min-width: 140px; margin-right: 16px;">
+                        <span style="font-weight: bold; font-size: 16px; color: var(--text-secondary);">${miscrit.baseName}</span>
+                    </div>
+                    
+                    <!-- Stats Display -->
+                    <div class="col-stats" style="min-width: 320px; background: var(--bg-primary); padding: 8px 12px; border-radius: 6px;">
+                        <!-- Bonus Stats Row -->
+                        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; font-size: 13px;">
+                            <div style="text-align: center;">
+                                <div style="color: var(--text-muted); font-size: 10px;">HP</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.hp || 1)};">${miscrit.hp_bonus || 0}</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--text-muted); font-size: 10px;">SPD</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.spd || 1)};">${miscrit.spd_bonus || 0}</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--text-muted); font-size: 10px;">EA</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.ea || 1)};">${miscrit.ea_bonus || 0}</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--text-muted); font-size: 10px;">PA</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.pa || 1)};">${miscrit.pa_bonus || 0}</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--text-muted); font-size: 10px;">ED</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.ed || 1)};">${miscrit.ed_bonus || 0}</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--text-muted); font-size: 10px;">PD</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.pd || 1)};">${miscrit.pd_bonus || 0}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        // Update the modal content
+        const miscritsList = modal.querySelector('.miscrits-list');
+        if (miscritsList) {
+            miscritsList.innerHTML = miscritsHtml;
+        }
+
+        // Update the header to show filtered count
+        const modalHeader = modal.querySelector('.modal-header h3');
+        if (modalHeader) {
+            const totalCount = allMiscrits.length;
+            const filteredCount = filteredMiscrits.length;
+            if (filterType === 'none') {
+                modalHeader.textContent = `My Miscrits Collection (${totalCount} total)`;
+            } else {
+                modalHeader.textContent = `My Miscrits Collection (${filteredCount} of ${totalCount} shown)`;
+            }
+        }
+
+        // Reapply column visibility settings
+        const columnCheckboxes = {
+            'show-image': '.col-image',
+            'show-name': '.col-name',
+            'show-base-name': '.col-base-name',
+            'show-level': '.col-level',
+            'show-rarity': '.col-rarity',
+            'show-element': '.col-element',
+            'show-rating': '.col-rating',
+            'show-stats': '.col-stats'
+        };
+
+        Object.keys(columnCheckboxes).forEach(checkboxId => {
+            const checkbox = modal.querySelector(`#${checkboxId}`);
+            const columnClass = columnCheckboxes[checkboxId];
+            
+            if (checkbox && !checkbox.checked) {
+                const columns = modal.querySelectorAll(columnClass);
+                columns.forEach(column => {
+                    column.style.display = 'none';
+                });
+            }
+        });
+    }
+
+    /**
+     * Get miscrit info from miscrits.json using mId
+     */
+    getMiscritInfoFromId(miscritId) {
+        const miscrit = this.miscrits.find(m => m.id === miscritId);
+        if (miscrit) {
+            // Use the names array if available, fallback to name property
+            const primaryName = miscrit.names?.[0] || miscrit.name || `Unknown_${miscritId}`;
+            const normalizedName = primaryName.toLowerCase().replace(/\s+/g, '_');
+            
+            return {
+                name: primaryName,
+                rarity: miscrit.rarity || 'Common',
+                element: miscrit.element || 'Unknown',
+                imageUrl: `https://cdn.worldofmiscrits.com/avatars/${normalizedName}_avatar.png`,
+                elementImageUrl: miscrit.element ? `https://worldofmiscrits.com/${miscrit.element.toLowerCase()}.png` : ''
+            };
+        }
+        return {
+            name: `Unknown_${miscritId}`,
+            rarity: 'Common',
+            element: 'Unknown',
+            imageUrl: '',
+            elementImageUrl: ''
+        };
+    }
+
+    /**
+     * Get miscrit name from miscrits.json using mId (legacy method)
+     */
+    getMiscritNameFromId(miscritId) {
+        const miscritInfo = this.getMiscritInfoFromId(miscritId);
+        return miscritInfo.name;
+    }
+
+    /**
+     * Get CSS class for stat count based on count value
+     */
+    getStatCountClass(count, overallStatus) {
+        if (count > 0) {
+            return 'stat-count-green';  // Green for any count > 0
+        } else {
+            return 'stat-count-red';    // Red for count = 0
+        }
+    }
+
+    /**
+     * Get rarity color class for styling
+     */
+    getRarityColorClass(rarity) {
+        const rarityMap = {
+            'Common': 'rarity-common',
+            'Rare': 'rarity-rare', 
+            'Epic': 'rarity-epic',
+            'Exotic': 'rarity-exotic',
+            'Legendary': 'rarity-legendary'
+        };
+        return rarityMap[rarity] || 'rarity-common';
+    }
+
+    async tryRestoreSession() {
+        try {
+            // Initialize API if not already done
+            if (!this.miscritsApi) {
+                this.miscritsApi = new MiscritsAPI();
+            }
+            
+            // Try to restore session
+            const restored = await this.miscritsApi.restoreSession();
+            
+            if (restored) {
+                console.log('[MiscritsApp] Session restored successfully');
+                
+                // Try to get player data (will use cache if available)
+                try {
+                    this.playerData = await this.miscritsApi.getPlayerData(true); // Use cache
+                    this.isLoggedIn = true;
+                    this.updateLoginUI();
+                    
+                    console.log('[MiscritsApp] Auto-login successful');
+                } catch (error) {
+                    console.warn('[MiscritsApp] Failed to get player data with restored session:', error);
+                    // Session might be invalid, clear it
+                    this.miscritsApi.logout();
+                    this.isLoggedIn = false;
+                    this.updateLoginUI();
+                }
+            } else {
+                console.log('[MiscritsApp] No valid stored session found');
+            }
+        } catch (error) {
+            console.warn('[MiscritsApp] Session restoration failed:', error);
+        }
+    }
+
+    setupLoginEventListeners() {
+        // Login button - we'll handle state changes in the click handler
+        const loginBtn = document.getElementById('login-btn');
+        loginBtn.addEventListener('click', () => {
+            if (this.isLoggedIn) {
+                this.handleLogout();
+            } else {
+                this.showLoginModal();
+            }
+        });
+
+        // My Miscrits button
+        const rawResponseBtn = document.getElementById('raw-response-btn');
+        rawResponseBtn.addEventListener('click', () => this.showMyMiscrits());
+
+        // Login form submission
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', (e) => this.handleLogin(e));
+
+        // Modal close handlers
+        const loginModal = document.getElementById('login-modal');
+        const closeBtn = loginModal.querySelector('.modal-close');
+        const cancelBtn = loginModal.querySelector('.cancel-btn');
+
+        closeBtn.addEventListener('click', () => this.hideLoginModal());
+        cancelBtn.addEventListener('click', () => this.hideLoginModal());
+
+        // Close modal when clicking outside
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                this.hideLoginModal();
+            }
+        });
+    }
+
+    showLoginModal() {
+        const modal = document.getElementById('login-modal');
+        modal.style.display = 'block';
+        
+        // Clear previous status
+        const status = document.getElementById('login-status');
+        status.style.display = 'none';
+        status.className = '';
+        
+        // Focus on email field
+        document.getElementById('login-email').focus();
+    }
+
+    hideLoginModal() {
+        const modal = document.getElementById('login-modal');
+        modal.style.display = 'none';
+        
+        // Clear form
+        document.getElementById('login-form').reset();
+    }
+
+    async handleLogin(event) {
+        event.preventDefault();
+        
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        const status = document.getElementById('login-status');
+        
+        // Show loading state
+        status.style.display = 'block';
+        status.className = '';
+        status.textContent = 'Logging in...';
+        
+        try {
+            // Initialize API if not already done
+            if (!this.miscritsApi) {
+                this.miscritsApi = new MiscritsAPI();
+            }
+            
+            // Authenticate
+            await this.miscritsApi.authenticate(email, password);
+            
+            // Get player data
+            this.playerData = await this.miscritsApi.getPlayerData();
+            
+            // Update UI
+            this.isLoggedIn = true;
+            this.updateLoginUI();
+            
+            // Show success
+            status.className = 'success';
+            status.textContent = `Login successful! Welcome, ${email}`;
+            
+            // Hide modal after a short delay
+            setTimeout(() => {
+                this.hideLoginModal();
+            }, 1500);
+            
+        } catch (error) {
+            console.error('Login failed:', error);
+            status.className = 'error';
+            status.textContent = `Login failed: ${error.message}`;
+        }
+    }
+
+    updateLoginUI() {
+        const loginBtn = document.getElementById('login-btn');
+        const rawResponseBtn = document.getElementById('raw-response-btn');
+        const ownershipFilterGroup = document.getElementById('ownership-filter-group');
+        
+        if (this.isLoggedIn) {
+            loginBtn.textContent = 'Logout';
+            rawResponseBtn.style.display = 'inline-block';
+            if (ownershipFilterGroup) {
+                ownershipFilterGroup.style.display = 'block';
+            }
+            
+            // Show user info if available
+            if (this.playerData && this.playerData.username) {
+                loginBtn.title = `Logged in as: ${this.playerData.username}`;
+            }
+        } else {
+            loginBtn.textContent = 'Login';
+            loginBtn.title = 'Click to login';
+            rawResponseBtn.style.display = 'none';
+            if (ownershipFilterGroup) {
+                ownershipFilterGroup.style.display = 'none';
+            }
+            
+            // Reset ownership filter when logging out
+            const ownershipFilter = document.getElementById('ownership-filter');
+            if (ownershipFilter) {
+                ownershipFilter.value = '';
+            }
+        }
+        
+        // Re-filter miscrits to account for ownership changes
+        this.filterMiscrits();
+    }
+
+    handleLogout() {
+        if (this.miscritsApi) {
+            this.miscritsApi.logout(); // This will clear the stored session
+        }
+        
+        this.isLoggedIn = false;
+        this.miscritsApi = null;
+        this.playerData = null;
+        this.updateLoginUI();
+        alert('Logged out successfully!');
+    }
+
+    showMyMiscrits() {
+        if (!this.playerData || !this.playerData.miscrits) {
+            alert('No miscrits data available. Please login first.');
+            return;
+        }
+
+        const miscrits = this.playerData.miscrits;
+        console.log(`[MiscritsApp] Displaying ${miscrits.length} miscrits`);
+
+        // Process and sort miscrits
+        const processedMiscrits = miscrits.map(miscrit => {
+            const miscritId = miscrit.mId;
+            const miscritInfo = this.getMiscritInfoFromId(miscritId);
+            
+            // Get the CDN miscrit data to access evolution names
+            const cdnMiscrit = this.miscrits.find(m => m.id === miscritId);
+            const baseName = cdnMiscrit && cdnMiscrit.names && cdnMiscrit.names.length > 0 
+                ? cdnMiscrit.names[0] // Always use the first name (base form)
+                : miscritInfo.name; // Fallback to primary name
+            
+            // Calculate total stats using the game's formula
+            const totalStats = this.calculateTotalStats(miscrit, miscritInfo);
+            
+            return {
+                ...miscrit,
+                name: miscritInfo.name,
+                displayName: miscrit.nick || miscritInfo.name, // Player's nickname or primary name
+                baseName: baseName, // Base evolution name (always first form)
+                rarity: miscritInfo.rarity,
+                element: miscritInfo.element,
+                rating: this.calculateMiscritRating(miscrit),
+                statTotal: (miscrit.hp || 1) + (miscrit.spd || 1) + (miscrit.ea || 1) + 
+                          (miscrit.ed || 1) + (miscrit.pa || 1) + (miscrit.pd || 1),
+                totalStats: totalStats, // Calculated total stats
+                imageUrl: miscritInfo.imageUrl,
+                elementImageUrl: miscritInfo.elementImageUrl
+            };
+        });
+
+        // Sort by rarity first, then by rating
+        const rarityOrder = ['Legendary', 'Exotic', 'Epic', 'Rare', 'Common'];
+        const ratingOrder = ['S+', 'S', 'A+', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F+', 'F', 'F-', 'Unknown'];
+        
+        processedMiscrits.sort((a, b) => {
+            // Sort by rarity first
+            const rarityDiff = rarityOrder.indexOf(a.rarity) - rarityOrder.indexOf(b.rarity);
+            if (rarityDiff !== 0) return rarityDiff;
+            
+            // Then by rating
+            const ratingDiff = ratingOrder.indexOf(a.rating) - ratingOrder.indexOf(b.rating);
+            if (ratingDiff !== 0) return ratingDiff;
+            
+            // Finally by level (descending)
+            return (b.level || 1) - (a.level || 1);
+        });
+
+        // Generate rating summary
+        const ratingCounts = {};
+        processedMiscrits.forEach(miscrit => {
+            ratingCounts[miscrit.rating] = (ratingCounts[miscrit.rating] || 0) + 1;
+        });
+
+        // Create the modal
+        const miscritModal = document.createElement('div');
+        miscritModal.className = 'modal';
+        miscritModal.style.display = 'block';
+        
+        let summaryHtml = '<div class="rating-summary" style="margin-bottom: 24px; padding: 16px; background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary)); border-radius: 12px; border: 1px solid var(--border-color);"><h4 style="margin-bottom: 12px; color: var(--accent-primary);">📊 Rating Distribution</h4><div style="display: flex; flex-wrap: wrap; gap: 6px;">';
+        
+        for (const rating of ratingOrder) {
+            if (ratingCounts[rating]) {
+                const count = ratingCounts[rating];
+                const percentage = (count / miscrits.length * 100).toFixed(1);
+                summaryHtml += `<span class="rating-badge rating-${rating.toLowerCase().replace('+', 'plus').replace('-', 'minus')}">${rating}: ${count} (${percentage}%)</span>`;
+            }
+        }
+        summaryHtml += '</div></div>';
+
+        // Add column visibility controls
+        let columnControlsHtml = `
+            <div class="column-controls" style="margin-bottom: 16px; padding: 12px; background: var(--bg-primary); border-radius: 8px; border: 1px solid var(--border-color);">
+                <h4 style="margin-bottom: 8px; color: var(--accent-primary);">👁️ Column Visibility</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px;">
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="show-image" checked style="margin-right: 6px;"> Image
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="show-name" checked style="margin-right: 6px;"> Name
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="show-base-name" checked style="margin-right: 6px;"> Base Form
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="show-level" checked style="margin-right: 6px;"> Level
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="show-rarity" checked style="margin-right: 6px;"> Rarity
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="show-element" checked style="margin-right: 6px;"> Element
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="show-rating" checked style="margin-right: 6px;"> Rating
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="show-stats" checked style="margin-right: 6px;"> Stats
+                    </label>
+                </div>
+            </div>
+            
+            <div class="filter-controls" style="margin-bottom: 16px; padding: 12px; background: var(--bg-primary); border-radius: 8px; border: 1px solid var(--border-color);">
+                <h4 style="margin-bottom: 8px; color: var(--accent-primary);">🔍 Filters</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px;">
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="filter" value="none" checked style="margin-right: 6px;"> Show All
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="filter" value="s-plus" style="margin-right: 6px;"> S+ Only
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="filter" value="red-spd-only" style="margin-right: 6px;"> Red SPD, Rest Green
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="filter" value="red-spd-one-white" style="margin-right: 6px;"> Red SPD + 1 White, Rest Green
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="filter" value="red-spd-one-red" style="margin-right: 6px;"> Red SPD + 1 Other Red, Rest Green
+                    </label>
+                </div>
+            </div>
+        `;
+
+        let miscritsHtml = '';
+        processedMiscrits.forEach((miscrit, index) => {
+            const isOnTeam = miscrit.teamplayer_id ? ' <span style="color: #ffd700;">🏆</span>' : '';
+            const isFavorited = miscrit.fav ? ' <span style="color: #ff6b6b;">⭐</span>' : '';
+            const rarityClass = this.getRarityColorClass(miscrit.rarity);
+            const borderColor = `var(--rarity-${miscrit.rarity.toLowerCase()})`;
+            
+            miscritsHtml += `
+                <div class="miscrit-card" style="display: flex; align-items: center; padding: 12px; margin-bottom: 8px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid ${borderColor}; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                    
+                    <!-- Level Badge -->
+                    <div class="col-level" style="margin-right: 16px;">
+                        <div style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: white; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                            Lv.${miscrit.level || 1}
+                        </div>
+                    </div>
+                    
+                    <!-- Element Icon -->
+                    <div class="col-element" style="margin-right: 12px; display: flex; align-items: center; justify-content: center; width: 24px;">
+                        <img src="${miscrit.elementImageUrl}" alt="${miscrit.element}" style="width: 24px; height: 24px;" onerror="this.style.display='none';">
+                    </div>
+                    
+                    <!-- Rating Badge -->
+                    <div class="col-rating" style="margin-right: 12px;">
+                        <div class="rating-badge rating-${miscrit.rating.toLowerCase().replace('+', 'plus').replace('-', 'minus')}" style="padding: 6px 12px; border-radius: 6px; font-weight: bold; font-size: 13px; min-width: 45px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                            ${miscrit.rating}
+                        </div>
+                    </div>
+                    
+                    <!-- Rarity Badge -->
+                    <div class="col-rarity" style="margin-right: 12px;">
+                        <div class="rarity-badge rarity-${miscrit.rarity.toLowerCase()}" style="padding: 6px 12px; border-radius: 6px; font-weight: bold; font-size: 12px; text-align: center; min-width: 70px; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">
+                            ${miscrit.rarity}
+                        </div>
+                    </div>
+                    
+                    <!-- Miscrit Image -->
+                    <div class="col-image" style="width: 60px; height: 60px; margin-right: 16px; position: relative;">
+                        <img src="${miscrit.imageUrl}" alt="${miscrit.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; background: var(--bg-primary);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="width: 60px; height: 60px; background: var(--bg-primary); border-radius: 8px; display: none; align-items: center; justify-content: center; color: var(--text-muted); font-size: 10px; text-align: center;">No<br>Image</div>
+                    </div>
+                    
+                    <!-- Name -->
+                    <div class="col-name" style="min-width: 140px; margin-right: 16px;">
+                        <div style="display: flex; align-items: center;">
+                            <span style="font-weight: bold; font-size: 16px; color: var(--text-primary);">${miscrit.displayName}</span>
+                            ${isOnTeam}${isFavorited}
+                        </div>
+                    </div>
+                    
+                    <!-- Base Form -->
+                    <div class="col-base-name" style="flex: 1; min-width: 140px; margin-right: 16px;">
+                        <span style="font-weight: bold; font-size: 16px; color: var(--text-secondary);">${miscrit.baseName}</span>
+                    </div>
+                    
+                    <!-- Stats Display -->
+                    <div class="col-stats" style="min-width: 320px; background: var(--bg-primary); padding: 8px 12px; border-radius: 6px;">
+                        <!-- Bonus Stats Row -->
+                        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; font-size: 13px;">
+                            <div style="text-align: center;">
+                                <div style="color: var(--text-muted); font-size: 10px;">HP</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.hp || 1)};">${miscrit.hp_bonus || 0}</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--text-muted); font-size: 10px;">SPD</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.spd || 1)};">${miscrit.spd_bonus || 0}</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--text-muted); font-size: 10px;">EA</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.ea || 1)};">${miscrit.ea_bonus || 0}</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--text-muted); font-size: 10px;">PA</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.pa || 1)};">${miscrit.pa_bonus || 0}</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--text-muted); font-size: 10px;">ED</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.ed || 1)};">${miscrit.ed_bonus || 0}</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--text-muted); font-size: 10px;">PD</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.pd || 1)};">${miscrit.pd_bonus || 0}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        miscritModal.innerHTML = `
+            <div class="modal-content" style="max-width: 98%; width: 1400px;">
+                <div class="modal-header">
+                    <h3>My Miscrits Collection (${miscrits.length} total)</h3>
+                    <span class="modal-close">&times;</span>
+                </div>
+                <div class="modal-body" style="max-height: 85vh; overflow-y: auto;">
+                    ${summaryHtml}
+                    ${columnControlsHtml}
+                    <div class="miscrits-list">${miscritsHtml}</div>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button id="export-miscrits-btn" class="export-btn">Export as JSON</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(miscritModal);
+        
+        // Setup event handlers
+        const closeBtn = miscritModal.querySelector('.modal-close');
+        closeBtn.addEventListener('click', () => {
+            document.body.removeChild(miscritModal);
+        });
+        
+        miscritModal.addEventListener('click', (e) => {
+            if (e.target === miscritModal) {
+                document.body.removeChild(miscritModal);
+            }
+        });
+        
+        // Export button
+        const exportBtn = miscritModal.querySelector('#export-miscrits-btn');
+        exportBtn.addEventListener('click', () => {
+            const dataStr = JSON.stringify(processedMiscrits, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'my_miscrits.json';
+            link.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // Column visibility controls
+        const columnCheckboxes = {
+            'show-image': '.col-image',
+            'show-name': '.col-name',
+            'show-base-name': '.col-base-name',
+            'show-level': '.col-level',
+            'show-rarity': '.col-rarity',
+            'show-element': '.col-element',
+            'show-rating': '.col-rating',
+            'show-stats': '.col-stats'
+        };
+
+        Object.keys(columnCheckboxes).forEach(checkboxId => {
+            const checkbox = miscritModal.querySelector(`#${checkboxId}`);
+            const columnClass = columnCheckboxes[checkboxId];
+            
+            if (checkbox) {
+                checkbox.addEventListener('change', () => {
+                    const columns = miscritModal.querySelectorAll(columnClass);
+                    columns.forEach(column => {
+                        column.style.display = checkbox.checked ? '' : 'none';
+                    });
+                });
+            }
+        });
+
+        // Filter controls
+        const filterRadios = miscritModal.querySelectorAll('input[name="filter"]');
+        filterRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.checked) {
+                    this.applyFilter(miscritModal, processedMiscrits, radio.value);
+                }
+            });
+        });
     }
 }
 
