@@ -94,7 +94,6 @@ class MiscritsApp {
         const dayFilter = document.getElementById('day-filter');
         dayFilter.addEventListener('change', () => {
             this.filterMiscrits();
-            this.reloadAllMarkers();
         });
         
         searchFilter.addEventListener('input', () => this.filterMiscrits());
@@ -102,7 +101,9 @@ class MiscritsApp {
         // Ownership filter (will be shown/hidden based on login status)
         const ownershipFilter = document.getElementById('ownership-filter');
         if (ownershipFilter) {
-            ownershipFilter.addEventListener('change', () => this.filterMiscrits());
+            ownershipFilter.addEventListener('change', () => {
+                this.filterMiscrits();
+            });
         }
 
         // Admin mode button
@@ -414,7 +415,7 @@ class MiscritsApp {
         }
     }
 
-    getLocationInfo(miscrit) {
+    getLocationInfo(miscrit, areaFilter = null) {
         if (!miscrit.locations || Object.keys(miscrit.locations).length === 0) {
             return { text: 'Unknown location', isClickable: false };
         }
@@ -463,13 +464,31 @@ class MiscritsApp {
         const locationStrings = [];
         
         for (const [locationName, areas] of Object.entries(miscrit.locations)) {
-            const areaNumbers = Object.keys(areas).sort((a, b) => parseInt(a) - parseInt(b));
+            // If area filter is applied, only show areas that match the filter
+            let filteredAreas = areas;
+            if (areaFilter) {
+                filteredAreas = {};
+                if (areas[areaFilter]) {
+                    filteredAreas[areaFilter] = areas[areaFilter];
+                }
+            }
+            
+            const areaNumbers = Object.keys(filteredAreas).sort((a, b) => parseInt(a) - parseInt(b));
             
             if (areaNumbers.length === 0) {
-                // No specific areas, just the location name
-                locationStrings.push(locationName === 'Hidden Forest' ? 'The Hidden Forest' : locationName);
-            } else if (areaNumbers.length === 1) {
-                // Single area
+                // No areas match the filter, skip this location
+                continue;
+            } else if (areaNumbers.length === 1 && !areaFilter) {
+                // Single area and no filter applied
+                const areaNum = areaNumbers[0];
+                const areaName = locationNameMap[locationName]?.[areaNum];
+                if (areaName) {
+                    locationStrings.push(`${locationName} ${areaNum} - ${areaName}`);
+                } else {
+                    locationStrings.push(`${locationName} Area ${areaNum}`);
+                }
+            } else if (areaNumbers.length === 1 && areaFilter) {
+                // Single area matching the filter
                 const areaNum = areaNumbers[0];
                 const areaName = locationNameMap[locationName]?.[areaNum];
                 if (areaName) {
@@ -487,7 +506,8 @@ class MiscritsApp {
             }
         }
         
-        return { text: locationStrings.join('\n\n'), isClickable: false };
+        const result = { text: locationStrings.join('\n\n'), isClickable: false };
+        return result;
     }
 
     filterMiscrits() {
@@ -530,10 +550,16 @@ class MiscritsApp {
             }
 
             return matchesLocation && matchesArea && matchesRarity && matchesElement && matchesSearch && matchesDay && matchesOwnership;
+        }).map(miscrit => {
+            // Create a copy of the miscrit with updated location info based on area filter
+            const updatedMiscrit = { ...miscrit };
+            updatedMiscrit.locationInfo = this.getLocationInfo(miscrit, areaFilter);
+            return updatedMiscrit;
         });
 
         this.renderMiscrits();
         this.updateStats();
+        this.reloadAllMarkers();
     }
 
     getCurrentGMTDay() {
@@ -774,6 +800,10 @@ class MiscritsApp {
     }
 
     groupByArea(location, miscrits) {
+        // Check if there's an active area filter
+        const areaFilterElement = document.getElementById('area-filter');
+        const areaFilter = areaFilterElement ? areaFilterElement.value : '';
+        
         return miscrits.reduce((groups, miscrit) => {
             if (!miscrit.currentLocationAreas || Object.keys(miscrit.currentLocationAreas).length === 0) {
                 // Handle miscrits without specific areas
@@ -784,13 +814,24 @@ class MiscritsApp {
                 return groups;
             }
 
-            // Add miscrit to each area it appears in
-            Object.keys(miscrit.currentLocationAreas).forEach(area => {
-                if (!groups[area]) {
-                    groups[area] = [];
+            // If area filter is active, only group by the filtered area
+            if (areaFilter) {
+                // Only add to the filtered area if the miscrit exists in that area
+                if (Object.keys(miscrit.currentLocationAreas).includes(areaFilter)) {
+                    if (!groups[areaFilter]) {
+                        groups[areaFilter] = [];
+                    }
+                    groups[areaFilter].push(miscrit);
                 }
-                groups[area].push(miscrit);
-            });
+            } else {
+                // Add miscrit to each area it appears in (original behavior)
+                Object.keys(miscrit.currentLocationAreas).forEach(area => {
+                    if (!groups[area]) {
+                        groups[area] = [];
+                    }
+                    groups[area].push(miscrit);
+                });
+            }
 
             return groups;
         }, {});
@@ -2786,12 +2827,24 @@ class MiscritsApp {
     loadMiscritMarkers(location, imageContainer) {
         const markers = this.getMiscritMarkers();
         if (markers[location]) {
+            // Get all filter values
             const dayFilter = document.getElementById('day-filter').value;
             const currentDay = this.getCurrentGMTDay();
+            const ownershipFilterElement = document.getElementById('ownership-filter');
+            const ownershipFilter = ownershipFilterElement ? ownershipFilterElement.value : '';
+            const areaFilter = document.getElementById('area-filter').value;
+            const rarityFilter = document.getElementById('rarity-filter').value;
+            const elementFilter = document.getElementById('element-filter').value;
+            const searchFilter = document.getElementById('search-filter').value.toLowerCase();
             
             markers[location].forEach(marker => {
-                // Check if marker should be visible based on day filter
-                if (this.shouldShowMarker(marker, dayFilter, currentDay)) {
+                // Check if marker should be visible based on all filters
+                const dayVisible = this.shouldShowMarker(marker, dayFilter, currentDay);
+                const ownershipVisible = this.shouldShowMarkerForOwnership(marker, ownershipFilter);
+                const otherFiltersVisible = this.shouldShowMarkerForOtherFilters(marker, areaFilter, rarityFilter, elementFilter, searchFilter);
+                
+                // Only show marker if it passes all filters
+                if (dayVisible && ownershipVisible && otherFiltersVisible) {
                     if (marker.isMultiple) {
                         this.createMultipleMarkerElement(marker, imageContainer);
                     } else {
@@ -2839,6 +2892,168 @@ class MiscritsApp {
             // For single miscrit, check its availability
             const days = marker.daysOfWeek || ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
             return days.includes(targetDay);
+        }
+    }
+
+    shouldShowMarkerForOwnership(marker, ownershipFilter) {
+        // If no ownership filter or not logged in, show all markers
+        if (!ownershipFilter || !this.playerData || !this.playerData.miscrits) {
+            return true;
+        }
+
+        // For multiple miscrits, check if any of them match the ownership filter
+        if (marker.isMultiple && marker.miscrits && Array.isArray(marker.miscrits)) {
+            return marker.miscrits.some(miscrit => {
+                if (!miscrit) {
+                    return true; // Show markers with invalid data
+                }
+                
+                // Use miscritId if available, otherwise fall back to miscritName
+                let stats = null;
+                if (miscrit.miscritId) {
+                    stats = this.getMiscritCollectionStats(miscrit.miscritId);
+                } else if (miscrit.miscritName) {
+                    const miscritInfo = this.getMiscritInfoFromName(miscrit.miscritName);
+                    if (miscritInfo) {
+                        stats = this.getMiscritCollectionStats(miscritInfo.id);
+                    }
+                }
+                
+                if (stats) {
+                    if (ownershipFilter === 'owned') {
+                        return stats.total > 0;
+                    } else if (ownershipFilter === 'not-owned') {
+                        return stats.total === 0;
+                    }
+                }
+                return true; // Show if we can't determine ownership
+            });
+        } else {
+            // For single miscrit, check its ownership
+            let stats = null;
+            if (marker.miscritId) {
+                stats = this.getMiscritCollectionStats(marker.miscritId);
+            } else if (marker.name || marker.miscritName) {
+                const miscritInfo = this.getMiscritInfoFromName(marker.name || marker.miscritName);
+                if (miscritInfo) {
+                    stats = this.getMiscritCollectionStats(miscritInfo.id);
+                }
+            }
+            
+            if (stats) {
+                if (ownershipFilter === 'owned') {
+                    return stats.total > 0;
+                } else if (ownershipFilter === 'not-owned') {
+                    return stats.total === 0;
+                }
+            }
+            return true; // Show if we can't determine ownership
+        }
+    }
+
+    shouldShowMarkerForOtherFilters(marker, areaFilter, rarityFilter, elementFilter, searchFilter) {
+        // If no filters are applied, show all markers
+        if (!areaFilter && !rarityFilter && !elementFilter && !searchFilter) {
+            return true;
+        }
+
+        // For multiple miscrits, check if any of them match the filters
+        if (marker.isMultiple && marker.miscrits && Array.isArray(marker.miscrits)) {
+            return marker.miscrits.some(miscrit => {
+                if (!miscrit) {
+                    return true; // Show markers with invalid data
+                }
+                
+                // Use miscritId if available, otherwise fall back to miscritName
+                let miscritInfo = null;
+                if (miscrit.miscritId) {
+                    miscritInfo = this.getMiscritInfoFromId(miscrit.miscritId);
+                } else if (miscrit.miscritName) {
+                    miscritInfo = this.getMiscritInfoFromName(miscrit.miscritName);
+                }
+                
+                if (miscritInfo) {
+                    // Check area filter by looking at the full miscrit data, not just the info
+                    if (areaFilter) {
+                        // Find the full miscrit data from the main array
+                        let fullMiscritData = null;
+                        if (miscrit.miscritId) {
+                            fullMiscritData = this.miscrits.find(m => m.id === miscrit.miscritId);
+                        } else if (miscrit.miscritName) {
+                            fullMiscritData = this.miscrits.find(m => m.firstName === miscrit.miscritName);
+                        }
+                        
+                        if (fullMiscritData && fullMiscritData.currentLocationAreas) {
+                            const hasArea = Object.keys(fullMiscritData.currentLocationAreas).includes(areaFilter);
+                            if (!hasArea) {
+                                return false;
+                            }
+                        } else {
+                            return false; // If no area data, hide the marker when area filter is active
+                        }
+                    }
+                    
+                    // Check rarity filter
+                    if (rarityFilter && miscritInfo.rarity !== rarityFilter) {
+                        return false;
+                    }
+                    // Check element filter
+                    if (elementFilter && miscritInfo.element !== elementFilter) {
+                        return false;
+                    }
+                    // Check search filter
+                    if (searchFilter && !miscritInfo.name.toLowerCase().includes(searchFilter)) {
+                        return false;
+                    }
+                    return true;
+                }
+                return true; // Show if we can't determine info
+            });
+        } else {
+            // For single miscrit, check its filters
+            let miscritInfo = null;
+            if (marker.miscritId) {
+                miscritInfo = this.getMiscritInfoFromId(marker.miscritId);
+            } else if (marker.name || marker.miscritName) {
+                miscritInfo = this.getMiscritInfoFromName(marker.name || marker.miscritName);
+            }
+            
+            if (miscritInfo) {
+                // Check area filter by looking at the full miscrit data, not just the info
+                if (areaFilter) {
+                    // Find the full miscrit data from the main array
+                    let fullMiscritData = null;
+                    if (marker.miscritId) {
+                        fullMiscritData = this.miscrits.find(m => m.id === marker.miscritId);
+                    } else if (marker.name || marker.miscritName) {
+                        fullMiscritData = this.miscrits.find(m => m.firstName === (marker.name || marker.miscritName));
+                    }
+                    
+                    if (fullMiscritData && fullMiscritData.currentLocationAreas) {
+                        const hasArea = Object.keys(fullMiscritData.currentLocationAreas).includes(areaFilter);
+                        if (!hasArea) {
+                            return false;
+                        }
+                    } else {
+                        return false; // If no area data, hide the marker when area filter is active
+                    }
+                }
+                
+                // Check rarity filter
+                if (rarityFilter && miscritInfo.rarity !== rarityFilter) {
+                    return false;
+                }
+                // Check element filter
+                if (elementFilter && miscritInfo.element !== elementFilter) {
+                    return false;
+                }
+                // Check search filter
+                if (searchFilter && !miscritInfo.name.toLowerCase().includes(searchFilter)) {
+                    return false;
+                }
+                return true;
+            }
+            return true; // Show if we can't determine info
         }
     }
 
@@ -4252,6 +4467,35 @@ class MiscritsApp {
             imageUrl: '',
             elementImageUrl: ''
         };
+    }
+
+    /**
+     * Get miscrit info from miscrits.json using name
+     */
+    getMiscritInfoFromName(miscritName) {
+        // Handle undefined, null, or empty names
+        if (!miscritName || typeof miscritName !== 'string') {
+            return null;
+        }
+        
+        const miscrit = this.miscrits.find(m => {
+            // Check if the name matches any of the miscrit's names
+            if (m.names && Array.isArray(m.names)) {
+                return m.names.some(name => name && name.toLowerCase() === miscritName.toLowerCase());
+            }
+            // Fallback to checking the name property
+            return (m.name || '').toLowerCase() === miscritName.toLowerCase();
+        });
+        
+        if (miscrit) {
+            return {
+                id: miscrit.id,
+                name: miscrit.names?.[0] || miscrit.name || `Unknown_${miscrit.id}`,
+                rarity: miscrit.rarity || 'Common',
+                element: miscrit.element || 'Unknown'
+            };
+        }
+        return null;
     }
 
     /**

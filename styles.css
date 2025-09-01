@@ -2165,6 +2165,34 @@ body.admin-mode .miscrit-card:hover::after {
     width: 90%;
 }
 
+/* Privacy Notice Styles */
+.privacy-notice {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #e8f5e8, #d4e6d4);
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    color: #2e5d2e;
+}
+
+.privacy-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.privacy-text {
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+.privacy-text strong {
+    color: #1b4a1b;
+    font-size: 15px;
+}
+
 .login-field {
     margin-bottom: 20px;
 }
