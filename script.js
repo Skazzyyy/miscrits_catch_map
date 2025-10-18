@@ -4581,6 +4581,10 @@ class MiscritsApp {
         const rawResponseBtn = document.getElementById('raw-response-btn');
         rawResponseBtn.addEventListener('click', () => this.showMyMiscrits());
 
+        // My Collection button
+        const collectionBtn = document.getElementById('collection-btn');
+        collectionBtn.addEventListener('click', () => this.showMiscritCollection());
+
         // Login form submission
         const loginForm = document.getElementById('login-form');
         loginForm.addEventListener('submit', (e) => this.handleLogin(e));
@@ -4669,11 +4673,13 @@ class MiscritsApp {
     updateLoginUI() {
         const loginBtn = document.getElementById('login-btn');
         const rawResponseBtn = document.getElementById('raw-response-btn');
+        const collectionBtn = document.getElementById('collection-btn');
         const ownershipFilterGroup = document.getElementById('ownership-filter-group');
         
         if (this.isLoggedIn) {
             loginBtn.textContent = 'Logout';
             rawResponseBtn.style.display = 'inline-block';
+            collectionBtn.style.display = 'inline-block';
             if (ownershipFilterGroup) {
                 ownershipFilterGroup.style.display = 'block';
             }
@@ -4686,6 +4692,7 @@ class MiscritsApp {
             loginBtn.textContent = 'Login';
             loginBtn.title = 'Click to login';
             rawResponseBtn.style.display = 'none';
+            collectionBtn.style.display = 'none';
             if (ownershipFilterGroup) {
                 ownershipFilterGroup.style.display = 'none';
             }
@@ -5012,6 +5019,321 @@ class MiscritsApp {
                     this.applyFilter(miscritModal, processedMiscrits, radio.value);
                 }
             });
+        });
+    }
+
+    showMiscritCollection() {
+        if (!this.playerData || !this.playerData.miscrits) {
+            alert('No miscrits data available. Please login first.');
+            return;
+        }
+
+        // Get all unique miscrits from CDN data
+        const allMiscritsMap = new Map();
+        
+        // Build a map of all unique miscrits by ID
+        this.miscrits.forEach(miscrit => {
+            if (!allMiscritsMap.has(miscrit.id)) {
+                allMiscritsMap.set(miscrit.id, {
+                    id: miscrit.id,
+                    name: miscrit.firstName || miscrit.names?.[0] || 'Unknown',
+                    element: miscrit.element,
+                    rarity: miscrit.rarity || 'Common',
+                    imageUrl: miscrit.imageUrl,
+                    elementImageUrl: miscrit.elementImageUrl
+                });
+            }
+        });
+
+        // Create a map of owned miscrits by ID and rating
+        const ownedRatingsMap = new Map();
+        this.playerData.miscrits.forEach(playerMiscrit => {
+            const rating = this.calculateMiscritRating(playerMiscrit);
+            const key = `${playerMiscrit.mId}_${rating}`;
+            ownedRatingsMap.set(key, true);
+        });
+
+        // Convert to array and process
+        const allRatings = ['S+', 'S', 'A+', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F+', 'F', 'F-'];
+        const allMiscrits = Array.from(allMiscritsMap.values()).map(miscrit => {
+            const ratingOwnership = {};
+            
+            allRatings.forEach(rating => {
+                const key = `${miscrit.id}_${rating}`;
+                ratingOwnership[rating] = ownedRatingsMap.has(key);
+            });
+            
+            return {
+                ...miscrit,
+                ratingOwnership
+            };
+        });
+
+        // Sort by rarity (Legendary to Common), then by name
+        const rarityOrder = ['Legendary', 'Exotic', 'Epic', 'Rare', 'Common'];
+        allMiscrits.sort((a, b) => {
+            const rarityDiff = rarityOrder.indexOf(a.rarity) - rarityOrder.indexOf(b.rarity);
+            if (rarityDiff !== 0) return rarityDiff;
+            return a.name.localeCompare(b.name);
+        });
+
+        // Create the modal
+        const collectionModal = document.createElement('div');
+        collectionModal.className = 'modal';
+        collectionModal.style.display = 'block';
+
+        // Calculate statistics
+        const totalMiscrits = allMiscrits.length;
+        const ratingStats = {};
+        allRatings.forEach(rating => {
+            ratingStats[rating] = { owned: 0, total: totalMiscrits };
+        });
+
+        allMiscrits.forEach(miscrit => {
+            Object.entries(miscrit.ratingOwnership).forEach(([rating, owned]) => {
+                if (owned) ratingStats[rating].owned++;
+            });
+        });
+
+        // Filters HTML
+        let filtersHtml = `
+            <div class="collection-filters" style="margin-bottom: 16px; padding: 16px; background: var(--bg-primary); border-radius: 12px; border: 1px solid var(--border-color);">
+                <h4 style="margin-bottom: 12px; color: var(--accent-primary);">🔍 Filters</h4>
+                
+                <!-- Rarity Filter -->
+                <div style="margin-bottom: 12px;">
+                    <div style="font-weight: bold; margin-bottom: 6px; font-size: 13px;">Rarity:</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" class="rarity-filter" value="Legendary" checked style="margin-right: 4px;">
+                            <span class="rarity-badge rarity-legendary" style="padding: 4px 8px; border-radius: 6px; font-size: 11px; color: white;">Legendary</span>
+                        </label>
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" class="rarity-filter" value="Exotic" checked style="margin-right: 4px;">
+                            <span class="rarity-badge rarity-exotic" style="padding: 4px 8px; border-radius: 6px; font-size: 11px; color: white;">Exotic</span>
+                        </label>
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" class="rarity-filter" value="Epic" checked style="margin-right: 4px;">
+                            <span class="rarity-badge rarity-epic" style="padding: 4px 8px; border-radius: 6px; font-size: 11px; color: white;">Epic</span>
+                        </label>
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" class="rarity-filter" value="Rare" checked style="margin-right: 4px;">
+                            <span class="rarity-badge rarity-rare" style="padding: 4px 8px; border-radius: 6px; font-size: 11px; color: white;">Rare</span>
+                        </label>
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" class="rarity-filter" value="Common" checked style="margin-right: 4px;">
+                            <span class="rarity-badge rarity-common" style="padding: 4px 8px; border-radius: 6px; font-size: 11px; color: white;">Common</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Rating Filter -->
+                <div style="margin-bottom: 12px;">
+                    <div style="font-weight: bold; margin-bottom: 6px; font-size: 13px;">Ratings to Display:</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                        ${allRatings.map(rating => {
+                            const ratingClass = `rating-${rating.toLowerCase().replace('+', 'plus').replace('-', 'minus')}`;
+                            return `
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" class="rating-filter" value="${rating}" checked style="margin-right: 4px;">
+                                    <span class="rating-badge ${ratingClass}" style="padding: 4px 8px; border-radius: 6px; font-size: 11px;">${rating}</span>
+                                </label>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+                
+                <!-- Ownership Filter -->
+                <div style="margin-bottom: 0;">
+                    <div style="font-weight: bold; margin-bottom: 6px; font-size: 13px;">Show:</div>
+                    <div style="display: flex; gap: 12px;">
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="radio" name="ownership-filter" value="all" checked style="margin-right: 4px;">
+                            <span>All</span>
+                        </label>
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="radio" name="ownership-filter" value="owned" style="margin-right: 4px;">
+                            <span>Only Owned (in selected ratings)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="radio" name="ownership-filter" value="not-owned" style="margin-right: 4px;">
+                            <span>Only Not Owned (in selected ratings)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Summary HTML
+        let summaryHtml = '<div class="collection-summary" style="margin-bottom: 24px; padding: 16px; background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary)); border-radius: 12px; border: 1px solid var(--border-color);"><h4 style="margin-bottom: 12px; color: var(--accent-primary);">📊 Rating Collection Progress</h4><div style="display: flex; flex-wrap: wrap; gap: 6px;">';
+        
+        allRatings.forEach(rating => {
+            const stats = ratingStats[rating];
+            if (stats.owned > 0) {
+                const percentage = (stats.owned / stats.total * 100).toFixed(1);
+                const ratingClass = `rating-${rating.toLowerCase().replace('+', 'plus').replace('-', 'minus')}`;
+                summaryHtml += `
+                    <span class="rating-badge ${ratingClass}">${rating}: ${stats.owned}/${stats.total} (${percentage}%)</span>
+                `;
+            }
+        });
+        summaryHtml += '</div></div>';
+
+        // Build miscrit cards
+        let miscritsHtml = '<div class="miscrits-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px;">';
+        
+        allMiscrits.forEach(miscrit => {
+            const rarityClass = `rarity-${miscrit.rarity.toLowerCase()}`;
+            const borderColor = `var(--rarity-${miscrit.rarity.toLowerCase()})`;
+            
+            // Build rating indicators
+            let ratingIndicators = '<div style="display: flex; flex-wrap: wrap; gap: 3px; margin-top: 8px;">';
+            allRatings.forEach(rating => {
+                const isOwned = miscrit.ratingOwnership[rating];
+                const bgColor = isOwned ? '#22c55e' : '#ef4444';
+                const ratingClass = `rating-${rating.toLowerCase().replace('+', 'plus').replace('-', 'minus')}`;
+                
+                ratingIndicators += `
+                    <div class="rating-indicator rating-badge ${ratingClass}" data-rating="${rating}" style="flex: 0 0 calc(20% - 3px); padding: 4px 2px; background: ${bgColor}; border-radius: 4px; font-size: 9px; text-align: center; color: white; font-weight: bold; box-shadow: 0 1px 2px rgba(0,0,0,0.2);">
+                        ${rating}
+                    </div>
+                `;
+            });
+            ratingIndicators += '</div>';
+
+            // Calculate owned ratings for this miscrit
+            const ownedRatings = allRatings.filter(r => miscrit.ratingOwnership[r]).join(',');
+            const notOwnedRatings = allRatings.filter(r => !miscrit.ratingOwnership[r]).join(',');
+
+            miscritsHtml += `
+                <div class="miscrit-collection-card" data-rarity="${miscrit.rarity}" data-owned-ratings="${ownedRatings}" data-not-owned-ratings="${notOwnedRatings}" style="background: var(--bg-secondary); border-radius: 12px; padding: 12px; border-left: 4px solid ${borderColor}; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 4px 16px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)';">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                        <div style="display: flex; align-items: center;">
+                            <img src="${miscrit.elementImageUrl}" alt="${miscrit.element}" style="width: 20px; height: 20px; margin-right: 8px;" onerror="this.style.display='none';">
+                            <span style="font-weight: bold; font-size: 14px; color: var(--text-primary);">${miscrit.name}</span>
+                        </div>
+                        <div class="rarity-badge ${rarityClass}" style="padding: 4px 8px; border-radius: 6px; font-weight: bold; font-size: 11px; text-align: center; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">
+                            ${miscrit.rarity}
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-bottom: 8px;">
+                        <img src="${miscrit.imageUrl}" alt="${miscrit.name}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; background: var(--bg-primary);" onerror="this.style.display='none';">
+                    </div>
+                    ${ratingIndicators}
+                </div>
+            `;
+        });
+        
+        miscritsHtml += '</div>';
+
+        collectionModal.innerHTML = `
+            <div class="modal-content" style="max-width: 98%; width: 1400px;">
+                <div class="modal-header">
+                    <h3>My Miscrit Collection (${totalMiscrits} unique miscrits)</h3>
+                    <span class="modal-close">&times;</span>
+                </div>
+                <div class="modal-body" style="overflow-y: auto;">
+                    ${summaryHtml}
+                    ${filtersHtml}
+                    <div style="margin-bottom: 16px; padding: 12px; background: var(--bg-primary); border-radius: 8px; border: 1px solid var(--border-color);">
+                        <h4 style="margin-bottom: 8px; color: var(--accent-primary);">Legend</h4>
+                        <div style="display: flex; gap: 16px; font-size: 13px;">
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <div style="width: 20px; height: 20px; background: #22c55e; border-radius: 4px;"></div>
+                                <span>Owned</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <div style="width: 20px; height: 20px; background: #ef4444; border-radius: 4px;"></div>
+                                <span>Not Owned</span>
+                            </div>
+                        </div>
+                    </div>
+                    ${miscritsHtml}
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(collectionModal);
+
+        // Filter function
+        const applyFilters = () => {
+            // Get selected rarities
+            const selectedRarities = Array.from(collectionModal.querySelectorAll('.rarity-filter:checked'))
+                .map(cb => cb.value);
+            
+            // Get selected ratings
+            const selectedRatings = Array.from(collectionModal.querySelectorAll('.rating-filter:checked'))
+                .map(cb => cb.value);
+            
+            // Get ownership filter
+            const ownershipFilter = collectionModal.querySelector('input[name="ownership-filter"]:checked').value;
+            
+            // Filter miscrit cards
+            const cards = collectionModal.querySelectorAll('.miscrit-collection-card');
+            cards.forEach(card => {
+                const cardRarity = card.getAttribute('data-rarity');
+                const ownedRatings = card.getAttribute('data-owned-ratings').split(',').filter(r => r);
+                const notOwnedRatings = card.getAttribute('data-not-owned-ratings').split(',').filter(r => r);
+                
+                // Check rarity filter
+                const passesRarityFilter = selectedRarities.includes(cardRarity);
+                
+                // Check ownership filter
+                let passesOwnershipFilter = true;
+                if (ownershipFilter === 'owned') {
+                    // Show only if has at least one selected rating owned
+                    passesOwnershipFilter = selectedRatings.some(rating => ownedRatings.includes(rating));
+                } else if (ownershipFilter === 'not-owned') {
+                    // Show only if has at least one selected rating not owned
+                    passesOwnershipFilter = selectedRatings.some(rating => notOwnedRatings.includes(rating));
+                }
+                
+                // Show/hide card
+                if (passesRarityFilter && passesOwnershipFilter) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+                
+                // Show/hide rating indicators based on selected ratings
+                const ratingIndicators = card.querySelectorAll('.rating-indicator');
+                ratingIndicators.forEach(indicator => {
+                    const rating = indicator.getAttribute('data-rating');
+                    if (selectedRatings.includes(rating)) {
+                        indicator.style.display = '';
+                    } else {
+                        indicator.style.display = 'none';
+                    }
+                });
+            });
+        };
+
+        // Setup event handlers
+        const closeBtn = collectionModal.querySelector('.modal-close');
+        closeBtn.addEventListener('click', () => {
+            document.body.removeChild(collectionModal);
+        });
+
+        collectionModal.addEventListener('click', (e) => {
+            if (e.target === collectionModal) {
+                document.body.removeChild(collectionModal);
+            }
+        });
+        
+        // Add filter event listeners
+        const rarityFilters = collectionModal.querySelectorAll('.rarity-filter');
+        rarityFilters.forEach(filter => {
+            filter.addEventListener('change', applyFilters);
+        });
+        
+        const ratingFilters = collectionModal.querySelectorAll('.rating-filter');
+        ratingFilters.forEach(filter => {
+            filter.addEventListener('change', applyFilters);
+        });
+        
+        const ownershipFilters = collectionModal.querySelectorAll('input[name="ownership-filter"]');
+        ownershipFilters.forEach(filter => {
+            filter.addEventListener('change', applyFilters);
         });
     }
 }
