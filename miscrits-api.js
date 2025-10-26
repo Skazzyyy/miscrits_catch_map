@@ -12,8 +12,7 @@ class MiscritsAPI {
         
         this.client = new NakamaClient(this.serverKey, this.serverHost, this.serverPort, true);
         this.playerData = null;
-        this.cookieName = 'miscrits_session';
-        this.playerDataCookieName = 'miscrits_player_data';
+        this.cookieName = 'miscrits_session'; // Only session data is cached in cookies
         
         console.log(`[MiscritsAPI] Initialized with server: ${this.serverHost}:${this.serverPort}`);
     }
@@ -123,58 +122,6 @@ class MiscritsAPI {
         console.log(`[MiscritsAPI] Stored session cleared from cookies`);
     }
 
-    /**
-     * Store player data in cookies
-     */
-    storePlayerData(playerData) {
-        try {
-            const playerDataWrapper = {
-                data: playerData,
-                stored_at: Date.now()
-            };
-            
-            // Store player data for 1 day (it's larger, so shorter expiry)
-            this.setCookie(this.playerDataCookieName, playerDataWrapper, 1);
-            console.log(`[MiscritsAPI] Player data stored in cookies successfully`);
-        } catch (error) {
-            console.error(`[MiscritsAPI] Failed to store player data in cookies:`, error);
-        }
-    }
-
-    /**
-     * Retrieve player data from cookies
-     */
-    retrieveStoredPlayerData() {
-        try {
-            const playerDataWrapper = this.getCookie(this.playerDataCookieName);
-            if (!playerDataWrapper) {
-                return null;
-            }
-            
-            // Check if data is older than 30 minutes (cookies persist longer but we still want fresh data)
-            const thirtyMinutes = 30 * 60 * 1000;
-            if (Date.now() - playerDataWrapper.stored_at > thirtyMinutes) {
-                console.log(`[MiscritsAPI] Stored player data is stale, will refetch`);
-                this.deleteCookie(this.playerDataCookieName);
-                return null;
-            }
-            
-            console.log(`[MiscritsAPI] Retrieved stored player data from cookies`);
-            return playerDataWrapper.data;
-        } catch (error) {
-            console.error(`[MiscritsAPI] Failed to retrieve stored player data from cookies:`, error);
-            this.deleteCookie(this.playerDataCookieName);
-            return null;
-        }
-    }
-
-    /**
-     * Clear stored player data
-     */
-    clearStoredPlayerData() {
-        this.deleteCookie(this.playerDataCookieName);
-        console.log(`[MiscritsAPI] Stored player data cleared from cookies`);
-    }
     async restoreSession() {
         const storedSession = this.retrieveStoredSession();
         if (!storedSession) {
@@ -215,23 +162,14 @@ class MiscritsAPI {
 
     /**
      * Get complete player data including miscrits
+     * Always fetches fresh data from the server
      */
-    async getPlayerData(useCache = true) {
+    async getPlayerData() {
         if (!this.client.isAuthenticated()) {
             throw new Error('Must authenticate before fetching player data');
         }
 
-        // Try to use cached data first if requested
-        if (useCache) {
-            const cachedData = this.retrieveStoredPlayerData();
-            if (cachedData) {
-                this.playerData = cachedData;
-                console.log(`[MiscritsAPI] Using cached player data`);
-                return cachedData;
-            }
-        }
-
-        console.log(`[MiscritsAPI] Fetching fresh player data...`);
+        console.log(`[MiscritsAPI] Fetching player data from server...`);
         
         try {
             // Get the session object from authentication
@@ -264,11 +202,8 @@ class MiscritsAPI {
                 playerData = response.data;
             }
 
-            // Store player data for later use
+            // Store player data in memory only
             this.playerData = playerData;
-            
-            // Cache the player data
-            this.storePlayerData(playerData);
             
             console.log(`[MiscritsAPI] Player data retrieved successfully`);
             console.log(`[MiscritsAPI] Player: ${playerData.username} (Level ${playerData.level})`);
@@ -296,7 +231,6 @@ class MiscritsAPI {
         this.client.logout();
         this.playerData = null;
         this.clearStoredSession();
-        this.clearStoredPlayerData();
         console.log(`[MiscritsAPI] User logged out`);
     }
 

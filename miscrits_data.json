@@ -11,12 +11,7 @@
             "miscritId": 20,
             "miscritName": "Waddles",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/waddles_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "thu",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/waddles_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -36,12 +31,7 @@
             "miscritId": 21,
             "miscritName": "Treemur",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/treemur_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "thu",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/treemur_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -60,12 +50,7 @@
             "miscritId": 512,
             "miscritName": "Dark Waddles",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_waddles_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_waddles_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -84,12 +69,7 @@
             "miscritId": 23,
             "miscritName": "Dark Flue",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_flue_avatar.png",
-            "daysOfWeek": [
-              "tue",
-              "fri",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_flue_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -108,12 +88,7 @@
             "miscritId": 507,
             "miscritName": "Dark Treemur",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_treemur_avatar.png",
-            "daysOfWeek": [
-              "thu",
-              "fri",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_treemur_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -132,16 +107,7 @@
             "miscritId": 430,
             "miscritName": "Blighted Cubsprout",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blighted_cubsprout_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blighted_cubsprout_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -160,12 +126,7 @@
             "miscritId": 22,
             "miscritName": "Tulipinny",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/tulipinny_avatar.png",
-            "daysOfWeek": [
-              "wed",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/tulipinny_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -184,12 +145,7 @@
             "miscritId": 338,
             "miscritName": "Flaring",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/flaring_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/flaring_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -208,16 +164,7 @@
             "miscritId": 425,
             "miscritName": "Defilio",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/defilio_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/defilio_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -236,16 +183,7 @@
             "miscritId": 93,
             "miscritName": "Mama",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/mama_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/mama_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -264,12 +202,7 @@
             "miscritId": 26,
             "miscritName": "Blazebit",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blazebit_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "thu",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blazebit_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -288,12 +221,7 @@
             "miscritId": 513,
             "miscritName": "Dark Twiggum",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_twiggum_avatar.png",
-            "daysOfWeek": [
-              "thu",
-              "fri",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_twiggum_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -312,16 +240,7 @@
             "miscritId": 94,
             "miscritName": "Dark Nessy",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_nessy_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_nessy_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -340,16 +259,7 @@
             "miscritId": 546,
             "miscritName": "Blighted Flowerpiller",
             "miscritRarity": "Legendary",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blighted_flowerpiller_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blighted_flowerpiller_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -368,16 +278,7 @@
             "miscritId": 433,
             "miscritName": "Blighted Flue",
             "miscritRarity": "Legendary",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blighted_flue_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blighted_flue_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -398,13 +299,7 @@
             "miscritId": 121,
             "miscritName": "Bloomple",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/bloomple_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "wed",
-              "fri",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/bloomple_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -423,12 +318,7 @@
             "miscritId": 28,
             "miscritName": "Blazertooth",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blazertooth_avatar.png",
-            "daysOfWeek": [
-              "tue",
-              "thu",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/blazertooth_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -447,16 +337,7 @@
             "miscritId": 569,
             "miscritName": "Alpha",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/alpha_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/alpha_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -475,16 +356,7 @@
             "miscritId": 205,
             "miscritName": "Freedom",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/freedom_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/freedom_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -503,16 +375,7 @@
             "miscritId": 570,
             "miscritName": "Charpy",
             "miscritRarity": "Legendary",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/charpy_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/charpy_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -533,16 +396,7 @@
             "miscritId": 535,
             "miscritName": "Dark Tulipinny",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_tulipinny_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_tulipinny_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -561,16 +415,7 @@
             "miscritId": 242,
             "miscritName": "Hoopty",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/hoopty_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/hoopty_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -589,16 +434,7 @@
             "miscritId": 417,
             "miscritName": "Fubby",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/fubby_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/fubby_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -617,16 +453,7 @@
             "miscritId": 538,
             "miscritName": "Keeper",
             "miscritRarity": "Legendary",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/keeper_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/keeper_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -645,16 +472,7 @@
             "miscritId": 405,
             "miscritName": "Dorux",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dorux_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dorux_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -673,16 +491,7 @@
             "miscritId": 197,
             "miscritName": "Hotdog",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/hotdog_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/hotdog_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -701,16 +510,7 @@
             "miscritId": 537,
             "miscritName": "Dark Slithero",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_slithero_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_slithero_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -729,16 +529,7 @@
             "miscritId": 480,
             "miscritName": "Dark Spinnerette",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_spinnerette_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_spinnerette_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -757,12 +548,7 @@
             "miscritId": 62,
             "miscritName": "Flutterpat",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/flutterpat_avatar.png",
-            "daysOfWeek": [
-              "tue",
-              "fri",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/flutterpat_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -781,16 +567,7 @@
             "miscritId": 536,
             "miscritName": "Dark Flutterpat",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_flutterpat_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_flutterpat_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -809,16 +586,7 @@
             "miscritId": 201,
             "miscritName": "Nanaslug",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/nanaslug_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/nanaslug_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -837,16 +605,7 @@
             "miscritId": 98,
             "miscritName": "Papa",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/papa_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/papa_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -865,16 +624,7 @@
             "miscritId": 550,
             "miscritName": "Da Windy",
             "miscritRarity": "Legendary",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/da_windy_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/da_windy_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -893,16 +643,7 @@
             "miscritId": 420,
             "miscritName": "Ekkult",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/ekkult_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/ekkult_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -921,16 +662,7 @@
             "miscritId": 214,
             "miscritName": "Shurikoon",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/shurikoon_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/shurikoon_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -949,16 +681,7 @@
             "miscritId": 196,
             "miscritName": "Inferno",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/inferno_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/inferno_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -979,12 +702,7 @@
             "miscritId": 41,
             "miscritName": "Luna",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/luna_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "thu",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/luna_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1003,12 +721,7 @@
             "miscritId": 184,
             "miscritName": "Octavio",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/octavio_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/octavio_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1027,12 +740,7 @@
             "miscritId": 539,
             "miscritName": "Dark Luna",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_luna_avatar.png",
-            "daysOfWeek": [
-              "thu",
-              "fri",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_luna_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1051,16 +759,7 @@
             "miscritId": 247,
             "miscritName": "Foil Kiloray",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_kiloray_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_kiloray_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1079,12 +778,7 @@
             "miscritId": 45,
             "miscritName": "Thundercracker",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/thundercracker_avatar.png",
-            "daysOfWeek": [
-              "wed",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/thundercracker_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1103,12 +797,7 @@
             "miscritId": 180,
             "miscritName": "Gog",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/gog_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/gog_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1127,12 +816,7 @@
             "miscritId": 514,
             "miscritName": "Dark Auger",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_auger_avatar.png",
-            "daysOfWeek": [
-              "thu",
-              "fri",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_auger_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1151,16 +835,7 @@
             "miscritId": 508,
             "miscritName": "Foil Vexie",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_vexie_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_vexie_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1179,16 +854,7 @@
             "miscritId": 540,
             "miscritName": "Foil Luna",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_luna_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_luna_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1207,12 +873,7 @@
             "miscritId": 44,
             "miscritName": "Eggy",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/eggy_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "thu",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/eggy_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1231,12 +892,7 @@
             "miscritId": 80,
             "miscritName": "Boltzee",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/boltzee_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/boltzee_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1255,12 +911,7 @@
             "miscritId": 547,
             "miscritName": "Dark Jellyshock",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_jellyshock_avatar.png",
-            "daysOfWeek": [
-              "thu",
-              "fri",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_jellyshock_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1279,16 +930,7 @@
             "miscritId": 509,
             "miscritName": "Foil Vhisp",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_vhisp_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_vhisp_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1307,16 +949,7 @@
             "miscritId": 230,
             "miscritName": "Foil Thundercracker",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_thundercracker_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_thundercracker_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1335,16 +968,7 @@
             "miscritId": 552,
             "miscritName": "Foil Croaky",
             "miscritRarity": "Legendary",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_croaky_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_croaky_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1363,14 +987,7 @@
             "miscritId": 43,
             "miscritName": "Fossillia",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/fossillia_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/fossillia_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1389,11 +1006,7 @@
             "miscritId": 46,
             "miscritName": "Mun Kee",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/mun_kee_avatar.png",
-            "daysOfWeek": [
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/mun_kee_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1412,12 +1025,7 @@
             "miscritId": 206,
             "miscritName": "Gemix",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/gemix_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/gemix_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1436,12 +1044,7 @@
             "miscritId": 73,
             "miscritName": "Fangly",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/fangly_avatar.png",
-            "daysOfWeek": [
-              "thu",
-              "fri",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/fangly_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1460,16 +1063,7 @@
             "miscritId": 227,
             "miscritName": "Foil Fossillia",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_fossillia_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_fossillia_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1488,16 +1082,7 @@
             "miscritId": 506,
             "miscritName": "Dark Poltergust",
             "miscritRarity": "Legendary",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_poltergust_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_poltergust_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1518,16 +1103,7 @@
             "miscritId": 47,
             "miscritName": "Microblast",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/microblast_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/microblast_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1546,16 +1122,7 @@
             "miscritId": 48,
             "miscritName": "Sledgehog",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/sledgehog_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/sledgehog_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1574,16 +1141,7 @@
             "miscritId": 341,
             "miscritName": "Cadbunny",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/cadbunny_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/cadbunny_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1602,16 +1160,7 @@
             "miscritId": 556,
             "miscritName": "Manio",
             "miscritRarity": "Legendary",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/manio_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/manio_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1630,16 +1179,7 @@
             "miscritId": 88,
             "miscritName": "Dark Eggy",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_eggy_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_eggy_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1658,16 +1198,7 @@
             "miscritId": 210,
             "miscritName": "Podo",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/podo_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/podo_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1686,16 +1217,7 @@
             "miscritId": 322,
             "miscritName": "Foil Flintly",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_flintly_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_flintly_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1714,12 +1236,7 @@
             "miscritId": 91,
             "miscritName": "Dark Elefauna",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_elefauna_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "wed",
-              "fri"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_elefauna_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1738,12 +1255,7 @@
             "miscritId": 79,
             "miscritName": "Dark Snortus",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_snortus_avatar.png",
-            "daysOfWeek": [
-              "tue",
-              "thu",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_snortus_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1762,16 +1274,7 @@
             "miscritId": 226,
             "miscritName": "Foil Waddles",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_waddles_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/foil_waddles_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1790,16 +1293,7 @@
             "miscritId": 49,
             "miscritName": "Sapphron",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/sapphron_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/sapphron_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1818,16 +1312,7 @@
             "miscritId": 554,
             "miscritName": "Dark Pillblaze",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_pillblaze_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/dark_pillblaze_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1846,16 +1331,7 @@
             "miscritId": 561,
             "miscritName": "Woolly",
             "miscritRarity": "Legendary",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/woolly_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/woolly_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1876,12 +1352,7 @@
             "miscritId": 64,
             "miscritName": "Kelpa",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/kelpa_avatar.png",
-            "daysOfWeek": [
-              "tue",
-              "fri",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/kelpa_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1900,12 +1371,7 @@
             "miscritId": 134,
             "miscritName": "Ursiwave",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/ursiwave_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/ursiwave_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1924,12 +1390,7 @@
             "miscritId": 68,
             "miscritName": "Winnebeargo",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/winnebeargo_avatar.png",
-            "daysOfWeek": [
-              "thu",
-              "fri",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/winnebeargo_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1948,16 +1409,7 @@
             "miscritId": 456,
             "miscritName": "Light Frostmite",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_frostmite_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_frostmite_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -1976,16 +1428,7 @@
             "miscritId": 476,
             "miscritName": "Light Statikat",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_statikat_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_statikat_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2004,12 +1447,7 @@
             "miscritId": 65,
             "miscritName": "Ignios",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/ignios_avatar.png",
-            "daysOfWeek": [
-              "wed",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/ignios_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2028,12 +1466,7 @@
             "miscritId": 459,
             "miscritName": "Light Quirk",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_quirk_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_quirk_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2052,12 +1485,7 @@
             "miscritId": 69,
             "miscritName": "Fennie",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/fennie_avatar.png",
-            "daysOfWeek": [
-              "thu",
-              "fri",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/fennie_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2076,16 +1504,7 @@
             "miscritId": 488,
             "miscritName": "Light Twiggum",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_twiggum_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_twiggum_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2104,16 +1523,7 @@
             "miscritId": 519,
             "miscritName": "Light Crickin",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_crickin_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_crickin_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2132,16 +1542,7 @@
             "miscritId": 493,
             "miscritName": "Aquarion",
             "miscritRarity": "Legendary",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/aquarion_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/aquarion_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2160,12 +1561,7 @@
             "miscritId": 63,
             "miscritName": "Snorkels",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/snorkels_avatar.png",
-            "daysOfWeek": [
-              "wed",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/snorkels_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2184,12 +1580,7 @@
             "miscritId": 419,
             "miscritName": "Pennon",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/pennon_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/pennon_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2208,12 +1599,7 @@
             "miscritId": 451,
             "miscritName": "Light Nibbles",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_nibbles_avatar.png",
-            "daysOfWeek": [
-              "thu",
-              "fri",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_nibbles_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2232,16 +1618,7 @@
             "miscritId": 326,
             "miscritName": "Light Tectonyx",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_tectonyx_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_tectonyx_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2260,16 +1637,7 @@
             "miscritId": 518,
             "miscritName": "Light Nanaslug",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_nanaslug_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_nanaslug_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2288,12 +1656,7 @@
             "miscritId": 125,
             "miscritName": "Rockodile",
             "miscritRarity": "Rare",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/rockodile_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "thu",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/rockodile_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2312,12 +1675,7 @@
             "miscritId": 133,
             "miscritName": "Boneshee",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/boneshee_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/boneshee_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2336,12 +1694,7 @@
             "miscritId": 212,
             "miscritName": "Lavazard",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/lavazard_avatar.png",
-            "daysOfWeek": [
-              "thu",
-              "fri",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/lavazard_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2360,16 +1713,7 @@
             "miscritId": 457,
             "miscritName": "Light Bludger",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_bludger_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_bludger_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2388,16 +1732,7 @@
             "miscritId": 87,
             "miscritName": "Peepsie",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/peepsie_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/peepsie_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2416,16 +1751,7 @@
             "miscritId": 530,
             "miscritName": "Light Ignios",
             "miscritRarity": "Legendary",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_ignios_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/light_ignios_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2439,19 +1765,14 @@
       {
         "id": "b19b0d7a-2ead-42b1-bcb6-4733085c99b5",
         "location": "Moon",
-        "x": 41.84375,
-        "y": 46.61944452921549,
+        "x": 45.41015625,
+        "y": 18.104166984558105,
         "miscrits": [
           {
             "miscritId": 503,
             "miscritName": "Liothning",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/liothning_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/liothning_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2463,19 +1784,14 @@
       {
         "id": "b3fae7f1-8bd9-40c2-99a8-9161dcac9c9f",
         "location": "Moon",
-        "x": 34.59375,
-        "y": 24.286111195882164,
+        "x": 41.05902777777778,
+        "y": 5.074072943793403,
         "miscrits": [
           {
             "miscritId": 67,
             "miscritName": "Beelzebug",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/beelzebug_avatar.png",
-            "daysOfWeek": [
-              "thu",
-              "fri",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/beelzebug_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2487,23 +1803,14 @@
       {
         "id": "65d022af-ae40-44f7-b70a-dfa867c28b65",
         "location": "Moon",
-        "x": 47.96875,
-        "y": 78.78611119588216,
+        "x": 48.794642857142854,
+        "y": 36.73809596470424,
         "miscrits": [
           {
             "miscritId": 574,
             "miscritName": "Smolderfry",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/smolderfry_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/smolderfry_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2515,23 +1822,14 @@
       {
         "id": "b05461d8-4feb-490a-a5c3-6b99a940e1b1",
         "location": "Moon",
-        "x": 77.03125,
-        "y": 60.61944452921549,
+        "x": 65.68359375,
+        "y": 26.17708365122477,
         "miscrits": [
           {
             "miscritId": 572,
             "miscritName": "Gravitron",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/gravitron_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/gravitron_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2543,23 +1841,14 @@
       {
         "id": "49d76238-273a-46e9-9308-60f234b1d259",
         "location": "Moon",
-        "x": 63.5625,
-        "y": 29.912963019476997,
+        "x": 57.89930555555556,
+        "y": 8.22222109194155,
         "miscrits": [
           {
             "miscritId": 581,
             "miscritName": "Lithos",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/lithos_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/lithos_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2571,23 +1860,14 @@
       {
         "id": "b7f77dcb-77f4-45a1-8f3e-4934cb47c7a2",
         "location": "Moon",
-        "x": 48.407738095238095,
-        "y": 58.31084720672123,
+        "x": 49.04296875,
+        "y": 25.08333365122477,
         "miscrits": [
           {
             "miscritId": 597,
             "miscritName": "Beateorite",
             "miscritRarity": "Legendary",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/beateorite_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/beateorite_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2599,19 +1879,14 @@
       {
         "id": "86128612-46ae-421d-85e6-87156ac28fe2",
         "location": "Moon",
-        "x": 9.3359375,
-        "y": 36.9201389948527,
+        "x": 37.37132352941177,
+        "y": 52.088235593309584,
         "miscrits": [
           {
             "miscritId": 589,
             "miscritName": "Bunplop",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/bunplop_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/bunplop_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2623,19 +1898,14 @@
       {
         "id": "3de5e535-398d-46cd-a0b8-8434ce2d9b18",
         "location": "Moon",
-        "x": 7.070312500000001,
-        "y": 37.2326389948527,
+        "x": 38.91544117647059,
+        "y": 52.18627480899587,
         "miscrits": [
           {
             "miscritId": 579,
             "miscritName": "Niboro",
             "miscritRarity": "Epic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/niboro_avatar.png",
-            "daysOfWeek": [
-              "thu",
-              "fri",
-              "sat"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/niboro_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2647,23 +1917,14 @@
       {
         "id": "80e26733-ed95-49e4-a769-a7001c1acb47",
         "location": "Moon",
-        "x": 15.351562499999998,
-        "y": 27.33680566151937,
+        "x": 45.79044117647059,
+        "y": 81.49999880323223,
         "miscrits": [
           {
             "miscritId": 594,
             "miscritName": "Eclipso",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/eclipso_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/eclipso_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2675,23 +1936,14 @@
       {
         "id": "067e3083-adfd-4a8c-ae44-b3573fe50473",
         "location": "Moon",
-        "x": 12.3828125,
-        "y": 27.649305661519367,
+        "x": 38.10661764705882,
+        "y": 66.3039218678194,
         "miscrits": [
           {
             "miscritId": 580,
             "miscritName": "Pinplar",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/pinplar_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/pinplar_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2703,23 +1955,14 @@
       {
         "id": "59635481-ae94-4c2b-9019-1edf3ca94790",
         "location": "Moon",
-        "x": 9.3359375,
-        "y": 28.274305661519367,
+        "x": 66.81985294117648,
+        "y": 48.90196108350567,
         "miscrits": [
           {
             "miscritId": 583,
             "miscritName": "Pyrex",
             "miscritRarity": "Exotic",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/pyrex_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/pyrex_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2731,23 +1974,14 @@
       {
         "id": "78ec6188-fa7d-4be8-9350-5a08dfd34b77",
         "location": "Moon",
-        "x": 6.7578125,
-        "y": 29.211805661519367,
+        "x": 28.290441176470587,
+        "y": 93.80392037185969,
         "miscrits": [
           {
             "miscritId": 578,
             "miscritName": "Voidotron",
             "miscritRarity": "Legendary",
-            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/voidotron_avatar.png",
-            "daysOfWeek": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri",
-              "sat",
-              "sun"
-            ]
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/voidotron_avatar.png"
           }
         ],
         "exactLocationImages": [
@@ -2756,1320 +1990,181 @@
         "additionalInformation": "Small void",
         "isMultiple": true
       }
+    ],
+    "Shack": [
+      {
+        "location": "Shack",
+        "x": 54.19,
+        "y": 23.38,
+        "miscrits": [
+          {
+            "miscritId": 618,
+            "miscritName": "Boo Blazertooth",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/boo_blazertooth_avatar.png"
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/shack_boo_blazertooth.png"
+        ],
+        "additionalInformation": "",
+        "id": "4f49a842-1372-4e06-8195-c529eb809395",
+        "isMultiple": true
+      },
+      {
+        "location": "Shack",
+        "x": 41.89,
+        "y": 27.92,
+        "miscrits": [
+          {
+            "miscritId": 613,
+            "miscritName": "Hekatom",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/hekatom_avatar.png"
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/shack_hekatom.png"
+        ],
+        "additionalInformation": "",
+        "id": "2869eb21-a890-4617-af8c-1917a5a285fc",
+        "isMultiple": true
+      },
+      {
+        "location": "Shack",
+        "x": 18.44,
+        "y": 56.65,
+        "miscrits": [
+          {
+            "miscritId": 614,
+            "miscritName": "Scarecrow Charix",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/scarecrow_charix_avatar.png"
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/shack_scarecrow_charix.png"
+        ],
+        "additionalInformation": "",
+        "id": "831dceeb-d9d8-4268-b06c-cac0c52f181d",
+        "isMultiple": true
+      },
+      {
+        "location": "Shack",
+        "x": 32.15,
+        "y": 44.24,
+        "miscrits": [
+          {
+            "miscritId": 70,
+            "miscritName": "Patchkin",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/patchkin_avatar.png"
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/shack_patchkin.png"
+        ],
+        "additionalInformation": "",
+        "id": "1ad14e6e-524e-4797-aad3-976e67389697",
+        "isMultiple": true
+      },
+      {
+        "location": "Shack",
+        "x": 33.54,
+        "y": 59.15,
+        "miscrits": [
+          {
+            "miscritId": 617,
+            "miscritName": "Rocker Octavio",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/rocker_octavio_avatar.png"
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/shack_rocker_octavio.png"
+        ],
+        "additionalInformation": "",
+        "id": "40d13127-32a6-4d66-820a-534c08821dec",
+        "isMultiple": true
+      },
+      {
+        "location": "Shack",
+        "x": 67.25,
+        "y": 32.92,
+        "miscrits": [
+          {
+            "miscritId": 223,
+            "miscritName": "Skelepup",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/skelepup_avatar.png"
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/shack_skelepup.png"
+        ],
+        "additionalInformation": "",
+        "id": "5eb492fb-6653-4a61-8659-9385ec5b1a61",
+        "isMultiple": true
+      },
+      {
+        "location": "Shack",
+        "x": 77.91,
+        "y": 49.89,
+        "miscrits": [
+          {
+            "miscritId": 615,
+            "miscritName": "Vamp Skustunk",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/vamp_skustunk_avatar.png"
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/shack_vamp_skustunk.png"
+        ],
+        "additionalInformation": "",
+        "id": "fb97ea51-fd06-470b-96cd-08dcb40d757d",
+        "isMultiple": true
+      },
+      {
+        "location": "Shack",
+        "x": 72.81,
+        "y": 76.65,
+        "miscrits": [
+          {
+            "miscritId": 619,
+            "miscritName": "Geneseed",
+            "miscritRarity": "Legendary",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/geneseed_avatar.png"
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/shack_geneseed.png"
+        ],
+        "additionalInformation": "",
+        "id": "0ce6b047-b696-42c7-bc0b-f449a80a6a1c",
+        "isMultiple": true
+      },
+      {
+        "location": "Shack",
+        "x": 15.19,
+        "y": 32.27,
+        "miscrits": [
+          {
+            "miscritId": 616,
+            "miscritName": "Grimm Kiloray",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/grimm_kiloray_avatar.png"
+          }
+        ],
+        "exactLocationImages": [
+          "assets/miscrits/exactLocations/unknown.png"
+        ],
+        "additionalInformation": "",
+        "id": "fa2c3fa0-dad1-4e27-9b75-4cf9db1082f0",
+        "isMultiple": true
+      }
     ]
   },
-  "miscritAvailability": {
-    "20": {
-      "Forest|1": [
-        "mon",
-        "thu",
-        "sun"
-      ]
-    },
-    "21": {
-      "Forest|1": [
-        "mon",
-        "thu",
-        "sun"
-      ]
-    },
-    "22": {
-      "Forest|3": [
-        "wed",
-        "sat",
-        "sun"
-      ]
-    },
-    "23": {
-      "Forest|2": [
-        "tue",
-        "fri",
-        "sun"
-      ]
-    },
-    "24": {
-      "Forest|4": [
-        "tue",
-        "fri"
-      ]
-    },
-    "25": {
-      "Forest|4": [
-        "wed",
-        "sat"
-      ]
-    },
-    "26": {
-      "Forest|4": [
-        "mon",
-        "thu",
-        "sun"
-      ]
-    },
-    "28": {
-      "Hidden Forest|1": [
-        "tue",
-        "thu",
-        "sat"
-      ]
-    },
-    "41": {
-      "Mount Gemma|1": [
-        "mon",
-        "thu",
-        "sun"
-      ]
-    },
-    "42": {
-      "Mount Gemma|1": [
-        "tue",
-        "fri"
-      ]
-    },
-    "43": {
-      "Mount Gemma|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri"
-      ]
-    },
-    "44": {
-      "Mount Gemma|3": [
-        "mon",
-        "thu",
-        "sun"
-      ]
-    },
-    "45": {
-      "Mount Gemma|2": [
-        "wed",
-        "sat",
-        "sun"
-      ]
-    },
-    "46": {
-      "Mount Gemma|4": [
-        "sat",
-        "sun"
-      ]
-    },
-    "47": {
-      "Cave|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "48": {
-      "Cave|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "49": {
-      "Cave|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "62": {
-      "Mansion|3": [
-        "tue",
-        "fri",
-        "sun"
-      ]
-    },
-    "63": {
-      "Sunfall Shores|3": [
-        "wed",
-        "sat",
-        "sun"
-      ]
-    },
-    "64": {
-      "Sunfall Shores|1": [
-        "tue",
-        "fri",
-        "sun"
-      ]
-    },
-    "65": {
-      "Sunfall Shores|2": [
-        "wed",
-        "sat",
-        "sun"
-      ]
-    },
-    "67": {
-      "Moon|1": [
-        "thu",
-        "fri",
-        "sat"
-      ]
-    },
-    "68": {
-      "Sunfall Shores|1": [
-        "thu",
-        "fri",
-        "sat"
-      ]
-    },
-    "69": {
-      "Sunfall Shores|2": [
-        "thu",
-        "fri",
-        "sat"
-      ]
-    },
-    "73": {
-      "Mount Gemma|4": [
-        "thu",
-        "fri",
-        "sat"
-      ]
-    },
-    "74": {
-      "Cave|1": [
-        "mon",
-        "wed",
-        "fri"
-      ]
-    },
-    "75": {
-      "Cave|2": [
-        "tue",
-        "thu",
-        "sat"
-      ]
-    },
-    "77": {
-      "Forest|1": [
-        "wed",
-        "sat"
-      ]
-    },
-    "78": {
-      "Sunfall Shores|2": [
-        "tue",
-        "fri"
-      ]
-    },
-    "79": {
-      "Cave|3": [
-        "tue",
-        "thu",
-        "sat"
-      ]
-    },
-    "80": {
-      "Mount Gemma|3": [
-        "mon",
-        "tue",
-        "wed"
-      ]
-    },
-    "82": {
-      "Cave|3": [
-        "tue",
-        "thu",
-        "sat"
-      ]
-    },
-    "83": {
-      "Cave|3": [
-        "mon",
-        "wed",
-        "fri"
-      ]
-    },
-    "85": {
-      "Cave|1": [
-        "tue",
-        "thu",
-        "sat"
-      ]
-    },
-    "86": {
-      "Mansion|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "87": {
-      "Sunfall Shores|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "88": {
-      "Cave|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "90": {
-      "Mansion|6": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "91": {
-      "Cave|3": [
-        "mon",
-        "wed",
-        "fri"
-      ]
-    },
-    "93": {
-      "Forest|3": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "94": {
-      "Forest|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "95": {
-      "Forest|3": [
-        "tue",
-        "fri"
-      ]
-    },
-    "97": {
-      "Cave|4": [
-        "tue",
-        "thu",
-        "sat"
-      ]
-    },
-    "98": {
-      "Mansion|3": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "121": {
-      "Hidden Forest|1": [
-        "mon",
-        "wed",
-        "fri",
-        "sun"
-      ]
-    },
-    "124": {
-      "Sunfall Shores|2": [
-        "mon",
-        "thu"
-      ]
-    },
-    "125": {
-      "Sunfall Shores|4": [
-        "mon",
-        "thu",
-        "sun"
-      ]
-    },
-    "133": {
-      "Sunfall Shores|4": [
-        "mon",
-        "tue",
-        "wed"
-      ]
-    },
-    "134": {
-      "Sunfall Shores|1": [
-        "mon",
-        "tue",
-        "wed"
-      ]
-    },
-    "155": {
-      "Mount Gemma|3": [
-        "wed",
-        "sat"
-      ]
-    },
-    "171": {
-      "Sunfall Shores|1": [
-        "wed",
-        "sat"
-      ]
-    },
-    "176": {
-      "Cave|2": [
-        "mon",
-        "wed",
-        "fri"
-      ]
-    },
-    "180": {
-      "Mount Gemma|2": [
-        "mon",
-        "tue",
-        "wed"
-      ]
-    },
-    "184": {
-      "Mount Gemma|1": [
-        "mon",
-        "tue",
-        "wed"
-      ]
-    },
-    "192": {
-      "Sunfall Shores|4": [
-        "tue",
-        "fri"
-      ]
-    },
-    "196": {
-      "Mansion|6": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "197": {
-      "Mansion|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "200": {
-      "Mansion|3": [
-        "mon",
-        "thu"
-      ]
-    },
-    "201": {
-      "Mansion|3": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "203": {
-      "Mansion|2": [
-        "mon",
-        "wed",
-        "sat"
-      ]
-    },
-    "205": {
-      "Hidden Forest|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "206": {
-      "Mount Gemma|4": [
-        "mon",
-        "tue",
-        "wed"
-      ]
-    },
-    "210": {
-      "Cave|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "212": {
-      "Sunfall Shores|4": [
-        "thu",
-        "fri",
-        "sat"
-      ]
-    },
-    "214": {
-      "Mansion|5": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "226": {
-      "Cave|3": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "227": {
-      "Mount Gemma|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "230": {
-      "Mount Gemma|3": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "242": {
-      "Mansion|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "247": {
-      "Mount Gemma|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "312": {
-      "Mount Gemma|1": [
-        "wed",
-        "sat"
-      ]
-    },
-    "322": {
-      "Cave|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "326": {
-      "Sunfall Shores|3": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "338": {
-      "Forest|3": [
-        "mon",
-        "tue",
-        "wed"
-      ]
-    },
-    "341": {
-      "Cave|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "352": {
-      "Mount Gemma|2": [
-        "mon",
-        "thu"
-      ]
-    },
-    "356": {
-      "Mansion|2": [
-        "tue",
-        "fri",
-        "sun"
-      ]
-    },
-    "388": {
-      "Mansion|1": [
-        "tue",
-        "fri",
-        "sun"
-      ]
-    },
-    "405": {
-      "Mansion|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "417": {
-      "Mansion|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "419": {
-      "Sunfall Shores|3": [
-        "mon",
-        "tue",
-        "wed"
-      ]
-    },
-    "420": {
-      "Mansion|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "425": {
-      "Forest|3": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "430": {
-      "Forest|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "433": {
-      "Forest|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "451": {
-      "Sunfall Shores|3": [
-        "thu",
-        "fri",
-        "sat"
-      ]
-    },
-    "456": {
-      "Sunfall Shores|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "457": {
-      "Sunfall Shores|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "459": {
-      "Sunfall Shores|2": [
-        "mon",
-        "tue",
-        "wed"
-      ]
-    },
-    "476": {
-      "Sunfall Shores|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "480": {
-      "Mansion|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "488": {
-      "Sunfall Shores|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "493": {
-      "Sunfall Shores|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "502": {
-      "Forest|3": [
-        "mon",
-        "thu"
-      ]
-    },
-    "503": {
-      "Moon|1": [
-        "mon",
-        "tue",
-        "wed"
-      ]
-    },
-    "504": {
-      "Mansion|5": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "505": {
-      "Hidden Forest|1": [
-        "wed",
-        "sat"
-      ]
-    },
-    "506": {
-      "Mount Gemma|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "507": {
-      "Forest|2": [
-        "thu",
-        "fri",
-        "sat"
-      ]
-    },
-    "508": {
-      "Mount Gemma|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "509": {
-      "Mount Gemma|3": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "510": {
-      "Forest|1": [
-        "tue",
-        "fri"
-      ]
-    },
-    "511": {
-      "Hidden Forest|1": [
-        "mon",
-        "thu"
-      ]
-    },
-    "512": {
-      "Forest|1": [
-        "mon",
-        "tue",
-        "wed"
-      ]
-    },
-    "513": {
-      "Forest|4": [
-        "thu",
-        "fri",
-        "sat"
-      ]
-    },
-    "514": {
-      "Mount Gemma|2": [
-        "thu",
-        "fri",
-        "sat"
-      ]
-    },
-    "515": {
-      "Mount Gemma|3": [
-        "tue",
-        "fri"
-      ]
-    },
-    "518": {
-      "Sunfall Shores|3": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "519": {
-      "Sunfall Shores|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "523": {
-      "Sunfall Shores|1": [
-        "mon",
-        "thu"
-      ]
-    },
-    "530": {
-      "Sunfall Shores|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "531": {
-      "Sunfall Shores|4": [
-        "wed",
-        "sat"
-      ]
-    },
-    "532": {
-      "Mansion|3": [
-        "wed",
-        "sat"
-      ]
-    },
-    "533": {
-      "Mansion|1": [
-        "mon",
-        "thu",
-        "sat"
-      ]
-    },
-    "534": {
-      "Cave|4": [
-        "mon",
-        "wed",
-        "fri"
-      ]
-    },
-    "535": {
-      "Mansion|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "536": {
-      "Mansion|3": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "537": {
-      "Mansion|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "538": {
-      "Mansion|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "539": {
-      "Mount Gemma|1": [
-        "thu",
-        "fri",
-        "sat"
-      ]
-    },
-    "540": {
-      "Mount Gemma|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "541": {
-      "Sunfall Shores|3": [
-        "mon",
-        "thu"
-      ]
-    },
-    "542": {
-      "Sunfall Shores|3": [
-        "tue",
-        "fri"
-      ]
-    },
-    "544": {
-      "Forest|2": [
-        "mon",
-        "thu"
-      ]
-    },
-    "545": {
-      "Forest|2": [
-        "wed",
-        "sat"
-      ]
-    },
-    "546": {
-      "Forest|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "547": {
-      "Mount Gemma|3": [
-        "thu",
-        "fri",
-        "sat"
-      ]
-    },
-    "549": {
-      "Mount Gemma|2": [
-        "tue",
-        "fri"
-      ]
-    },
-    "550": {
-      "Mansion|3": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "552": {
-      "Mount Gemma|3": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "554": {
-      "Cave|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "556": {
-      "Cave|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "561": {
-      "Cave|4": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "568": {
-      "Hidden Forest|1": [
-        "sun",
-        "tue",
-        "fri"
-      ]
-    },
-    "569": {
-      "Hidden Forest|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "570": {
-      "Hidden Forest|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "571": {
-      "Moon|1": [
-        "wed",
-        "thu"
-      ]
-    },
-    "572": {
-      "Moon|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "573": {
-      "Moon|1": [
-        "sun"
-      ]
-    },
-    "574": {
-      "Moon|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "576": {
-      "Moon|2": [
-        "fri",
-        "sat"
-      ]
-    },
-    "578": {
-      "Moon|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "579": {
-      "Moon|2": [
-        "thu",
-        "fri",
-        "sat"
-      ]
-    },
-    "580": {
-      "Moon|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "581": {
-      "Moon|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "583": {
-      "Moon|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "584": {
-      "Moon|2": [
-        "wed",
-        "thu"
-      ]
-    },
-    "585": {
-      "Moon|1": [
-        "fri",
-        "sat"
-      ]
-    },
-    "586": {
-      "Moon|1": [
-        "mon",
-        "tue"
-      ]
-    },
-    "588": {
-      "Moon|2": [
-        "mon",
-        "tue"
-      ]
-    },
-    "589": {
-      "Moon|2": [
-        "mon",
-        "tue",
-        "wed"
-      ]
-    },
-    "594": {
-      "Moon|2": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "595": {
-      "Moon|2": [
-        "sun"
-      ]
-    },
-    "596": {
-      "Moon|1": [
-        "sun"
-      ]
-    },
-    "597": {
-      "Moon|1": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
-      ]
-    },
-    "601": {
-      "Moon|2": [
-        "sun"
-      ]
-    }
-  },
-  "exportDate": "2025-08-29T02:29:36.512Z",
+  "exportDate": "2025-10-26T07:41:57.066Z",
   "version": "1.0"
 }

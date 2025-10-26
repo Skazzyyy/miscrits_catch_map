@@ -66,11 +66,9 @@ class MiscritsApp {
             if (response.ok) {
                 this.cachedJsonData = await response.json();
             } else {
-                console.log('miscrits_data.json not found, using local storage only');
                 this.cachedJsonData = null;
             }
         } catch (error) {
-            console.log('Failed to load miscrits_data.json:', error.message);
             this.cachedJsonData = null;
         }
     }
@@ -117,10 +115,6 @@ class MiscritsApp {
         // Clear all markers button (only visible in admin mode)
         const clearBtn = document.getElementById('clear-markers-btn');
         clearBtn.addEventListener('click', () => this.showClearMarkersConfirmation());
-
-        // Clear all dates button (only visible in admin mode)
-        const clearDatesBtn = document.getElementById('clear-dates-btn');
-        clearDatesBtn.addEventListener('click', () => this.showClearDatesConfirmation());
 
         // Clear local storage button (error screen)
         const clearStorageBtn = document.getElementById('clear-storage-btn');
@@ -326,6 +320,59 @@ class MiscritsApp {
         return locations[0];
     }
 
+    /**
+     * Get day availability for a miscrit at a specific location/area from CDN data
+     * @param {number} miscritId - The miscrit ID
+     * @param {string} location - The location name
+     * @param {string} area - The area number (optional)
+     * @returns {string[]} Array of day abbreviations ['mon', 'tue', etc.] or all days if not specified
+     */
+    getDaysOfWeekFromCDN(miscritId, location, area = null) {
+        // Day number to abbreviation mapping
+        const DAY_MAP = {
+            0: 'sun',
+            1: 'mon',
+            2: 'tue',
+            3: 'wed',
+            4: 'thu',
+            5: 'fri',
+            6: 'sat'
+        };
+        
+        const ALL_DAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+        
+        // Find the miscrit in CDN data
+        const miscrit = this.miscrits.find(m => m.id === miscritId);
+        if (!miscrit || !miscrit.locations) {
+            return ALL_DAYS; // Default to all days if not found
+        }
+        
+        // Check if the miscrit exists in the specified location
+        const locationData = miscrit.locations[location];
+        if (!locationData) {
+            return ALL_DAYS; // Not in this location, return all days
+        }
+        
+        // If area is specified, get days for that specific area
+        if (area && locationData[area]) {
+            const dayNumbers = locationData[area];
+            if (dayNumbers && dayNumbers.length > 0) {
+                return dayNumbers.map(num => DAY_MAP[num]).sort();
+            }
+        } else {
+            // No specific area, get days from first available area
+            const areas = Object.keys(locationData);
+            if (areas.length > 0) {
+                const dayNumbers = locationData[areas[0]];
+                if (dayNumbers && dayNumbers.length > 0) {
+                    return dayNumbers.map(num => DAY_MAP[num]).sort();
+                }
+            }
+        }
+        
+        return ALL_DAYS; // No day restrictions, available all days
+    }
+
     getImageUrl(name) {
         if (!name) return '';
         // Convert name to lowercase and replace spaces with underscores
@@ -524,6 +571,11 @@ class MiscritsApp {
         const currentDay = this.getCurrentGMTDay();
 
         this.filteredMiscrits = this.miscrits.filter(miscrit => {
+            // Exclude "Unknown" location unless explicitly filtered for it
+            if (!locationFilter && miscrit.primaryLocation === 'Unknown') {
+                return false;
+            }
+            
             const matchesLocation = !locationFilter || miscrit.primaryLocation === locationFilter;
             
             const matchesArea = !areaFilter || (miscrit.currentLocationAreas && 
@@ -597,37 +649,14 @@ class MiscritsApp {
     }
 
     getMarkerDaysForMiscrit(miscrit) {
-        // Get all markers and find ones that contain this miscrit
-        const allMarkers = this.getMiscritMarkers();
-        const availableDays = new Set();
+        // Get day availability from CDN data instead of markers
+        // Use the miscrit's primary location
+        const location = miscrit.primaryLocation;
         
-        for (const location in allMarkers) {
-            for (const marker of allMarkers[location]) {
-                let miscritFound = false;
-                let markerDays = [];
-                
-                if (marker.isMultiple) {
-                    // Check if any miscrit in the multiple marker matches
-                    const matchingMiscrit = marker.miscrits.find(m => m.miscritName === miscrit.firstName);
-                    if (matchingMiscrit) {
-                        miscritFound = true;
-                        markerDays = matchingMiscrit.daysOfWeek || ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-                    }
-                } else {
-                    // Single marker
-                    if (marker.miscritName === miscrit.firstName) {
-                        miscritFound = true;
-                        markerDays = marker.daysOfWeek || ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-                    }
-                }
-                
-                if (miscritFound) {
-                    markerDays.forEach(day => availableDays.add(day));
-                }
-            }
-        }
+        // Get days from CDN data for this miscrit's location
+        const days = this.getDaysOfWeekFromCDN(miscrit.id, location);
         
-        return Array.from(availableDays);
+        return days;
     }
 
     updateStats() {
@@ -642,6 +671,7 @@ class MiscritsApp {
         const container = document.getElementById('miscrits-container');
         container.innerHTML = '';
 
+
         if (this.filteredMiscrits.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
@@ -655,9 +685,20 @@ class MiscritsApp {
         // Group by location
         const groupedByLocation = this.groupByLocation(this.filteredMiscrits);
         
-        // Render each location section
+        Object.keys(groupedByLocation).forEach(loc => {
+        });
+        
+        // Render locations in the preferred order first
         this.locationOrder.forEach(location => {
             if (groupedByLocation[location] && groupedByLocation[location].length > 0) {
+                const section = this.createLocationSection(location, groupedByLocation[location]);
+                container.appendChild(section);
+            }
+        });
+        
+        // Then render any other locations not in the order (like "Unknown", "Shack", etc.)
+        Object.keys(groupedByLocation).forEach(location => {
+            if (!this.locationOrder.includes(location) && groupedByLocation[location].length > 0) {
                 const section = this.createLocationSection(location, groupedByLocation[location]);
                 container.appendChild(section);
             }
@@ -676,6 +717,7 @@ class MiscritsApp {
     }
 
     createLocationSection(location, miscrits) {
+        
         const section = document.createElement('div');
         section.className = 'location-section';
 
@@ -687,7 +729,8 @@ class MiscritsApp {
             'Mount Gemma': 'assets/maps/mount_gemma.png',
             'Cave': 'assets/maps/cave.png',
             'Sunfall Shores': 'assets/maps/sunfall_shores.jpg',
-            'Moon': 'assets/maps/moon.jpg'
+            'Moon': 'assets/maps/moon.png',
+            'Shack': 'assets/maps/shack_all.png'
         };
 
         // Add location image if available
@@ -751,10 +794,12 @@ class MiscritsApp {
             // Initialize pan and zoom functionality
             this.initializePanZoom(viewport, mapContent, zoomInfo);
             
+            
             // Load and display existing miscrit markers for this location
             this.loadMiscritMarkers(location, imageContainer);
             
             section.appendChild(viewport);
+        } else {
         }
 
         // Create location header
@@ -769,6 +814,9 @@ class MiscritsApp {
 
         // Group by area first
         const groupedByArea = this.groupByArea(location, miscrits);
+        
+        Object.keys(groupedByArea).forEach(area => {
+        });
 
         // Render each area group
         const sortedAreas = Object.keys(groupedByArea).sort((a, b) => {
@@ -777,6 +825,7 @@ class MiscritsApp {
             const bNum = b === 'no-area' ? 999 : parseInt(b);
             return aNum - bNum;
         });
+
 
         sortedAreas.forEach(area => {
             if (groupedByArea[area] && groupedByArea[area].length > 0) {
@@ -806,11 +855,10 @@ class MiscritsApp {
         
         return miscrits.reduce((groups, miscrit) => {
             if (!miscrit.currentLocationAreas || Object.keys(miscrit.currentLocationAreas).length === 0) {
-                // Handle miscrits without specific areas
-                if (location === 'Hidden Forest') {
-                    if (!groups['no-area']) groups['no-area'] = [];
-                    groups['no-area'].push(miscrit);
-                }
+                // Handle miscrits without specific areas - add them to 'no-area' group
+                // This applies to Hidden Forest, Unknown, and any other location without area data
+                if (!groups['no-area']) groups['no-area'] = [];
+                groups['no-area'].push(miscrit);
                 return groups;
             }
 
@@ -883,6 +931,12 @@ class MiscritsApp {
             'Moon': {
                 '1': 'The Moon Surface',
                 '2': 'Cave of the Moon'
+            },
+            'Shack': {
+                '1': 'First Floor',
+                '2': 'Second Floor',
+                '3': 'Basement',
+                '4': 'Lower Basement'
             }
         };
 
@@ -1009,7 +1063,6 @@ class MiscritsApp {
         if (miscrit.locationInfo.isClickable) {
             locationDiv.addEventListener('click', (e) => {
                 e.stopPropagation();
-                console.log('Location details for:', miscrit.firstName, miscrit.locations);
                 // Future: Show detailed location modal
             });
         }
@@ -1084,7 +1137,6 @@ class MiscritsApp {
             if (markerInfo) {
                 this.showMarkerModal(markerInfo);
             } else {
-                console.log('Clicked miscrit:', miscrit);
                 // Future: Show detailed modal with all evolutions, stats, etc.
             }
         });
@@ -1344,7 +1396,6 @@ class MiscritsApp {
         // Save to localStorage
         this.saveMiscritAvailabilityData(availabilityData);
         
-        console.log(`Updated availability for ${miscrit.firstName}`, availabilityData[miscrit.id]);
     }
 
     getMiscritAvailabilityData() {
@@ -1486,7 +1537,6 @@ class MiscritsApp {
             )
             .sort((a, b) => a.name.localeCompare(b.name));
 
-        console.log(`Found ${locationMiscrits.length} miscrits for location: ${location}`, locationMiscrits);
 
         // Create modal
         const modal = document.createElement('div');
@@ -1692,7 +1742,6 @@ class MiscritsApp {
             imageUrl: defaultImageUrl, // Always use default avatar
             exactLocationImages: customUrl ? [customUrl] : [], // Array of exact location images
             additionalInformation: '', // Additional information about this marker
-            daysOfWeek: [], // Default to no days selected
             id: this.generateUUID()  // Use unique ID instead of timestamp
         };
 
@@ -1708,7 +1757,6 @@ class MiscritsApp {
         // Create visual marker
         this.createMarkerElement(marker, imageContainer);
 
-        console.log(`Added ${miscrit.firstName} to ${location} at position ${x}%, ${y}%`);
     }
 
     addMultipleMiscritMarker(location, x, y, miscrits, imageContainer, customUrl = '') {
@@ -1724,8 +1772,7 @@ class MiscritsApp {
                 miscritId: miscrit.id,
                 miscritName: miscrit.firstName,
                 miscritRarity: miscrit.rarity,
-                imageUrl: `https://cdn.worldofmiscrits.com/avatars/${miscrit.firstName.toLowerCase().replace(/\s+/g, '_')}_avatar.png`,
-                daysOfWeek: [] // Default to no days selected
+                imageUrl: `https://cdn.worldofmiscrits.com/avatars/${miscrit.firstName.toLowerCase().replace(/\s+/g, '_')}_avatar.png`
             })),
             exactLocationImages: customUrl ? [customUrl] : [], // Array of exact location images
             additionalInformation: '', // Additional information about this marker
@@ -1745,7 +1792,6 @@ class MiscritsApp {
         // Create visual marker
         this.createMultipleMarkerElement(marker, imageContainer);
 
-        console.log(`Added ${miscrits.length} miscrits to ${location} at position ${x}%, ${y}%`);
     }
 
     createMarkerElement(marker, imageContainer) {
@@ -1756,8 +1802,8 @@ class MiscritsApp {
         markerEl.style.top = `${marker.y}%`;
         markerEl.style.transform = 'translate(-50%, -100%)'; // Always anchor to bottom
         
-        // Create tooltip with day information
-        const days = marker.daysOfWeek || ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+        // Create tooltip with day information from CDN
+        const days = this.getDaysOfWeekFromCDN(marker.miscritId, marker.location);
         const dayNames = {
             'mon': 'Mon', 'tue': 'Tue', 'wed': 'Wed', 'thu': 'Thu',
             'fri': 'Fri', 'sat': 'Sat', 'sun': 'Sun'
@@ -1852,7 +1898,7 @@ class MiscritsApp {
                 const miscritCard = document.createElement('div');
                 miscritCard.className = 'modal-miscrit-card';
                 
-                const days = miscrit.daysOfWeek || ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+                const days = this.getDaysOfWeekFromCDN(miscrit.miscritId, marker.location);
                 const dayNames = {
                     'mon': 'Mon', 'tue': 'Tue', 'wed': 'Wed', 'thu': 'Thu',
                     'fri': 'Fri', 'sat': 'Sat', 'sun': 'Sun'
@@ -1872,7 +1918,7 @@ class MiscritsApp {
             modalMiscritsList.innerHTML = '<div class="modal-section"><h4>Miscrit Information</h4><div class="modal-miscrits-grid"></div></div>';
             const grid = modalMiscritsList.querySelector('.modal-miscrits-grid');
             
-            const days = marker.daysOfWeek || ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            const days = this.getDaysOfWeekFromCDN(marker.miscritId, marker.location);
             const dayNames = {
                 'mon': 'Mon', 'tue': 'Tue', 'wed': 'Wed', 'thu': 'Thu',
                 'fri': 'Fri', 'sat': 'Sat', 'sun': 'Sun'
@@ -1981,9 +2027,9 @@ class MiscritsApp {
         markerEl.style.top = `${marker.y}%`;
         markerEl.style.transform = 'translate(-50%, -100%)'; // Always anchor to bottom
         
-        // Create tooltip with day information for each miscrit
+        // Create tooltip with day information for each miscrit from CDN
         const miscritInfo = marker.miscrits.map(m => {
-            const days = m.daysOfWeek || ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            const days = this.getDaysOfWeekFromCDN(m.miscritId, marker.location);
             const dayNames = {
                 'mon': 'Mon', 'tue': 'Tue', 'wed': 'Wed', 'thu': 'Thu',
                 'fri': 'Fri', 'sat': 'Sat', 'sun': 'Sun'
@@ -2157,7 +2203,6 @@ class MiscritsApp {
             }
         }
 
-        console.log(`Moved ${marker.miscritName} from ${oldX}%, ${oldY}% to ${newX}%, ${newY}%`);
     }
 
     showMultipleMarkerContextMenu(event, marker, markerElement, imageContainer) {
@@ -2238,14 +2283,6 @@ class MiscritsApp {
                 </div>
                 <div class="modal-body">
                     <div class="marker-editor">
-                        <!-- Days of Week Section -->
-                        <div class="editor-section">
-                            <h4>Days of Week</h4>
-                            <div id="days-editor-container">
-                                <!-- Will be populated based on marker type -->
-                            </div>
-                        </div>
-                        
                         <!-- Marker Information Section -->
                         <div class="editor-section">
                             <h4>Marker Information</h4>
@@ -2285,13 +2322,9 @@ class MiscritsApp {
         const closeBtn = modal.querySelector('.modal-close');
         const cancelBtn = modal.querySelector('.btn-cancel');
         const saveBtn = modal.querySelector('.btn-save');
-        const daysContainer = modal.querySelector('#days-editor-container');
         const exactImagesContainer = modal.querySelector('#exact-location-images');
         const addImageBtn = modal.querySelector('.btn-add-image');
         const newImageUrlInput = modal.querySelector('#new-image-url');
-
-        // Generate the days editor content
-        this.generateDaysEditor(marker, daysContainer);
         
         // Populate existing exact location images
         this.populateExistingImages(marker, exactImagesContainer);
@@ -2315,9 +2348,6 @@ class MiscritsApp {
 
         // Save handler
         saveBtn.addEventListener('click', () => {
-            // Save days data
-            this.saveDaysChanges(marker, markerElement, daysContainer);
-            
             // Save marker info data
             this.saveMarkerInfoFromEditor(marker, exactImagesContainer);
             
@@ -2531,7 +2561,6 @@ class MiscritsApp {
         const markerName = marker.isMultiple 
             ? marker.miscrits.map(m => m.miscritName).join(', ')
             : marker.miscritName;
-        console.log(`Updated info for marker: ${markerName}`);
     }
 
     showEditDaysModal(marker, markerElement) {
@@ -2690,7 +2719,6 @@ class MiscritsApp {
         const markerName = marker.isMultiple 
             ? marker.miscrits.map(m => m.miscritName).join(', ')
             : marker.miscritName;
-        console.log(`Updated days for ${markerName}`);
     }
 
     generateDaysEditor(marker, container) {
@@ -2796,7 +2824,6 @@ class MiscritsApp {
         const markerName = marker.isMultiple 
             ? marker.miscrits.map(m => m.miscritName).join(', ')
             : marker.miscritName;
-        console.log(`Updated marker element for ${markerName}`);
     }
 
     removeMiscritMarker(marker, markerElement) {
@@ -2820,12 +2847,12 @@ class MiscritsApp {
             // Remove visual element
             markerElement.remove();
 
-            console.log(`Removed ${marker.miscritName} marker from ${marker.location}`);
         }
     }
 
     loadMiscritMarkers(location, imageContainer) {
         const markers = this.getMiscritMarkers();
+        
         if (markers[location]) {
             // Get all filter values
             const dayFilter = document.getElementById('day-filter').value;
@@ -2837,11 +2864,14 @@ class MiscritsApp {
             const elementFilter = document.getElementById('element-filter').value;
             const searchFilter = document.getElementById('search-filter').value.toLowerCase();
             
-            markers[location].forEach(marker => {
+            
+            markers[location].forEach((marker, index) => {
+                
                 // Check if marker should be visible based on all filters
                 const dayVisible = this.shouldShowMarker(marker, dayFilter, currentDay);
                 const ownershipVisible = this.shouldShowMarkerForOwnership(marker, ownershipFilter);
                 const otherFiltersVisible = this.shouldShowMarkerForOtherFilters(marker, areaFilter, rarityFilter, elementFilter, searchFilter);
+                
                 
                 // Only show marker if it passes all filters
                 if (dayVisible && ownershipVisible && otherFiltersVisible) {
@@ -2850,8 +2880,10 @@ class MiscritsApp {
                     } else {
                         this.createMarkerElement(marker, imageContainer);
                     }
+                } else {
                 }
             });
+        } else {
         }
     }
 
@@ -2885,12 +2917,13 @@ class MiscritsApp {
         if (marker.isMultiple) {
             // For multiple miscrits, show marker if any miscrit is available on target day
             return marker.miscrits.some(miscrit => {
-                const days = miscrit.daysOfWeek || ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+                // Get days from CDN data
+                const days = this.getDaysOfWeekFromCDN(miscrit.miscritId, marker.location);
                 return days.includes(targetDay);
             });
         } else {
-            // For single miscrit, check its availability
-            const days = marker.daysOfWeek || ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            // For single miscrit, check its availability from CDN
+            const days = this.getDaysOfWeekFromCDN(marker.miscritId, marker.location);
             return days.includes(targetDay);
         }
     }
@@ -3062,11 +3095,13 @@ class MiscritsApp {
         
         if (dataSource === 'json') {
             // Return from cached JSON data if available
-            return this.cachedJsonData?.markers || {};
+            const markers = this.cachedJsonData?.markers || {};
+            return markers;
         } else {
             // Return from local storage
             const stored = localStorage.getItem('miscritMarkers');
-            return stored ? JSON.parse(stored) : {};
+            const markers = stored ? JSON.parse(stored) : {};
+            return markers;
         }
     }
 
@@ -3099,11 +3134,9 @@ class MiscritsApp {
 
     exportData() {
         const markers = this.getMiscritMarkers();
-        const availabilityData = this.getMiscritAvailabilityData();
         
         const exportData = {
             markers: markers,
-            miscritAvailability: availabilityData,
             exportDate: new Date().toISOString(),
             version: "1.0"
         };
@@ -3118,7 +3151,6 @@ class MiscritsApp {
         link.click();
         
         URL.revokeObjectURL(url);
-        console.log('Exported miscrits data:', exportData);
     }
 
     showClearMarkersConfirmation() {
@@ -3179,7 +3211,6 @@ class MiscritsApp {
             marker.remove();
         });
         
-        console.log('All markers have been cleared');
     }
 
     showClearDatesConfirmation() {
@@ -3240,7 +3271,6 @@ class MiscritsApp {
         alert('All custom day-of-week data has been cleared. Reloading page...');
         location.reload();
         
-        console.log('All miscrit availability data has been cleared');
     }
 
     showAdminModeWarning() {
@@ -3322,7 +3352,6 @@ class MiscritsApp {
         const adminHelpSection = document.getElementById('admin-help-section');
         adminHelpSection.style.display = 'block';
         
-        console.log('Admin mode activated');
     }
 
     exitAdminMode() {
@@ -3346,7 +3375,6 @@ class MiscritsApp {
         const adminHelpSection = document.getElementById('admin-help-section');
         adminHelpSection.style.display = 'none';
         
-        console.log('Admin mode deactivated');
     }
 
     hideLoading() {
@@ -3382,7 +3410,6 @@ class MiscritsApp {
             )
             .sort((a, b) => a.name.localeCompare(b.name));
 
-        console.log(`Found ${locationMiscrits.length} miscrits for location: ${location}`, locationMiscrits);
 
         // Track selected miscrits - start with current miscrits in marker
         let selectedMiscrits = [...marker.miscrits];
@@ -3513,7 +3540,6 @@ class MiscritsApp {
             }
 
             document.body.removeChild(modal);
-            console.log('Updated marker miscrits');
         });
 
         // Search functionality
@@ -3673,7 +3699,6 @@ class MiscritsApp {
             }
 
             cleanup();
-            console.log(`Moved multiple marker from ${originalX}%, ${originalY}% to ${x}%, ${y}%`);
         };
 
         // Escape key handler
@@ -4023,7 +4048,6 @@ class MiscritsApp {
             const adminHelpSection = document.getElementById('admin-help-section');
             adminHelpSection.style.display = 'block';
             
-            console.log('Admin mode restored from previous session');
         }
     }
 
@@ -4120,8 +4144,8 @@ class MiscritsApp {
      * Ported from extract_miscrit_ratings.py
      */
     calculateMiscritRating(miscritData) {
-        // Stat keys from the game
-        const statKeys = ["hp", "spd", "ea", "ed", "pa", "pd"];
+        // Stat keys from the game (NEW FORMAT: shortened names)
+        const statKeys = ["h", "s", "e", "d", "p", "pd"];
         
         // Rating labels from the game (18 - rating_sum = index)
         const ratings = ["S+", "S", "A+", "A", "B+", "B", "C+", "C", "D+", "D", "F+", "F", "F-"];
@@ -4168,7 +4192,7 @@ class MiscritsApp {
         }
 
         // Find all instances of this miscrit in player's collection
-        const ownedMiscrits = this.playerData.miscrits.filter(miscrit => miscrit.mId === miscritId);
+        const ownedMiscrits = this.playerData.miscrits.filter(miscrit => miscrit.m === miscritId);
         
         const stats = {
             total: ownedMiscrits.length,
@@ -4205,11 +4229,11 @@ class MiscritsApp {
      */
     matchesFilter(miscrit, filterType) {
         const stats = {
-            hp: miscrit.hp || 1,
-            spd: miscrit.spd || 1,
-            ea: miscrit.ea || 1,
-            ed: miscrit.ed || 1,
-            pa: miscrit.pa || 1,
+            hp: miscrit.h || 1,
+            spd: miscrit.s || 1,
+            ea: miscrit.e || 1,
+            ed: miscrit.d || 1,
+            pa: miscrit.p || 1,
             pd: miscrit.pd || 1
         };
 
@@ -4254,17 +4278,17 @@ class MiscritsApp {
      * Based on base ratings (1-3), metadata, level, and bonuses
      */
     calculateTotalStats(miscrit, miscritInfo) {
-        const level = miscrit.level || 1;
+        const level = miscrit.l || 1; // NEW: level is now 'l'
         const starMap = {"Weak": 1, "Moderate": 2, "Strong": 3, "Max": 4, "Elite": 5};
         
-        // Stat mapping: player data uses ea/ed/pa/pd while metadata uses same keys
+        // Stat mapping: player data now uses h/s/e/d/p/pd (NEW FORMAT)
         const statMapping = {
-            'hp': 'hp',
-            'spd': 'spd', 
-            'ea': 'ea',
-            'ed': 'ed',
-            'pa': 'pa',
-            'pd': 'pd'
+            'h': 'hp',    // player data 'h' maps to metadata 'hp'
+            's': 'spd',   // player data 's' maps to metadata 'spd'
+            'e': 'ea',    // player data 'e' maps to metadata 'ea'
+            'd': 'ed',    // player data 'd' maps to metadata 'ed'
+            'p': 'pa',    // player data 'p' maps to metadata 'pa'
+            'pd': 'pd'    // player data 'pd' maps to metadata 'pd'
         };
         
         const totalStats = {};
@@ -4277,12 +4301,13 @@ class MiscritsApp {
             const metadataStatLevel = miscritInfo[metadataKey] || "Weak";
             const metadataStatValue = starMap[metadataStatLevel] || 1;
             
-            // Get bonus from training
-            const bonus = miscrit[`${playerKey}_bonus`] || 0;
+            // Get bonus from training (bonus fields use 'b' suffix: hb, sb, eb, db, pb, pdb)
+            const bonusKey = `${playerKey}b`;
+            const bonus = miscrit[bonusKey] || 0;
             
             // Calculate total stat using the game's formula
             let value;
-            if (playerKey === "hp") {
+            if (playerKey === "h") {  // HP uses different formula
                 // HP formula: ((12 + metadata_value * 2 + base_rating * 1.5) / 5) * level + 10 + bonus
                 const globalValue = (12 + metadataStatValue * 2 + baseStatRating * 1.5) / 5;
                 value = Math.floor(level * globalValue + 10);
@@ -4323,7 +4348,7 @@ class MiscritsApp {
                     <!-- Level Badge -->
                     <div class="col-level" style="margin-right: 16px;">
                         <div style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: white; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-                            Lv.${miscrit.level || 1}
+                            Lv.${miscrit.l || 1}
                         </div>
                     </div>
                     
@@ -4371,27 +4396,27 @@ class MiscritsApp {
                         <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; font-size: 13px;">
                             <div style="text-align: center;">
                                 <div style="color: var(--text-muted); font-size: 10px;">HP</div>
-                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.hp || 1)};">${miscrit.hp_bonus || 0}</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.h || 1)};">${miscrit.hb || 0}</div>
                             </div>
                             <div style="text-align: center;">
                                 <div style="color: var(--text-muted); font-size: 10px;">SPD</div>
-                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.spd || 1)};">${miscrit.spd_bonus || 0}</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.s || 1)};">${miscrit.sb || 0}</div>
                             </div>
                             <div style="text-align: center;">
                                 <div style="color: var(--text-muted); font-size: 10px;">EA</div>
-                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.ea || 1)};">${miscrit.ea_bonus || 0}</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.e || 1)};">${miscrit.eb || 0}</div>
                             </div>
                             <div style="text-align: center;">
                                 <div style="color: var(--text-muted); font-size: 10px;">PA</div>
-                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.pa || 1)};">${miscrit.pa_bonus || 0}</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.p || 1)};">${miscrit.pb || 0}</div>
                             </div>
                             <div style="text-align: center;">
                                 <div style="color: var(--text-muted); font-size: 10px;">ED</div>
-                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.ed || 1)};">${miscrit.ed_bonus || 0}</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.d || 1)};">${miscrit.db || 0}</div>
                             </div>
                             <div style="text-align: center;">
                                 <div style="color: var(--text-muted); font-size: 10px;">PD</div>
-                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.pd || 1)};">${miscrit.pd_bonus || 0}</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.pd || 1)};">${miscrit.pdb || 0}</div>
                             </div>
                         </div>
                     </div>
@@ -4542,15 +4567,13 @@ class MiscritsApp {
             const restored = await this.miscritsApi.restoreSession();
             
             if (restored) {
-                console.log('[MiscritsApp] Session restored successfully');
                 
-                // Try to get player data (will use cache if available)
+                // Try to get player data (fetches fresh from server)
                 try {
-                    this.playerData = await this.miscritsApi.getPlayerData(true); // Use cache
+                    this.playerData = await this.miscritsApi.getPlayerData();
                     this.isLoggedIn = true;
                     this.updateLoginUI();
                     
-                    console.log('[MiscritsApp] Auto-login successful');
                 } catch (error) {
                     console.warn('[MiscritsApp] Failed to get player data with restored session:', error);
                     // Session might be invalid, clear it
@@ -4559,7 +4582,6 @@ class MiscritsApp {
                     this.updateLoginUI();
                 }
             } else {
-                console.log('[MiscritsApp] No valid stored session found');
             }
         } catch (error) {
             console.warn('[MiscritsApp] Session restoration failed:', error);
@@ -4727,11 +4749,10 @@ class MiscritsApp {
         }
 
         const miscrits = this.playerData.miscrits;
-        console.log(`[MiscritsApp] Displaying ${miscrits.length} miscrits`);
 
         // Process and sort miscrits
         const processedMiscrits = miscrits.map(miscrit => {
-            const miscritId = miscrit.mId;
+            const miscritId = miscrit.m; // NEW: miscrit ID is now 'm'
             const miscritInfo = this.getMiscritInfoFromId(miscritId);
             
             // Get the CDN miscrit data to access evolution names
@@ -4746,13 +4767,13 @@ class MiscritsApp {
             return {
                 ...miscrit,
                 name: miscritInfo.name,
-                displayName: miscrit.nick || miscritInfo.name, // Player's nickname or primary name
+                displayName: miscrit.n || miscritInfo.name, // NEW: nickname is now 'n'
                 baseName: baseName, // Base evolution name (always first form)
                 rarity: miscritInfo.rarity,
                 element: miscritInfo.element,
                 rating: this.calculateMiscritRating(miscrit),
-                statTotal: (miscrit.hp || 1) + (miscrit.spd || 1) + (miscrit.ea || 1) + 
-                          (miscrit.ed || 1) + (miscrit.pa || 1) + (miscrit.pd || 1),
+                statTotal: (miscrit.h || 1) + (miscrit.s || 1) + (miscrit.e || 1) + 
+                          (miscrit.d || 1) + (miscrit.p || 1) + (miscrit.pd || 1), // NEW: shortened stat names
                 totalStats: totalStats, // Calculated total stats
                 imageUrl: miscritInfo.imageUrl,
                 elementImageUrl: miscritInfo.elementImageUrl
@@ -4865,7 +4886,7 @@ class MiscritsApp {
                     <!-- Level Badge -->
                     <div class="col-level" style="margin-right: 16px;">
                         <div style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: white; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-                            Lv.${miscrit.level || 1}
+                            Lv.${miscrit.l || 1}
                         </div>
                     </div>
                     
@@ -4913,27 +4934,27 @@ class MiscritsApp {
                         <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; font-size: 13px;">
                             <div style="text-align: center;">
                                 <div style="color: var(--text-muted); font-size: 10px;">HP</div>
-                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.hp || 1)};">${miscrit.hp_bonus || 0}</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.h || 1)};">${miscrit.hb || 0}</div>
                             </div>
                             <div style="text-align: center;">
                                 <div style="color: var(--text-muted); font-size: 10px;">SPD</div>
-                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.spd || 1)};">${miscrit.spd_bonus || 0}</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.s || 1)};">${miscrit.sb || 0}</div>
                             </div>
                             <div style="text-align: center;">
                                 <div style="color: var(--text-muted); font-size: 10px;">EA</div>
-                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.ea || 1)};">${miscrit.ea_bonus || 0}</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.e || 1)};">${miscrit.eb || 0}</div>
                             </div>
                             <div style="text-align: center;">
                                 <div style="color: var(--text-muted); font-size: 10px;">PA</div>
-                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.pa || 1)};">${miscrit.pa_bonus || 0}</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.p || 1)};">${miscrit.pb || 0}</div>
                             </div>
                             <div style="text-align: center;">
                                 <div style="color: var(--text-muted); font-size: 10px;">ED</div>
-                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.ed || 1)};">${miscrit.ed_bonus || 0}</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.d || 1)};">${miscrit.db || 0}</div>
                             </div>
                             <div style="text-align: center;">
                                 <div style="color: var(--text-muted); font-size: 10px;">PD</div>
-                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.pd || 1)};">${miscrit.pd_bonus || 0}</div>
+                                <div style="font-weight: bold; color: ${this.getStatColor(miscrit.pd || 1)};">${miscrit.pdb || 0}</div>
                             </div>
                         </div>
                     </div>
@@ -4951,8 +4972,9 @@ class MiscritsApp {
                     ${summaryHtml}
                     ${columnControlsHtml}
                     <div class="miscrits-list">${miscritsHtml}</div>
-                    <div style="margin-top: 20px; text-align: center;">
-                        <button id="export-miscrits-btn" class="export-btn">Export as JSON</button>
+                    <div style="margin-top: 20px; text-align: center; display: flex; gap: 10px; justify-content: center;">
+                        <button id="export-miscrits-btn" class="export-btn">Export Processed Data</button>
+                        <button id="export-raw-btn" class="export-btn" style="background: var(--accent-secondary);">Download Raw API Response</button>
                     </div>
                 </div>
             </div>
@@ -4980,9 +5002,33 @@ class MiscritsApp {
             const url = URL.createObjectURL(dataBlob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = 'my_miscrits.json';
+            link.download = 'my_miscrits_processed.json';
             link.click();
             URL.revokeObjectURL(url);
+        });
+
+        // Export raw API response button
+        const exportRawBtn = miscritModal.querySelector('#export-raw-btn');
+        exportRawBtn.addEventListener('click', async () => {
+            try {
+                // Fetch fresh raw data from the API
+                const session = this.miscritsApi.session;
+                const response = await this.miscritsApi.client.rpc(session, 'get_player', '{}');
+                
+                // Save the entire raw response
+                const dataStr = JSON.stringify(response, null, 2);
+                const dataBlob = new Blob([dataStr], {type: 'application/json'});
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'player_data_raw_response.json';
+                link.click();
+                URL.revokeObjectURL(url);
+                
+            } catch (error) {
+                console.error('Failed to fetch raw player data:', error);
+                alert('Failed to download raw data. See console for details.');
+            }
         });
 
         // Column visibility controls
@@ -5049,7 +5095,7 @@ class MiscritsApp {
         const ownedRatingsMap = new Map();
         this.playerData.miscrits.forEach(playerMiscrit => {
             const rating = this.calculateMiscritRating(playerMiscrit);
-            const key = `${playerMiscrit.mId}_${rating}`;
+            const key = `${playerMiscrit.m}_${rating}`; // NEW: miscrit ID is now 'm'
             ownedRatingsMap.set(key, true);
         });
 
