@@ -1884,6 +1884,7 @@ class MiscritsApp {
         const modal = document.getElementById('marker-info-modal');
         const modalTitle = document.getElementById('modal-title');
         const modalMiscritsList = document.getElementById('modal-miscrits-list');
+        const modalMarkerLocation = document.getElementById('modal-marker-location');
         const modalAdditionalInfo = document.getElementById('modal-additional-info');
         const modalExactImages = document.getElementById('modal-exact-images');
 
@@ -1896,6 +1897,7 @@ class MiscritsApp {
 
         // Clear previous content
         modalMiscritsList.innerHTML = '';
+        modalMarkerLocation.innerHTML = '';
         modalAdditionalInfo.innerHTML = '';
         modalExactImages.innerHTML = '';
 
@@ -1944,6 +1946,134 @@ class MiscritsApp {
                 <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">${daysText}</div>
             `;
             grid.appendChild(miscritCard);
+        }
+
+        // Add marker location preview
+        const locationImageMap = {
+            'Hidden Forest': 'assets/maps/hidden_forest.jpg',
+            'Forest': 'assets/maps/forest.jpg',
+            'Mansion': 'assets/maps/mansion_all.png',
+            'Mount Gemma': 'assets/maps/mount_gemma.png',
+            'Cave': 'assets/maps/cave.png',
+            'Sunfall Shores': 'assets/maps/sunfall_shores.jpg',
+            'Moon': 'assets/maps/moon.png',
+            'Shack': 'assets/maps/shack_all.png'
+        };
+
+        const mapImageSrc = locationImageMap[marker.location];
+        if (mapImageSrc) {
+            modalMarkerLocation.innerHTML = `
+                <div class="modal-section">
+                    <h4>Marker Location</h4>
+                    <div class="modal-marker-location-container">
+                        <div class="modal-marker-location-preview" style="position: relative; width: 200px; height: 200px; overflow: hidden; margin: 0 auto; border: 2px solid var(--border-color); border-radius: 8px;">
+                            <img src="${mapImageSrc}" alt="${marker.location} map" class="modal-marker-map-image" style="position: absolute;">
+                            <div class="modal-marker-pin" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 24px; z-index: 10;">📍</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // After the image loads, calculate the crop position
+            const mapImg = modalMarkerLocation.querySelector('.modal-marker-map-image');
+            
+            const positionImage = () => {
+                const naturalWidth = mapImg.naturalWidth;
+                const naturalHeight = mapImg.naturalHeight;
+                
+                // The map images are displayed with object-fit: contain in a 800x600 container
+                // We need to calculate how the image is actually scaled and positioned
+                const containerWidth = 800;
+                const containerHeight = 600;
+                
+                // Calculate the scale factor to fit the image in 800x600 while maintaining aspect ratio
+                const scaleX = containerWidth / naturalWidth;
+                const scaleY = containerHeight / naturalHeight;
+                const scale = Math.min(scaleX, scaleY); // Use the smaller scale to fit within bounds
+                
+                // Calculate the actual displayed dimensions
+                const displayedWidth = naturalWidth * scale;
+                const displayedHeight = naturalHeight * scale;
+                
+                // Calculate the offset of the image within the 800x600 container (due to centering)
+                const containerOffsetX = (containerWidth - displayedWidth) / 2;
+                const containerOffsetY = (containerHeight - displayedHeight) / 2;
+                
+                // Set the image to its natural size for the preview
+                mapImg.style.width = `${naturalWidth}px`;
+                mapImg.style.height = `${naturalHeight}px`;
+                
+                // marker.x and marker.y are percentages of the 800x600 container
+                // First, convert to pixel position within the 800x600 container
+                const markerContainerX = (marker.x / 100) * containerWidth;
+                const markerContainerY = (marker.y / 100) * containerHeight;
+                
+                // Subtract the container offset to get position on the displayed image
+                const markerDisplayedX = markerContainerX - containerOffsetX;
+                const markerDisplayedY = markerContainerY - containerOffsetY;
+                
+                // Scale back to natural image coordinates
+                const markerNaturalX = markerDisplayedX / scale;
+                const markerNaturalY = markerDisplayedY / scale;
+                
+                // Position the image so the marker point is in the center of the 200x200 container
+                // Note: The actual marker uses translate(-50%, -100%), meaning the bottom-center
+                // of the marker element is at the coordinate. We want to center on that point.
+                // Add a vertical adjustment to better center on the visual pin point
+                
+                let offsetX = markerNaturalX - 100;
+                let offsetY = markerNaturalY - 120;
+                
+                // Clamp the offsets to ensure we don't show area outside the image bounds
+                // The 200x200 preview window can show from offset to offset+200
+                const maxOffsetX = naturalWidth - 200;
+                const maxOffsetY = naturalHeight - 200;
+                
+                // Calculate where the marker will actually appear in the preview
+                let markerPinX = 100; // Default center
+                let markerPinY = 120; // Default center (with adjustment)
+                let needsRepositioning = false;
+                
+                // If we hit the boundaries, adjust the pin position
+                if (offsetX < 0) {
+                    markerPinX = markerNaturalX; // Marker is closer to left edge
+                    markerPinY = markerPinY - 40; // Adjust up by 40px when hitting horizontal edge
+                    offsetX = 0;
+                    needsRepositioning = true;
+                } else if (offsetX > maxOffsetX) {
+                    markerPinX = 200 - (naturalWidth - markerNaturalX); // Marker is closer to right edge
+                    markerPinY = markerPinY - 40; // Adjust up by 40px when hitting horizontal edge
+                    offsetX = maxOffsetX;
+                    needsRepositioning = true;
+                }
+                
+                if (offsetY < 0) {
+                    markerPinY = markerNaturalY; // Marker is closer to top edge
+                    offsetY = 0;
+                    needsRepositioning = true;
+                } else if (offsetY > maxOffsetY) {
+                    markerPinY = 200 - (naturalHeight - markerNaturalY); // Marker is closer to bottom edge
+                    offsetY = maxOffsetY;
+                    needsRepositioning = true;
+                }
+                
+                mapImg.style.left = `-${offsetX}px`;
+                mapImg.style.top = `-${offsetY}px`;
+                
+                // Only update the pin position if we hit a boundary
+                if (needsRepositioning) {
+                    const pinElement = modalMarkerLocation.querySelector('.modal-marker-pin');
+                    pinElement.style.left = `${markerPinX}px`;
+                    pinElement.style.top = `${markerPinY}px`;
+                    pinElement.style.transform = 'translate(-50%, -50%)';
+                }
+            };
+            
+            if (mapImg.complete) {
+                positionImage();
+            } else {
+                mapImg.onload = positionImage;
+            }
         }
 
         // Add additional information

@@ -1932,6 +1932,40 @@ body.admin-mode .miscrit-card:hover::after {
     white-space: pre-wrap;
 }
 
+.modal-marker-location-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.modal-marker-location-preview {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-tertiary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.modal-marker-map-image {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+}
+
+.modal-marker-pin {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    z-index: 10;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    pointer-events: none;
+}
+
 .modal-images-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
