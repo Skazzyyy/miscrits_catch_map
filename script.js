@@ -1481,9 +1481,17 @@ class MiscritsApp {
         const markerInfo = this.getMiscritMarkerInfo(miscrit);
         
         if (markerInfo) {
-            footer.classList.add('has-location-info');
-            footer.textContent = 'Click to see exact location';
-            footer.title = 'This Miscrit has specific location information and images';
+            // Check if the marker has exact location images
+            if (markerInfo.exactLocationImages && markerInfo.exactLocationImages.length > 0) {
+                footer.classList.add('has-location-info');
+                footer.textContent = 'Click to see exact location';
+                footer.title = 'This Miscrit has specific location information and images';
+            } else {
+                // Marker exists but no exact location images
+                footer.classList.add('has-marker-only');
+                footer.textContent = 'Check marker on the map';
+                footer.title = 'This Miscrit has a marker on the map but no exact location images';
+            }
         } else {
             footer.classList.add('generic');
             footer.textContent = 'Can be found anywhere in area';
@@ -1867,9 +1875,9 @@ class MiscritsApp {
     }
 
     hasMarkerInfo(marker) {
-        // Check if marker has additional information or exact location images
-        return (marker.additionalInformation && marker.additionalInformation.trim() !== '') ||
-               (marker.exactLocationImages && marker.exactLocationImages.length > 0);
+        // A marker exists if it has been placed (it's in the markers data)
+        // We consider it has info if it has additional information, exact location images, or just exists as a positioned marker
+        return true; // If we're checking a marker, it means it exists and has position info
     }
 
     showMarkerModal(marker) {

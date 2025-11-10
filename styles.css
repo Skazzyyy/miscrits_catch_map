@@ -1991,6 +1991,13 @@ body.admin-mode .miscrit-card:hover::after {
     box-shadow: 0 2px 8px rgba(74, 158, 255, 0.4);
 }
 
+.miscrit-location-footer.has-marker-only {
+    background: linear-gradient(135deg, #20b2aa, #3cb371);
+    color: white;
+    cursor: default;
+    border-color: #20b2aa;
+}
+
 .miscrit-location-footer.generic {
     background: var(--bg-tertiary);
     color: var(--text-secondary);
