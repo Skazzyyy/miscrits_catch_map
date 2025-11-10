@@ -2162,9 +2162,43 @@
         "additionalInformation": "",
         "id": "fa2c3fa0-dad1-4e27-9b75-4cf9db1082f0",
         "isMultiple": true
+      },
+      {
+        "location": "Shack",
+        "x": 38.01,
+        "y": 76.72,
+        "miscrits": [
+          {
+            "miscritId": 622,
+            "miscritName": "Phoboros",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/phoboros_avatar.png"
+          }
+        ],
+        "exactLocationImages": [],
+        "additionalInformation": "",
+        "id": "e6d43ad8-a150-43b6-b76a-b87f7dc59fcc",
+        "isMultiple": true
+      },
+      {
+        "location": "Shack",
+        "x": 58.5,
+        "y": 66.07,
+        "miscrits": [
+          {
+            "miscritId": 623,
+            "miscritName": "Lagoony",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/lagoony_avatar.png"
+          }
+        ],
+        "exactLocationImages": [],
+        "additionalInformation": "",
+        "id": "368affe0-f46d-4a8a-b283-559c90670f13",
+        "isMultiple": true
       }
     ]
   },
-  "exportDate": "2025-10-26T07:51:21.117Z",
+  "exportDate": "2025-11-10T22:56:40.266Z",
   "version": "1.0"
 }
