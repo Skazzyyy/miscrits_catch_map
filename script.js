@@ -53,7 +53,9 @@ class MiscritsApp {
     }
 
     async loadMiscrits() {
-        const response = await fetch('https://cdn.worldofmiscrits.com/miscrits.json');
+        // Add cache-busting parameter to always get fresh data from CDN
+        const cacheBuster = Date.now();
+        const response = await fetch(`https://cdn.worldofmiscrits.com/miscrits.json?v=${cacheBuster}`);
         if (!response.ok) {
             throw new Error(`Failed to load data: ${response.status} ${response.statusText}`);
         }
