@@ -596,10 +596,29 @@ class MiscritsApp {
             let matchesOwnership = true;
             if (ownershipFilter && this.playerData && this.playerData.miscrits) {
                 const stats = this.getMiscritCollectionStats(miscrit.id);
+                
                 if (ownershipFilter === 'owned') {
                     matchesOwnership = stats && stats.total > 0;
                 } else if (ownershipFilter === 'not-owned') {
                     matchesOwnership = !stats || stats.total === 0;
+                } else if (ownershipFilter === 'owned-perfect') {
+                    // Show only miscrits where I own the perfect stat version
+                    if (!stats || stats.total === 0) {
+                        matchesOwnership = false;
+                    } else {
+                        const perfectStatType = this.getPerfectStatType(miscrit.id);
+                        matchesOwnership = (perfectStatType === 's-plus' && stats.sPlus > 0) ||
+                                         (perfectStatType === 'red-spd-only' && stats.aPlusRS > 0);
+                    }
+                } else if (ownershipFilter === 'not-owned-perfect') {
+                    // Show only miscrits where I DON'T own the perfect stat version
+                    if (!stats || stats.total === 0) {
+                        matchesOwnership = true; // Don't own any version at all
+                    } else {
+                        const perfectStatType = this.getPerfectStatType(miscrit.id);
+                        matchesOwnership = (perfectStatType === 's-plus' && stats.sPlus === 0) ||
+                                         (perfectStatType === 'red-spd-only' && stats.aPlusRS === 0);
+                    }
                 }
             }
 
@@ -1097,17 +1116,15 @@ class MiscritsApp {
                 const gridDiv = document.createElement('div');
                 gridDiv.className = `stats-grid ${stats.total === 0 ? 'not-owned' : ''}`;
                 
-                // Add each stat with appropriate coloring
+                // Add each stat with appropriate coloring (only S+, A+ RS, and Other)
                 const statConfigs = [
                     { label: 'S+', count: stats.sPlus },
                     { label: 'A+ RS', count: stats.aPlusRS },
-                    { label: 'A RS', count: stats.aRS },
-                    { label: 'B+ RS', count: stats.bPlusRS },
-                    { label: 'Other', count: stats.total - (stats.sPlus + stats.aPlusRS + stats.aRS + stats.bPlusRS) }
+                    { label: 'Other', count: stats.total - (stats.sPlus + stats.aPlusRS) }
                 ];
                 
                 // Determine overall ownership status
-                const hasAnyInScenarios = stats.sPlus > 0 || stats.aPlusRS > 0 || stats.aRS > 0 || stats.bPlusRS > 0;
+                const hasAnyInScenarios = stats.sPlus > 0 || stats.aPlusRS > 0;
                 const overallStatus = stats.total === 0 ? 'none' : (hasAnyInScenarios ? 'scenario' : 'other');
                 
                 // Get the perfect stat type for this miscrit
@@ -4409,9 +4426,8 @@ class MiscritsApp {
         const stats = {
             total: ownedMiscrits.length,
             sPlus: 0,
-            aPlusRS: 0,    // A+ RS (red spd + 1 other red)
-            aRS: 0,        // A RS (red spd + 1 white)
-            bPlusRS: 0     // B+ RS (red spd only)
+            aPlusRS: 0     // A+ RS (red spd only, everything else green)
+            // All other miscrits (A RS, B+ RS, etc.) will fall under "Other"
         };
 
         if (ownedMiscrits.length === 0) {
@@ -4425,12 +4441,8 @@ class MiscritsApp {
                 stats.sPlus++;
             } else if (this.matchesFilter(miscrit, 'red-spd-only')) {
                 stats.aPlusRS++;  // A+ RS = red speed only (everything else green)
-            } else if (this.matchesFilter(miscrit, 'red-spd-one-white')) {
-                stats.aRS++;      // A RS = red speed + 1 white stat
-            } else if (this.matchesFilter(miscrit, 'red-spd-one-red')) {
-                stats.bPlusRS++;  // B+ = red speed + 1 other red stat
             }
-            // If none of the above match, it will be counted in "Other"
+            // Everything else (A RS, B+ RS, etc.) falls under "Other" and doesn't need explicit counting
         });
 
         return stats;
