@@ -1055,6 +1055,14 @@ class MiscritsApp {
             
             elementDiv.appendChild(elementIcon);
         }
+        
+        // Add perfect stat badge next to element icon
+        const perfectStatType = this.getPerfectStatType(miscrit.id);
+        const perfectStatBadge = document.createElement('span');
+        perfectStatBadge.className = 'card-perfect-stat-badge';
+        perfectStatBadge.textContent = perfectStatType === 's-plus' ? 'S+' : 'RS';
+        perfectStatBadge.title = perfectStatType === 's-plus' ? 'Perfect with S+' : 'Perfect with A+ RS (Red Speed)';
+        elementDiv.appendChild(perfectStatBadge);
 
         // Create location info
         const locationDiv = document.createElement('div');
@@ -1102,6 +1110,10 @@ class MiscritsApp {
                 const hasAnyInScenarios = stats.sPlus > 0 || stats.aPlusRS > 0 || stats.aRS > 0 || stats.bPlusRS > 0;
                 const overallStatus = stats.total === 0 ? 'none' : (hasAnyInScenarios ? 'scenario' : 'other');
                 
+                // Get the perfect stat type for this miscrit
+                const perfectStatType = this.getPerfectStatType(miscrit.id);
+                console.log('Displaying stats for miscrit:', miscrit.firstName, 'perfect type:', perfectStatType);
+                
                 statConfigs.forEach(config => {
                     const statItem = document.createElement('div');
                     statItem.className = 'stat-item';
@@ -1111,7 +1123,17 @@ class MiscritsApp {
                     label.textContent = config.label;
                     
                     const countBox = document.createElement('span');
-                    countBox.className = `stat-count ${this.getStatCountClass(config.count, overallStatus)}`;
+                    let countClass = `stat-count ${this.getStatCountClass(config.count, overallStatus)}`;
+                    
+                    // Add gold outline for perfect stat
+                    const isPerfect = (perfectStatType === 's-plus' && config.label === 'S+') ||
+                                     (perfectStatType === 'red-spd-only' && config.label === 'A+ RS');
+                    console.log('  Config:', config.label, 'isPerfect:', isPerfect, 'perfectStatType:', perfectStatType);
+                    if (isPerfect) {
+                        countClass += ' perfect-stat';
+                    }
+                    
+                    countBox.className = countClass;
                     countBox.textContent = config.count;
                     
                     statItem.appendChild(label);
@@ -1917,10 +1939,15 @@ class MiscritsApp {
                 };
                 const daysText = days.length === 7 ? 'All days' : days.map(d => dayNames[d]).join(', ');
                 
+                // Get perfect stat type
+                const perfectStatType = this.getPerfectStatType(miscrit.miscritId);
+                const perfectStatBadge = perfectStatType === 's-plus' ? 'S+' : 'RS';
+                
                 miscritCard.innerHTML = `
                     <img src="${miscrit.imageUrl}" alt="${miscrit.miscritName}" class="modal-miscrit-image">
                     <div class="modal-miscrit-name">${miscrit.miscritName}</div>
                     <div class="modal-miscrit-rarity rarity-${miscrit.miscritRarity.toLowerCase()}">${miscrit.miscritRarity}</div>
+                    <div class="modal-perfect-stat-badge">${perfectStatBadge}</div>
                     <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">${daysText}</div>
                 `;
                 grid.appendChild(miscritCard);
@@ -1937,12 +1964,17 @@ class MiscritsApp {
             };
             const daysText = days.length === 7 ? 'All days' : days.map(d => dayNames[d]).join(', ');
             
+            // Get perfect stat type
+            const perfectStatType = this.getPerfectStatType(marker.miscritId);
+            const perfectStatBadge = perfectStatType === 's-plus' ? 'S+' : 'RS';
+            
             const miscritCard = document.createElement('div');
             miscritCard.className = 'modal-miscrit-card';
             miscritCard.innerHTML = `
                 <img src="${marker.imageUrl}" alt="${marker.miscritName}" class="modal-miscrit-image">
                 <div class="modal-miscrit-name">${marker.miscritName}</div>
                 <div class="modal-miscrit-rarity rarity-${marker.miscritRarity.toLowerCase()}">${marker.miscritRarity}</div>
+                <div class="modal-perfect-stat-badge">${perfectStatBadge}</div>
                 <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">${daysText}</div>
             `;
             grid.appendChild(miscritCard);
@@ -4324,6 +4356,46 @@ class MiscritsApp {
     }
 
     /**
+     * Get the perfect stat type for a miscrit based on its speed stat
+     * @param {number} miscritId - The miscrit ID
+     * @returns {string} - Either 's-plus' or 'red-spd-only' (A+ RS - red speed only, rest green)
+     */
+    getPerfectStatType(miscritId) {
+        const miscritInfo = this.getMiscritInfoFromId(miscritId);
+        
+        console.log('getPerfectStatType called:', { 
+            miscritId, 
+            miscritInfo: miscritInfo ? {
+                names: miscritInfo.names,
+                spd: miscritInfo.spd
+            } : null 
+        });
+        
+        if (!miscritInfo) {
+            console.log('  → No miscrit info found, defaulting to s-plus');
+            return 's-plus'; // Default to S+ if not found
+        }
+        
+        const speedStat = miscritInfo.spd;
+        
+        // If speed is Strong, Elite, or Max → perfect is S+
+        if (speedStat === 'Strong' || speedStat === 'Elite' || speedStat === 'Max') {
+            console.log('  → Speed is Strong/Elite/Max, returning s-plus');
+            return 's-plus';
+        }
+        
+        // If speed is Weak or Moderate → perfect is A+ RS (red speed only, everything else green)
+        if (speedStat === 'Weak' || speedStat === 'Moderate') {
+            console.log('  → Speed is Weak/Moderate, returning red-spd-only');
+            return 'red-spd-only';
+        }
+        
+        // Default to S+ for any other cases
+        console.log('  → Speed is something else:', speedStat, ', defaulting to s-plus');
+        return 's-plus';
+    }
+
+    /**
      * Calculate collection statistics for a specific miscrit
      */
     getMiscritCollectionStats(miscritId) {
@@ -4622,7 +4694,9 @@ class MiscritsApp {
                 rarity: miscrit.rarity || 'Common',
                 element: miscrit.element || 'Unknown',
                 imageUrl: `https://cdn.worldofmiscrits.com/avatars/${normalizedName}_avatar.png`,
-                elementImageUrl: miscrit.element ? `https://worldofmiscrits.com/${miscrit.element.toLowerCase()}.png` : ''
+                elementImageUrl: miscrit.element ? `https://worldofmiscrits.com/${miscrit.element.toLowerCase()}.png` : '',
+                spd: miscrit.spd,
+                names: miscrit.names
             };
         }
         return {
@@ -4630,7 +4704,9 @@ class MiscritsApp {
             rarity: 'Common',
             element: 'Unknown',
             imageUrl: '',
-            elementImageUrl: ''
+            elementImageUrl: '',
+            spd: undefined,
+            names: undefined
         };
     }
 
