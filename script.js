@@ -4378,6 +4378,49 @@ class MiscritsApp {
      * @returns {string} - Either 's-plus' or 'red-spd-only' (A+ RS - red speed only, rest green)
      */
     getPerfectStatType(miscritId) {
+        // Hardcoded exceptions that should always have S+ as perfect
+        const sPlusExceptions = [
+            20,   // Waddles
+            430,  // Blighted Cubsprout
+            433,  // Blighted Flue
+            505,  // Dark Steamguin
+            568,  // Charix
+            539,  // Dark Luna
+            156,  // Felis
+            73,   // Fangly
+            603,  // Mucora
+            614,  // Scarecrow Charix
+            616,  // Grimm Kiloray
+            611,  // Deetlee
+            619,  // Geneseed
+            201,  // Nanaslug
+            86,   // Dark Hydroseal
+            69,   // Fennie
+            592,  // Enex
+            585,  // Lunako
+            597,  // Beateorite
+            590,  // Drilune
+            524,  // Light Wavesling
+            517   // Light Fossillia
+        ];
+        
+        // Hardcoded exceptions that should always have A+ RS as perfect
+        const aPlusRSExceptions = [
+            608,  // Fickra
+            74,   // Dark Kiloray
+            536,  // Dark Flutterpat
+            65,   // Ignios
+            457   // Light Bludger
+        ];
+        
+        // Check hardcoded exceptions first
+        if (sPlusExceptions.includes(miscritId)) {
+            return 's-plus';
+        }
+        if (aPlusRSExceptions.includes(miscritId)) {
+            return 'red-spd-only';
+        }
+        
         const miscritInfo = this.getMiscritInfoFromId(miscritId);
         
         console.log('getPerfectStatType called:', { 
