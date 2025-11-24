@@ -25,6 +25,10 @@ class MiscritsApp {
         try {
             await this.loadMiscrits();
             await this.loadJsonData(); // Load JSON data for potential use
+            
+            // Always show version warning at the top
+            this.showVersionWarning(false);
+            
             this.setupEventListeners();
             
             // Try to restore saved session
@@ -53,14 +57,35 @@ class MiscritsApp {
     }
 
     async loadMiscrits() {
-        // Add cache-busting parameter to always get fresh data from CDN
-        const cacheBuster = Date.now();
-        // const response = await fetch(`https://cdn.worldofmiscrits.com/miscrits.json?v=${cacheBuster}`);
-        const response = await fetch(`https://cdn.worldofmiscrits.com/miscrits.json`);
-        if (!response.ok) {
-            throw new Error(`Failed to load data: ${response.status} ${response.statusText}`);
+        // Try to load from CDN first, fallback to local file if it fails
+        try {
+            // Add cache-busting parameter to always get fresh data from CDN
+            const cacheBuster = Date.now();
+            // const response = await fetch(`https://cdn.worldofmiscrits.com/miscrits.json?v=${cacheBuster}`);
+            const response = await fetch(`https://cdn.worldofmiscrits.com/miscrits.json`);
+            if (!response.ok) {
+                throw new Error(`CDN returned ${response.status}`);
+            }
+            this.miscrits = await response.json();
+            console.log('✓ Loaded miscrits data from CDN');
+        } catch (cdnError) {
+            console.warn('⚠ Failed to load from CDN, attempting local fallback:', cdnError.message);
+            
+            // Fallback to local file
+            try {
+                const localResponse = await fetch('assets/miscrits/miscrits.json');
+                if (!localResponse.ok) {
+                    throw new Error(`Local file returned ${localResponse.status}`);
+                }
+                this.miscrits = await localResponse.json();
+                console.log('✓ Loaded miscrits data from local file');
+                
+                // Show warning banner that we're using local/outdated data
+                this.showVersionWarning(true);
+            } catch (localError) {
+                throw new Error(`Failed to load data from both CDN and local file: ${cdnError.message} / ${localError.message}`);
+            }
         }
-        this.miscrits = await response.json();
     }
 
     async loadJsonData() {
@@ -3576,6 +3601,31 @@ class MiscritsApp {
         document.getElementById('loading').style.display = 'none';
         document.getElementById('error-message').textContent = message;
         document.getElementById('error').style.display = 'block';
+    }
+
+    showVersionWarning(isLocalFallback = false) {
+        // Check if banner already exists
+        let banner = document.getElementById('version-warning-banner');
+        if (!banner) {
+            banner = document.createElement('div');
+            banner.id = 'version-warning-banner';
+            banner.className = 'version-warning-banner';
+            
+            const message = isLocalFallback 
+                ? '⚠️ Using local data (CDN unavailable) - This data is for Miscrits version 1.19 and may be outdated'
+                : '⚠️ This data is for Miscrits version 1.19';
+            
+            banner.innerHTML = `
+                <div class="version-warning-content">
+                    <span class="version-warning-icon">📋</span>
+                    <span class="version-warning-text">${message}</span>
+                    <button class="version-warning-close" onclick="this.parentElement.parentElement.remove()">&times;</button>
+                </div>
+            `;
+            
+            // Insert at the very top of the body
+            document.body.insertBefore(banner, document.body.firstChild);
+        }
     }
 
     // Combined Add/Remove Miscrits functionality

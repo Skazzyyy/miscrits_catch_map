@@ -2196,9 +2196,43 @@
         "additionalInformation": "",
         "id": "368affe0-f46d-4a8a-b283-559c90670f13",
         "isMultiple": true
+      },
+      {
+        "location": "Shack",
+        "x": 53.98,
+        "y": 38.59,
+        "miscrits": [
+          {
+            "miscritId": 626,
+            "miscritName": "Elphin",
+            "miscritRarity": "Epic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/elphin_avatar.png"
+          }
+        ],
+        "exactLocationImages": [],
+        "additionalInformation": "",
+        "id": "d4057640-75bf-4f7c-9332-0e25ef33ba7e",
+        "isMultiple": true
+      },
+      {
+        "location": "Shack",
+        "x": 72.04,
+        "y": 43.45,
+        "miscrits": [
+          {
+            "miscritId": 627,
+            "miscritName": "Luvcraft",
+            "miscritRarity": "Exotic",
+            "imageUrl": "https://cdn.worldofmiscrits.com/avatars/luvcraft_avatar.png"
+          }
+        ],
+        "exactLocationImages": [],
+        "additionalInformation": "",
+        "id": "dfd6bd39-a9cb-48be-8bef-f7d1f734bb1e",
+        "isMultiple": true
       }
     ]
   },
-  "exportDate": "2025-11-10T22:56:40.266Z",
+  "exportDate": "2025-11-24T19:31:14.313Z",
   "version": "1.0"
 }
