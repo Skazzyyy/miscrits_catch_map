@@ -26,9 +26,6 @@ class MiscritsApp {
             await this.loadMiscrits();
             await this.loadJsonData(); // Load JSON data for potential use
             
-            // Always show version warning at the top
-            this.showVersionWarning(false);
-            
             this.setupEventListeners();
             
             // Try to restore saved session
@@ -62,15 +59,15 @@ class MiscritsApp {
             // Add cache-busting parameter to always get fresh data from CDN
             const cacheBuster = Date.now();
             // const response = await fetch(`https://cdn.worldofmiscrits.com/miscrits.json?v=${cacheBuster}`);
-            const response = await fetch(`https://cdn.worldofmiscrits.com/miscrits.json`);
+            const response = await fetch(`https://worldofmiscrits.com/miscrits.json`);
             if (!response.ok) {
                 throw new Error(`CDN returned ${response.status}`);
             }
             this.miscrits = await response.json();
-            console.log('✓ Loaded miscrits data from CDN');
-        } catch (cdnError) {
-            console.warn('⚠ Failed to load from CDN, attempting local fallback:', cdnError.message);
             
+            // Show version indicator for successful CDN load (latest version)
+            this.showDataVersion('latest');
+        } catch (cdnError) {
             // Fallback to local file
             try {
                 const localResponse = await fetch('assets/miscrits/miscrits.json');
@@ -78,10 +75,11 @@ class MiscritsApp {
                     throw new Error(`Local file returned ${localResponse.status}`);
                 }
                 this.miscrits = await localResponse.json();
-                console.log('✓ Loaded miscrits data from local file');
                 
                 // Show warning banner that we're using local/outdated data
                 this.showVersionWarning(true);
+                // Show version indicator with hardcoded version for local fallback
+                this.showDataVersion('1.19');
             } catch (localError) {
                 throw new Error(`Failed to load data from both CDN and local file: ${cdnError.message} / ${localError.message}`);
             }
@@ -1155,7 +1153,6 @@ class MiscritsApp {
                 
                 // Get the perfect stat type for this miscrit
                 const perfectStatType = this.getPerfectStatType(miscrit.id);
-                console.log('Displaying stats for miscrit:', miscrit.firstName, 'perfect type:', perfectStatType);
                 
                 statConfigs.forEach(config => {
                     const statItem = document.createElement('div');
@@ -1171,7 +1168,6 @@ class MiscritsApp {
                     // Add gold outline for perfect stat
                     const isPerfect = (perfectStatType === 's-plus' && config.label === 'S+') ||
                                      (perfectStatType === 'red-spd-only' && config.label === 'A+ RS');
-                    console.log('  Config:', config.label, 'isPerfect:', isPerfect, 'perfectStatType:', perfectStatType);
                     if (isPerfect) {
                         countClass += ' perfect-stat';
                     }
@@ -3628,6 +3624,14 @@ class MiscritsApp {
         }
     }
 
+    showDataVersion(version) {
+        // Show small version indicator next to site title
+        const versionElement = document.getElementById('data-version');
+        if (versionElement) {
+            versionElement.textContent = `v${version}`;
+        }
+    }
+
     // Combined Add/Remove Miscrits functionality
     showManageMiscritsModal(marker, markerElement, imageContainer) {
         // Get location miscrits with correct filtering logic
@@ -4474,16 +4478,7 @@ class MiscritsApp {
         
         const miscritInfo = this.getMiscritInfoFromId(miscritId);
         
-        console.log('getPerfectStatType called:', { 
-            miscritId, 
-            miscritInfo: miscritInfo ? {
-                names: miscritInfo.names,
-                spd: miscritInfo.spd
-            } : null 
-        });
-        
         if (!miscritInfo) {
-            console.log('  → No miscrit info found, defaulting to s-plus');
             return 's-plus'; // Default to S+ if not found
         }
         
@@ -4491,18 +4486,15 @@ class MiscritsApp {
         
         // If speed is Strong, Elite, or Max → perfect is S+
         if (speedStat === 'Strong' || speedStat === 'Elite' || speedStat === 'Max') {
-            console.log('  → Speed is Strong/Elite/Max, returning s-plus');
             return 's-plus';
         }
         
         // If speed is Weak or Moderate → perfect is A+ RS (red speed only, everything else green)
         if (speedStat === 'Weak' || speedStat === 'Moderate') {
-            console.log('  → Speed is Weak/Moderate, returning red-spd-only');
             return 'red-spd-only';
         }
         
         // Default to S+ for any other cases
-        console.log('  → Speed is something else:', speedStat, ', defaulting to s-plus');
         return 's-plus';
     }
 

@@ -13,19 +13,8 @@ import sys
 from pathlib import Path
 
 def find_free_port():
-    """Find a free port in the range 7000-9999 to avoid common conflicts."""
-    for port in range(7347, 9999):  # Starting with a less common port
-        try:
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                s.bind(('localhost', port))
-                return port
-        except OSError:
-            continue
-    
-    # Fallback to system-assigned port
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.bind(('localhost', 0))
-        return s.getsockname()[1]
+    """Always use port 8000 (required for CDN CORS)."""
+    return 8000
 
 def main():
     """Start the HTTP server and open the browser."""
